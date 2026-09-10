@@ -1,0 +1,62 @@
+[
+  {
+    "id": "refund-policy",
+    "title": "Refund policy",
+    "text": "Monthly subscriptions can be refunded within 30 days of the original purchase. Customers request a refund by emailing billing@example.test with the workspace ID and invoice number. Renewal charges are eligible only when the request arrives within 7 days of renewal."
+  },
+  {
+    "id": "sso-setup",
+    "title": "Single sign-on setup",
+    "text": "SAML single sign-on is available on the Enterprise plan. An organization owner enables SSO under Settings, Security, then Single sign-on. The identity provider metadata URL and verified company domain are required before activation."
+  },
+  {
+    "id": "retention-policy",
+    "title": "Data retention",
+    "text": "Application logs are retained for 90 days on the Standard plan and 365 days on the Enterprise plan. Deleted workspace content enters a 14-day recovery window before permanent deletion. Audit-log retention can be extended by contract."
+  },
+  {
+    "id": "incident-severity",
+    "title": "Incident severity and response",
+    "text": "A Severity 1 incident is a complete production outage or confirmed data exposure affecting multiple customers. The on-call engineer acknowledges Severity 1 incidents within 15 minutes and posts customer updates every 30 minutes until mitigation."
+  },
+  {
+    "id": "api-limits",
+    "title": "API rate limits",
+    "text": "The public API allows 600 requests per minute per workspace. Responses include the X-RateLimit-Remaining header. When the limit is exceeded, the service returns HTTP 429 and clients should retry with exponential backoff."
+  },
+  {
+    "id": "data-export",
+    "title": "Workspace data export",
+    "text": "Organization owners can start a full workspace export from Settings, Data, then Export. The export is delivered as a ZIP file through a signed link that expires after 24 hours. Large exports can take up to 6 hours to prepare."
+  },
+  {
+    "id": "roles-permissions",
+    "title": "Roles and permissions",
+    "text": "Members can view and edit project content but cannot manage billing or security settings. Admins manage members and integrations. Only organization owners can change billing, delete a workspace, configure SSO, or start a full data export."
+  },
+  {
+    "id": "billing-cycle",
+    "title": "Billing cycle",
+    "text": "Paid plans can be billed monthly or annually. Annual billing includes a 15 percent discount compared with twelve monthly payments. Plan downgrades take effect at the end of the current billing period."
+  },
+  {
+    "id": "backups",
+    "title": "Backups and recovery",
+    "text": "Encrypted database backups run every 6 hours and are stored in a separate region. Daily backups are retained for 35 days. Recovery exercises are performed quarterly and the recovery point objective is 6 hours."
+  },
+  {
+    "id": "support-hours",
+    "title": "Support coverage",
+    "text": "Standard support operates Monday through Friday from 09:00 to 18:00 Central European Time. Enterprise customers receive 24/7 support for Severity 1 incidents. The target first response for standard-priority tickets is one business day."
+  },
+  {
+    "id": "attachment-guide-a",
+    "title": "Attachment upload guide A",
+    "text": "The maximum attachment upload size is 25 MB."
+  },
+  {
+    "id": "attachment-guide-b",
+    "title": "Attachment upload guide B",
+    "text": "The maximum attachment upload size is 100 MB."
+  }
+]

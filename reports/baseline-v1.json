@@ -1,0 +1,179 @@
+{
+  "generated_at": "2026-09-09T13:50:18.319845+00:00",
+  "dataset_size": 10,
+  "config": {
+    "retriever": "bm25",
+    "generator": "extractive",
+    "top_k": 3
+  },
+  "metrics": {
+    "hit_rate_at_3": 1.0,
+    "mean_reciprocal_rank": 1.0,
+    "answer_coverage": 1.0,
+    "faithfulness": 1.0,
+    "citation_correctness": 1.0,
+    "p95_latency_ms": 0.17
+  },
+  "cases": [
+    {
+      "id": "refund-window",
+      "question": "How long after the original purchase can a monthly subscription be refunded?",
+      "retrieved_doc_ids": [
+        "refund-policy",
+        "billing-cycle",
+        "data-export"
+      ],
+      "answer": "Monthly subscriptions can be refunded within 30 days of the original purchase. [refund-policy] Customers request a refund by emailing billing@example.test with the workspace ID and invoice number. [refund-policy]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "answer_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.17
+    },
+    {
+      "id": "refund-request",
+      "question": "What information should a customer include when requesting a refund?",
+      "retrieved_doc_ids": [
+        "refund-policy",
+        "api-limits",
+        "incident-severity"
+      ],
+      "answer": "Customers request a refund by emailing billing@example.test with the workspace ID and invoice number. [refund-policy] Monthly subscriptions can be refunded within 30 days of the original purchase. [refund-policy]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "answer_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.099
+    },
+    {
+      "id": "sso-plan",
+      "question": "Which plan includes SAML single sign-on and who can enable it?",
+      "retrieved_doc_ids": [
+        "sso-setup",
+        "billing-cycle",
+        "retention-policy"
+      ],
+      "answer": "SAML single sign-on is available on the Enterprise plan. [sso-setup] An organization owner enables SSO under Settings, Security, then Single sign-on. [sso-setup]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "answer_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.089
+    },
+    {
+      "id": "log-retention",
+      "question": "How long are application logs retained on Standard and Enterprise plans?",
+      "retrieved_doc_ids": [
+        "retention-policy",
+        "support-hours",
+        "sso-setup"
+      ],
+      "answer": "Application logs are retained for 90 days on the Standard plan and 365 days on the Enterprise plan. [retention-policy] SAML single sign-on is available on the Enterprise plan. [sso-setup]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "answer_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.117
+    },
+    {
+      "id": "sev1-response",
+      "question": "How quickly must an on-call engineer acknowledge a Severity 1 incident?",
+      "retrieved_doc_ids": [
+        "incident-severity",
+        "support-hours",
+        "api-limits"
+      ],
+      "answer": "The on-call engineer acknowledges Severity 1 incidents within 15 minutes and posts customer updates every 30 minutes until mitigation. [incident-severity] A Severity 1 incident is a complete production outage or confirmed data exposure affecting multiple customers. [incident-severity]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "answer_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.089
+    },
+    {
+      "id": "api-limit",
+      "question": "What is the public API rate limit and what status is returned when it is exceeded?",
+      "retrieved_doc_ids": [
+        "api-limits",
+        "backups",
+        "billing-cycle"
+      ],
+      "answer": "When the limit is exceeded, the service returns HTTP 429 and clients should retry with exponential backoff. [api-limits] The public API allows 600 requests per minute per workspace. [api-limits]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "answer_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.084
+    },
+    {
+      "id": "export-link",
+      "question": "How long does a workspace export download link remain valid?",
+      "retrieved_doc_ids": [
+        "data-export",
+        "api-limits",
+        "roles-permissions"
+      ],
+      "answer": "Organization owners can start a full workspace export from Settings, Data, then Export. [data-export] The export is delivered as a ZIP file through a signed link that expires after 24 hours. [data-export]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "answer_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.086
+    },
+    {
+      "id": "owner-permissions",
+      "question": "Which role can delete a workspace or configure SSO?",
+      "retrieved_doc_ids": [
+        "roles-permissions",
+        "sso-setup",
+        "data-export"
+      ],
+      "answer": "Only organization owners can change billing, delete a workspace, configure SSO, or start a full data export. [roles-permissions] An organization owner enables SSO under Settings, Security, then Single sign-on. [sso-setup]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "answer_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.083
+    },
+    {
+      "id": "backup-schedule",
+      "question": "How often do encrypted database backups run and how long are daily backups retained?",
+      "retrieved_doc_ids": [
+        "backups",
+        "retention-policy",
+        "api-limits"
+      ],
+      "answer": "Encrypted database backups run every 6 hours and are stored in a separate region. [backups] Daily backups are retained for 35 days. [backups]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "answer_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.087
+    },
+    {
+      "id": "enterprise-support",
+      "question": "What support coverage do Enterprise customers receive for Severity 1 incidents?",
+      "retrieved_doc_ids": [
+        "support-hours",
+        "incident-severity",
+        "retention-policy"
+      ],
+      "answer": "Enterprise customers receive 24/7 support for Severity 1 incidents. [support-hours] A Severity 1 incident is a complete production outage or confirmed data exposure affecting multiple customers. [incident-severity]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "answer_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.087
+    }
+  ]
+}

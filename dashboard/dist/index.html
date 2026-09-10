@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Inspect RAG evaluation runs, compare quality scores, and trace failed answers to their evidence.">
+  <title>Run analysis · RAG Reliability Lab</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to results</a>
+  <aside class="sidebar" aria-label="Workspace navigation">
+    <a class="brand" href="#main" aria-label="RAG Reliability Lab home"><svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true"><path d="M4 25V15M14 25V5M24 25V10" fill="none" stroke="currentColor" stroke-width="4"/></svg><span>RAG<span class="brand-sub">Reliability Lab</span></span></a>
+    <div class="nav-label">ANALYSIS</div>
+    <nav><a href="#main"><span>01</span> Overview</a><a href="#diagnostics"><span>02</span> Diagnostics</a><a href="#cases"><span>03</span> Case explorer</a></nav>
+    <div class="sidebar-bottom"><span class="nav-label">BASELINE PIPELINE</span><dl><div><dt>Retrieval</dt><dd>BM25</dd></div><div><dt>Answering</dt><dd>Extractive</dd></div></dl><p>Local workspace<span>127.0.0.1</span></p></div>
+  </aside>
+  <div class="shell">
+    <header class="topbar"><div class="breadcrumb">rag-reliability-lab <span>/</span> <strong>Evaluations</strong></div><div class="connection"><span id="connection" role="status">Connecting…</span><button id="refresh" class="quiet" aria-label="Refresh results"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 8a6 6 0 1 0 .2 4M16 3v5h-5" stroke="currentColor" stroke-width="1.5"/></svg>Refresh</button></div></header>
+    <main id="main">
+      <div class="page-heading"><div><h1>Run analysis<span class="heading-period">.</span></h1><p class="muted" id="provenance">Loading your local evaluation history.</p></div><span class="suite-label">CUSTOM SUPPORT SUITE</span></div>
+      <div id="notice" class="notice" role="alert" hidden></div>
+      <div id="empty" class="empty" hidden><h2>Your first run starts here</h2><p>Run <code>rag-eval evaluate</code> or <code>python -m pytest -q</code> from the project. The results will appear automatically.</p></div>
+      <section id="workspace" aria-label="Selected evaluation run" hidden>
+        <div class="run-toolbar"><label>Run<select id="run-select" aria-label="View run"></select></label><label>Compare with<select id="compare-select" aria-label="Compare with run"></select></label><div class="run-context"><span id="run-context"></span><small id="benchmark-id"></small></div></div>
+        <section class="kpis" aria-label="Run summary">
+          <article class="kpi gate-card"><h2 class="kpi-label">Quality gate</h2><div id="gate-value" class="kpi-value">—</div><p id="gate-description"></p></article>
+          <article class="kpi"><h2 class="kpi-label">Phrase coverage</h2><div id="coverage-value" class="kpi-value">—</div><p id="coverage-description"></p></article>
+          <article class="kpi"><h2 class="kpi-label">Correct abstention</h2><div id="abstention-value" class="kpi-value">—</div><p id="abstention-description"></p></article>
+          <article class="kpi"><h2 class="kpi-label">Software tests</h2><div id="tests-value" class="kpi-value">—</div><p id="tests-description"></p></article>
+        </section>
+        <div class="chart-grid">
+          <section class="panel trend-panel"><div class="panel-heading"><div><h2>Run history</h2><p id="trend-caption">Same benchmark only</p></div><select id="trend-metric" aria-label="Trend metric"><option value="required_phrase_coverage">Phrase coverage</option><option value="unanswerable_abstention_rate">Correct abstention</option><option value="source_recall_at_3">Source recall @3</option><option value="faithfulness">Faithfulness</option><option value="p95_latency_ms">p95 latency</option></select></div><div id="trend-chart" class="trend-chart"></div><div class="latency-strip"><div><small>p50 latency</small><strong id="p50">—</strong></div><div><small>p95 latency</small><strong id="p95">—</strong></div><div><small>Slowest case</small><strong id="max-latency">—</strong></div></div></section>
+          <section class="panel quality-panel"><div class="panel-heading"><div><h2>Quality vs. target</h2><p>Minimum required score</p></div><div class="legend"><span><i class="threshold-mark"></i>Target</span><span id="compare-legend" hidden><i class="comparison-mark"></i>Comparison</span></div></div><div id="quality-bars"></div><p class="footnote">Phrase and source matching are lexical checks. A high score does not establish semantic correctness.</p></section>
+        </div>
+        <section id="diagnostics" class="panel category-panel"><div class="panel-heading"><div><h2>Diagnostics by question type</h2><p id="diagnostic-summary">Select a category to inspect its cases.</p></div><div class="legend"><span><i class="dot good"></i>No issues</span><span><i class="dot bad"></i>Needs review</span></div></div><div id="category-chart" class="category-chart"></div></section>
+        <section id="cases" class="panel cases-panel"><div class="panel-heading"><div><h2>Case explorer <span class="count" id="case-count"></span></h2><p>Select a question to inspect the answer and its evidence.</p></div><button id="download" class="quiet"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2v11m-4-4 4 4 4-4M3 13v4h14v-4" stroke="currentColor" stroke-width="1.5"/></svg>Export CSV</button></div><div class="filters"><label class="search-label"><span class="sr-only">Search questions, answers or IDs</span><svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="5" stroke="currentColor" stroke-width="1.5"/><path d="m12 12 5 5" stroke="currentColor" stroke-width="1.5"/></svg><input id="search" type="search" placeholder="Search questions, answers or IDs"></label><label><span class="sr-only">Question category</span><select id="category-filter"><option value="all">All categories</option></select></label><label class="check-label"><input id="issues-only" type="checkbox"> With issues only</label></div><div class="table-wrap"><table><thead><tr><th scope="col">Question / case ID</th><th scope="col">Source recall @3</th><th scope="col">Phrase coverage</th><th scope="col">Outcome</th></tr></thead><tbody id="cases-body"></tbody></table></div><p id="no-cases" class="empty-filter" hidden>No cases match these filters.</p></section>
+      </section>
+      <details class="benchmark-notes"><summary>Benchmark methodology &amp; public datasets</summary><p>This is a <strong>synthetic support regression suite</strong>, not a public leaderboard. It tests repeatable failure modes against a fixed corpus. The public datasets below have not been imported or evaluated here.</p><div class="benchmark-options"><article><span class="tag">EACL 2026</span><h3><a href="https://aclanthology.org/2026.eacl-long.8/" target="_blank" rel="noreferrer">T²-RAGBench ↗</a></h3><p>Text, tables and numerical reasoning in financial reports.</p></article><article><span class="tag">LREC 2026</span><h3><a href="https://aclanthology.org/2026.lrec-1.427/" target="_blank" rel="noreferrer">LIT-RAGBench ↗</a></h3><p>Integration, reasoning, logic, tables and abstention.</p></article><article><span class="tag">ESTABLISHED</span><h3><a href="https://huggingface.co/datasets/galileo-ai/ragbench" target="_blank" rel="noreferrer">RAGBench ↗</a></h3><p>Broader labelled examples for relevance, support and completeness.</p></article></div><p class="footnote">Sources checked 10 September 2026. Each public dataset needs a versioned import and its own scoring protocol.</p></details>
+      <footer><span>Synthetic data · deterministic baseline</span><span id="history-note">Refreshes every 5 seconds.</span></footer>
+    </main>
+  </div>
+  <dialog id="case-dialog" aria-labelledby="case-title"><div class="dialog-top"><span class="eyebrow" id="case-id"></span><button id="close-dialog" class="quiet" aria-label="Close case details">Close ×</button></div><h2 id="case-title"></h2><div id="case-detail"></div></dialog>
+</body>
+</html>

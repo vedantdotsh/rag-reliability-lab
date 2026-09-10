@@ -1,0 +1,963 @@
+{
+  "schema_version": 2,
+  "benchmark_sha256": "c0bf11e54ee2caf155d5a877622007b1182f0ae87838ac0dd40f10f870ea1990",
+  "generated_at": "2026-09-10T20:08:40.707662+00:00",
+  "dataset_size": 32,
+  "config": {
+    "retriever": "bm25",
+    "generator": "extractive",
+    "top_k": 3
+  },
+  "metrics": {
+    "hit_rate_at_3": 1.0,
+    "mean_reciprocal_rank": 0.98,
+    "source_recall_at_3": 1.0,
+    "required_phrase_coverage": 0.8866666666666667,
+    "faithfulness": 1.0,
+    "citation_correctness": 1.0,
+    "answerable_response_rate": 1,
+    "unanswerable_abstention_rate": 0.2857142857142857,
+    "p95_latency_ms": 0.18959999943035655
+  },
+  "cases": [
+    {
+      "id": "refund-window",
+      "question": "How long after the original purchase can a monthly subscription be refunded?",
+      "retrieved_doc_ids": [
+        "refund-policy",
+        "billing-cycle",
+        "data-export"
+      ],
+      "answer": "Monthly subscriptions can be refunded within 30 days of the original purchase. [refund-policy] Customers request a refund by emailing billing@example.test with the workspace ID and invoice number. [refund-policy]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.19720000273082405,
+      "expected_doc_ids": [
+        "refund-policy"
+      ],
+      "required_facts": [
+        "within 30 days"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "standard",
+      "issues": []
+    },
+    {
+      "id": "refund-request",
+      "question": "What information should a customer include when requesting a refund?",
+      "retrieved_doc_ids": [
+        "refund-policy",
+        "api-limits",
+        "incident-severity"
+      ],
+      "answer": "Customers request a refund by emailing billing@example.test with the workspace ID and invoice number. [refund-policy] Monthly subscriptions can be refunded within 30 days of the original purchase. [refund-policy]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.11989999984507449,
+      "expected_doc_ids": [
+        "refund-policy"
+      ],
+      "required_facts": [
+        "workspace ID",
+        "invoice number"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "standard",
+      "issues": []
+    },
+    {
+      "id": "sso-plan",
+      "question": "Which plan includes SAML single sign-on and who can enable it?",
+      "retrieved_doc_ids": [
+        "sso-setup",
+        "billing-cycle",
+        "retention-policy"
+      ],
+      "answer": "SAML single sign-on is available on the Enterprise plan. [sso-setup] An organization owner enables SSO under Settings, Security, then Single sign-on. [sso-setup]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.11439999798312783,
+      "expected_doc_ids": [
+        "sso-setup"
+      ],
+      "required_facts": [
+        "Enterprise plan",
+        "organization owner"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "standard",
+      "issues": []
+    },
+    {
+      "id": "log-retention",
+      "question": "How long are application logs retained on Standard and Enterprise plans?",
+      "retrieved_doc_ids": [
+        "retention-policy",
+        "support-hours",
+        "sso-setup"
+      ],
+      "answer": "Application logs are retained for 90 days on the Standard plan and 365 days on the Enterprise plan. [retention-policy] SAML single sign-on is available on the Enterprise plan. [sso-setup]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.11169999925186858,
+      "expected_doc_ids": [
+        "retention-policy"
+      ],
+      "required_facts": [
+        "90 days",
+        "365 days"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "standard",
+      "issues": []
+    },
+    {
+      "id": "sev1-response",
+      "question": "How quickly must an on-call engineer acknowledge a Severity 1 incident?",
+      "retrieved_doc_ids": [
+        "incident-severity",
+        "support-hours"
+      ],
+      "answer": "The on-call engineer acknowledges Severity 1 incidents within 15 minutes and posts customer updates every 30 minutes until mitigation. [incident-severity] A Severity 1 incident is a complete production outage or confirmed data exposure affecting multiple customers. [incident-severity]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.08149999848683365,
+      "expected_doc_ids": [
+        "incident-severity"
+      ],
+      "required_facts": [
+        "within 15 minutes"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "standard",
+      "issues": []
+    },
+    {
+      "id": "api-limit",
+      "question": "What is the public API rate limit and what status is returned when it is exceeded?",
+      "retrieved_doc_ids": [
+        "api-limits"
+      ],
+      "answer": "When the limit is exceeded, the service returns HTTP 429 and clients should retry with exponential backoff. [api-limits] The public API allows 600 requests per minute per workspace. [api-limits]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.054700001783203334,
+      "expected_doc_ids": [
+        "api-limits"
+      ],
+      "required_facts": [
+        "600 requests per minute",
+        "HTTP 429"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "standard",
+      "issues": []
+    },
+    {
+      "id": "export-link",
+      "question": "How long does a workspace export download link remain valid?",
+      "retrieved_doc_ids": [
+        "data-export",
+        "api-limits",
+        "roles-permissions"
+      ],
+      "answer": "Organization owners can start a full workspace export from Settings, Data, then Export. [data-export] The export is delivered as a ZIP file through a signed link that expires after 24 hours. [data-export]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.11559999984456226,
+      "expected_doc_ids": [
+        "data-export"
+      ],
+      "required_facts": [
+        "expires after 24 hours"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "standard",
+      "issues": []
+    },
+    {
+      "id": "owner-permissions",
+      "question": "Which role can delete a workspace or configure SSO?",
+      "retrieved_doc_ids": [
+        "roles-permissions",
+        "sso-setup",
+        "data-export"
+      ],
+      "answer": "Only organization owners can change billing, delete a workspace, configure SSO, or start a full data export. [roles-permissions] An organization owner enables SSO under Settings, Security, then Single sign-on. [sso-setup]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.10069999916595407,
+      "expected_doc_ids": [
+        "roles-permissions"
+      ],
+      "required_facts": [
+        "organization owners"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "standard",
+      "issues": []
+    },
+    {
+      "id": "backup-schedule",
+      "question": "How often do encrypted database backups run and how long are daily backups retained?",
+      "retrieved_doc_ids": [
+        "backups",
+        "retention-policy"
+      ],
+      "answer": "Encrypted database backups run every 6 hours and are stored in a separate region. [backups] Daily backups are retained for 35 days. [backups]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.08230000094044954,
+      "expected_doc_ids": [
+        "backups"
+      ],
+      "required_facts": [
+        "every 6 hours",
+        "35 days"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "standard",
+      "issues": []
+    },
+    {
+      "id": "enterprise-support",
+      "question": "What support coverage do Enterprise customers receive for Severity 1 incidents?",
+      "retrieved_doc_ids": [
+        "support-hours",
+        "incident-severity",
+        "retention-policy"
+      ],
+      "answer": "Enterprise customers receive 24/7 support for Severity 1 incidents. [support-hours] A Severity 1 incident is a complete production outage or confirmed data exposure affecting multiple customers. [incident-severity]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.10589999874355271,
+      "expected_doc_ids": [
+        "support-hours"
+      ],
+      "required_facts": [
+        "24/7 support"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "standard",
+      "issues": []
+    },
+    {
+      "id": "monthly-refund-paraphrase",
+      "question": "For a monthly subscription, how many days after purchase does the refund window remain open?",
+      "retrieved_doc_ids": [
+        "refund-policy",
+        "retention-policy",
+        "billing-cycle"
+      ],
+      "answer": "Monthly subscriptions can be refunded within 30 days of the original purchase. [refund-policy] Renewal charges are eligible only when the request arrives within 7 days of renewal. [refund-policy]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.0987999992503319,
+      "expected_doc_ids": [
+        "refund-policy"
+      ],
+      "required_facts": [
+        "Monthly subscriptions can be refunded within 30 days of the original purchase."
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "paraphrase",
+      "issues": []
+    },
+    {
+      "id": "deleted-content-recovery",
+      "question": "After deleting workspace content, how long is the recovery period before permanent deletion?",
+      "retrieved_doc_ids": [
+        "retention-policy",
+        "data-export",
+        "backups"
+      ],
+      "answer": "Deleted workspace content enters a 14-day recovery window before permanent deletion. [retention-policy] Organization owners can start a full workspace export from Settings, Data, then Export. [data-export]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.18959999943035655,
+      "expected_doc_ids": [
+        "retention-policy"
+      ],
+      "required_facts": [
+        "Deleted workspace content enters a 14-day recovery window before permanent deletion."
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "paraphrase",
+      "issues": []
+    },
+    {
+      "id": "rate-limit-retry-paraphrase",
+      "question": "When API usage exceeds the limit, what status appears and what should the client do?",
+      "retrieved_doc_ids": [
+        "api-limits"
+      ],
+      "answer": "When the limit is exceeded, the service returns HTTP 429 and clients should retry with exponential backoff. [api-limits] The public API allows 600 requests per minute per workspace. [api-limits]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.0532000012753997,
+      "expected_doc_ids": [
+        "api-limits"
+      ],
+      "required_facts": [
+        "When the limit is exceeded, the service returns HTTP 429",
+        "clients should retry with exponential backoff"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "paraphrase",
+      "issues": []
+    },
+    {
+      "id": "severity-update-paraphrase",
+      "question": "For a Severity 1 incident, how quickly must the on-call engineer acknowledge, and how frequent are updates until mitigation?",
+      "retrieved_doc_ids": [
+        "incident-severity",
+        "support-hours"
+      ],
+      "answer": "The on-call engineer acknowledges Severity 1 incidents within 15 minutes and posts customer updates every 30 minutes until mitigation. [incident-severity] A Severity 1 incident is a complete production outage or confirmed data exposure affecting multiple customers. [incident-severity]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.0870000003487803,
+      "expected_doc_ids": [
+        "incident-severity"
+      ],
+      "required_facts": [
+        "within 15 minutes",
+        "posts customer updates every 30 minutes"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "paraphrase",
+      "issues": []
+    },
+    {
+      "id": "standard-support-hours-paraphrase",
+      "question": "During standard support coverage, on which days and times does support run?",
+      "retrieved_doc_ids": [
+        "support-hours",
+        "backups",
+        "retention-policy"
+      ],
+      "answer": "Standard support operates Monday through Friday from 09:00 to 18:00 Central European Time. [support-hours] Application logs are retained for 90 days on the Standard plan and 365 days on the Enterprise plan. [retention-policy]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.09960000170394778,
+      "expected_doc_ids": [
+        "support-hours"
+      ],
+      "required_facts": [
+        "Standard support operates Monday through Friday from 09:00 to 18:00 Central European Time."
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "paraphrase",
+      "issues": []
+    },
+    {
+      "id": "refund-seven-day-correction",
+      "question": "Are monthly subscriptions refundable only within 7 days of the original purchase?",
+      "retrieved_doc_ids": [
+        "refund-policy",
+        "billing-cycle",
+        "retention-policy"
+      ],
+      "answer": "Monthly subscriptions can be refunded within 30 days of the original purchase. [refund-policy] Renewal charges are eligible only when the request arrives within 7 days of renewal. [refund-policy]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.10960000145132653,
+      "expected_doc_ids": [
+        "refund-policy"
+      ],
+      "required_facts": [
+        "within 30 days"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "incorrect_premise",
+      "issues": []
+    },
+    {
+      "id": "admin-billing-correction",
+      "question": "Can an admin change billing without being an organization owner?",
+      "retrieved_doc_ids": [
+        "roles-permissions",
+        "sso-setup",
+        "billing-cycle"
+      ],
+      "answer": "Only organization owners can change billing, delete a workspace, configure SSO, or start a full data export. [roles-permissions] An organization owner enables SSO under Settings, Security, then Single sign-on. [sso-setup]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.10130000009667128,
+      "expected_doc_ids": [
+        "roles-permissions"
+      ],
+      "required_facts": [
+        "Only organization owners can change billing"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "incorrect_premise",
+      "issues": []
+    },
+    {
+      "id": "export-page-correction",
+      "question": "Is the full workspace export started from Integrations and sent as a PDF attachment?",
+      "retrieved_doc_ids": [
+        "roles-permissions",
+        "data-export",
+        "attachment-guide-a"
+      ],
+      "answer": "Organization owners can start a full workspace export from Settings, Data, then Export. [data-export] Only organization owners can change billing, delete a workspace, configure SSO, or start a full data export. [roles-permissions]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 0.5,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 0.5,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.08400000297115184,
+      "expected_doc_ids": [
+        "data-export"
+      ],
+      "required_facts": [
+        "Settings, Data, then Export",
+        "ZIP file"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "incorrect_premise",
+      "issues": [
+        "Required phrases missing: ZIP file"
+      ]
+    },
+    {
+      "id": "sso-admin-correction",
+      "question": "Can any organization admin enable SAML SSO if the domain is not verified?",
+      "retrieved_doc_ids": [
+        "sso-setup",
+        "roles-permissions",
+        "data-export"
+      ],
+      "answer": "An organization owner enables SSO under Settings, Security, then Single sign-on. [sso-setup] The identity provider metadata URL and verified company domain are required before activation. [sso-setup]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.09399999908055179,
+      "expected_doc_ids": [
+        "sso-setup"
+      ],
+      "required_facts": [
+        "An organization owner enables SSO",
+        "verified company domain"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "incorrect_premise",
+      "issues": []
+    },
+    {
+      "id": "annual-discount-correction",
+      "question": "Is annual billing priced the same as twelve monthly payments?",
+      "retrieved_doc_ids": [
+        "billing-cycle",
+        "refund-policy",
+        "roles-permissions"
+      ],
+      "answer": "Annual billing includes a 15 percent discount compared with twelve monthly payments. [billing-cycle] Paid plans can be billed monthly or annually. [billing-cycle]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 1.0,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.09190000128000975,
+      "expected_doc_ids": [
+        "billing-cycle"
+      ],
+      "required_facts": [
+        "Annual billing includes a 15 percent discount compared with twelve monthly payments."
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "incorrect_premise",
+      "issues": []
+    },
+    {
+      "id": "export-and-recovery",
+      "question": "How long is a workspace export download link valid, and how long can deleted workspace content be recovered?",
+      "retrieved_doc_ids": [
+        "data-export",
+        "retention-policy",
+        "roles-permissions"
+      ],
+      "answer": "Deleted workspace content enters a 14-day recovery window before permanent deletion. [retention-policy] Organization owners can start a full workspace export from Settings, Data, then Export. [data-export]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 0.5,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.09789999967324547,
+      "expected_doc_ids": [
+        "data-export",
+        "retention-policy"
+      ],
+      "required_facts": [
+        "expires after 24 hours",
+        "14-day recovery window"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "multi_source",
+      "issues": [
+        "Required phrases missing: expires after 24 hours"
+      ]
+    },
+    {
+      "id": "enterprise-sev1-support",
+      "question": "What acknowledgment time and support coverage apply to Severity 1 incidents for Enterprise customers?",
+      "retrieved_doc_ids": [
+        "support-hours",
+        "incident-severity",
+        "retention-policy"
+      ],
+      "answer": "Enterprise customers receive 24/7 support for Severity 1 incidents. [support-hours] A Severity 1 incident is a complete production outage or confirmed data exposure affecting multiple customers. [incident-severity]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 0.5,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.10509999992791563,
+      "expected_doc_ids": [
+        "incident-severity",
+        "support-hours"
+      ],
+      "required_facts": [
+        "within 15 minutes",
+        "24/7 support"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "multi_source",
+      "issues": [
+        "Required phrases missing: within 15 minutes"
+      ]
+    },
+    {
+      "id": "sso-export-owner",
+      "question": "Where does an organization owner enable SSO and start a full workspace export?",
+      "retrieved_doc_ids": [
+        "data-export",
+        "roles-permissions",
+        "sso-setup"
+      ],
+      "answer": "Only organization owners can change billing, delete a workspace, configure SSO, or start a full data export. [roles-permissions] Organization owners can start a full workspace export from Settings, Data, then Export. [data-export]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 0.5,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.09689999933470972,
+      "expected_doc_ids": [
+        "sso-setup",
+        "data-export"
+      ],
+      "required_facts": [
+        "Settings, Security, then Single sign-on",
+        "Settings, Data, then Export"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "multi_source",
+      "issues": [
+        "Required phrases missing: Settings, Security, then Single sign-on"
+      ]
+    },
+    {
+      "id": "api-owner-sso-rate",
+      "question": "Who enables SSO, and which status code is returned when the public API rate limit is exceeded?",
+      "retrieved_doc_ids": [
+        "api-limits",
+        "sso-setup",
+        "roles-permissions"
+      ],
+      "answer": "When the limit is exceeded, the service returns HTTP 429 and clients should retry with exponential backoff. [api-limits] The public API allows 600 requests per minute per workspace. [api-limits]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 0.5,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.10349999865866266,
+      "expected_doc_ids": [
+        "sso-setup",
+        "api-limits"
+      ],
+      "required_facts": [
+        "An organization owner enables SSO",
+        "HTTP 429"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "multi_source",
+      "issues": [
+        "Required phrases missing: An organization owner enables SSO"
+      ]
+    },
+    {
+      "id": "backup-export-retention",
+      "question": "In what format are workspace exports delivered, how long are Standard application logs retained, and how long are daily backups retained?",
+      "retrieved_doc_ids": [
+        "retention-policy",
+        "backups",
+        "data-export"
+      ],
+      "answer": "Application logs are retained for 90 days on the Standard plan and 365 days on the Enterprise plan. [retention-policy] Daily backups are retained for 35 days. [backups]",
+      "hit_at_3": 1.0,
+      "reciprocal_rank": 1.0,
+      "source_recall_at_3": 1.0,
+      "required_phrase_coverage": 0.6666666666666666,
+      "faithfulness": 1.0,
+      "citation_correctness": 1.0,
+      "latency_ms": 0.10770000153570436,
+      "expected_doc_ids": [
+        "data-export",
+        "retention-policy",
+        "backups"
+      ],
+      "required_facts": [
+        "ZIP file",
+        "90 days on the Standard plan",
+        "35 days"
+      ],
+      "should_abstain": false,
+      "abstained": false,
+      "category": "multi_source",
+      "issues": [
+        "Required phrases missing: ZIP file"
+      ]
+    },
+    {
+      "id": "unans-chess",
+      "question": "Who won the world chess championship?",
+      "retrieved_doc_ids": [],
+      "answer": "I could not find supporting context.",
+      "hit_at_3": null,
+      "reciprocal_rank": null,
+      "source_recall_at_3": null,
+      "required_phrase_coverage": null,
+      "faithfulness": null,
+      "citation_correctness": null,
+      "latency_ms": 0.013699998817173764,
+      "expected_doc_ids": [],
+      "required_facts": [],
+      "should_abstain": true,
+      "abstained": true,
+      "category": "no_overlap",
+      "issues": []
+    },
+    {
+      "id": "unans-mona-lisa",
+      "question": "Who painted the Mona Lisa?",
+      "retrieved_doc_ids": [],
+      "answer": "I could not find supporting context.",
+      "hit_at_3": null,
+      "reciprocal_rank": null,
+      "source_recall_at_3": null,
+      "required_phrase_coverage": null,
+      "faithfulness": null,
+      "citation_correctness": null,
+      "latency_ms": 0.01049999991664663,
+      "expected_doc_ids": [],
+      "required_facts": [],
+      "should_abstain": true,
+      "abstained": true,
+      "category": "no_overlap",
+      "issues": []
+    },
+    {
+      "id": "unans-support-phone",
+      "question": "What is the phone number for 24/7 support for incident response?",
+      "retrieved_doc_ids": [
+        "support-hours",
+        "incident-severity",
+        "refund-policy"
+      ],
+      "answer": "Enterprise customers receive 24/7 support for Severity 1 incidents. [support-hours] The target first response for standard-priority tickets is one business day. [support-hours]",
+      "hit_at_3": null,
+      "reciprocal_rank": null,
+      "source_recall_at_3": null,
+      "required_phrase_coverage": null,
+      "faithfulness": null,
+      "citation_correctness": null,
+      "latency_ms": 0.10230000043520704,
+      "expected_doc_ids": [],
+      "required_facts": [],
+      "should_abstain": true,
+      "abstained": false,
+      "category": "missing_info",
+      "issues": [
+        "Expected abstention; returned an answer"
+      ]
+    },
+    {
+      "id": "unans-api-endpoint",
+      "question": "What is the base URL of the public API?",
+      "retrieved_doc_ids": [
+        "api-limits",
+        "sso-setup"
+      ],
+      "answer": "The public API allows 600 requests per minute per workspace. [api-limits] The identity provider metadata URL and verified company domain are required before activation. [sso-setup]",
+      "hit_at_3": null,
+      "reciprocal_rank": null,
+      "source_recall_at_3": null,
+      "required_phrase_coverage": null,
+      "faithfulness": null,
+      "citation_correctness": null,
+      "latency_ms": 0.055999997130129486,
+      "expected_doc_ids": [],
+      "required_facts": [],
+      "should_abstain": true,
+      "abstained": false,
+      "category": "missing_info",
+      "issues": [
+        "Expected abstention; returned an answer"
+      ]
+    },
+    {
+      "id": "unans-sso-provider-list",
+      "question": "Besides SAML, which identity providers are supported for SSO in this product?",
+      "retrieved_doc_ids": [
+        "sso-setup",
+        "support-hours",
+        "roles-permissions"
+      ],
+      "answer": "The identity provider metadata URL and verified company domain are required before activation. [sso-setup] SAML single sign-on is available on the Enterprise plan. [sso-setup]",
+      "hit_at_3": null,
+      "reciprocal_rank": null,
+      "source_recall_at_3": null,
+      "required_phrase_coverage": null,
+      "faithfulness": null,
+      "citation_correctness": null,
+      "latency_ms": 0.09369999679620378,
+      "expected_doc_ids": [],
+      "required_facts": [],
+      "should_abstain": true,
+      "abstained": false,
+      "category": "missing_info",
+      "issues": [
+        "Expected abstention; returned an answer"
+      ]
+    },
+    {
+      "id": "conflicting-upload-limit",
+      "question": "What is the maximum attachment upload size?",
+      "retrieved_doc_ids": [
+        "attachment-guide-a",
+        "attachment-guide-b"
+      ],
+      "answer": "The maximum attachment upload size is 25 MB. [attachment-guide-a] The maximum attachment upload size is 100 MB. [attachment-guide-b]",
+      "hit_at_3": null,
+      "reciprocal_rank": null,
+      "source_recall_at_3": null,
+      "required_phrase_coverage": null,
+      "faithfulness": null,
+      "citation_correctness": null,
+      "latency_ms": 0.03740000101970509,
+      "expected_doc_ids": [],
+      "required_facts": [],
+      "should_abstain": true,
+      "abstained": false,
+      "category": "conflicting_sources",
+      "issues": [
+        "Expected abstention; returned an answer"
+      ]
+    },
+    {
+      "id": "conflicting-upload-cap",
+      "question": "How large can an uploaded attachment be?",
+      "retrieved_doc_ids": [
+        "attachment-guide-a",
+        "attachment-guide-b",
+        "data-export"
+      ],
+      "answer": "The maximum attachment upload size is 25 MB. [attachment-guide-a] The maximum attachment upload size is 100 MB. [attachment-guide-b]",
+      "hit_at_3": null,
+      "reciprocal_rank": null,
+      "source_recall_at_3": null,
+      "required_phrase_coverage": null,
+      "faithfulness": null,
+      "citation_correctness": null,
+      "latency_ms": 0.04709999848273583,
+      "expected_doc_ids": [],
+      "required_facts": [],
+      "should_abstain": true,
+      "abstained": false,
+      "category": "conflicting_sources",
+      "issues": [
+        "Expected abstention; returned an answer"
+      ]
+    }
+  ],
+  "gate": {
+    "passed": false,
+    "checks": [
+      {
+        "metric": "hit_rate_at_3",
+        "actual": 1.0,
+        "operator": ">=",
+        "threshold": 1.0,
+        "passed": true,
+        "reason": ""
+      },
+      {
+        "metric": "mean_reciprocal_rank",
+        "actual": 0.98,
+        "operator": ">=",
+        "threshold": 0.9,
+        "passed": true,
+        "reason": ""
+      },
+      {
+        "metric": "source_recall_at_3",
+        "actual": 1.0,
+        "operator": ">=",
+        "threshold": 0.9,
+        "passed": true,
+        "reason": ""
+      },
+      {
+        "metric": "required_phrase_coverage",
+        "actual": 0.8866666666666667,
+        "operator": ">=",
+        "threshold": 0.85,
+        "passed": true,
+        "reason": ""
+      },
+      {
+        "metric": "faithfulness",
+        "actual": 1.0,
+        "operator": ">=",
+        "threshold": 1.0,
+        "passed": true,
+        "reason": ""
+      },
+      {
+        "metric": "citation_correctness",
+        "actual": 1.0,
+        "operator": ">=",
+        "threshold": 1.0,
+        "passed": true,
+        "reason": ""
+      },
+      {
+        "metric": "answerable_response_rate",
+        "actual": 1,
+        "operator": ">=",
+        "threshold": 1.0,
+        "passed": true,
+        "reason": ""
+      },
+      {
+        "metric": "unanswerable_abstention_rate",
+        "actual": 0.2857142857142857,
+        "operator": ">=",
+        "threshold": 1.0,
+        "passed": false,
+        "reason": ""
+      },
+      {
+        "metric": "p95_latency_ms",
+        "actual": 0.18959999943035655,
+        "operator": "<=",
+        "threshold": 50.0,
+        "passed": true,
+        "reason": ""
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "hit_rate_at_3": 1.0,
+  "mean_reciprocal_rank": 0.9,
+  "source_recall_at_3": 0.9,
+  "required_phrase_coverage": 0.85,
+  "faithfulness": 1.0,
+  "citation_correctness": 1.0,
+  "answerable_response_rate": 1.0,
+  "unanswerable_abstention_rate": 1.0,
+  "p95_latency_ms_max": 50.0
+}
