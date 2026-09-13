@@ -20,6 +20,7 @@ dev = [
 
 [project.scripts]
 rag-eval = "raglab.cli:main"
+testgen-bench = "raglab.testgen:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

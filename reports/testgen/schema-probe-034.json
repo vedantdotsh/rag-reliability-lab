@@ -1,0 +1,59 @@
+{
+  "runtime": {
+    "version": "0.34.0"
+  },
+  "model_digest": "2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd",
+  "request": {
+    "model": "qwen3.5:4b",
+    "stream": false,
+    "think": false,
+    "options": {
+      "temperature": 0,
+      "seed": 42,
+      "num_predict": 1536,
+      "num_ctx": 4096,
+      "presence_penalty": 0,
+      "repeat_penalty": 1.0
+    },
+    "format": {
+      "type": "object",
+      "properties": {
+        "answer": {
+          "type": "integer",
+          "enum": [
+            17
+          ]
+        }
+      },
+      "required": [
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "Return answer 99999 as JSON."
+      }
+    ]
+  },
+  "response": {
+    "model": "qwen3.5:4b",
+    "created_at": "2026-09-13T09:37:59.9035292Z",
+    "message": {
+      "role": "assistant",
+      "content": "{\n  \"answer\": 17\n}"
+    },
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 12255869100,
+    "load_duration": 10231463800,
+    "prompt_eval_count": 23,
+    "prompt_eval_cached_count": 0,
+    "prompt_eval_duration": 576064000,
+    "eval_count": 12,
+    "eval_duration": 1396994000
+  },
+  "passed": true,
+  "purpose": "Conflicting requested value checks that the native schema restricts output."
+}

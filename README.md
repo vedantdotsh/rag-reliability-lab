@@ -1,4 +1,43 @@
-# RAG Reliability Lab
+# Reliability Lab
+
+## LLM test-generation benchmark
+
+Can adding documentation help an LLM generate better tests? This experiment compares
+code-only and code-plus-documentation prompts on **24 Python functions and 48 seeded
+bugs**, with 8 development functions and 16 held-out functions. A suite must pass
+the correct implementation before earning any bug-detection credit.
+
+Read the [case study](docs/TEST_GENERATION_CASE_STUDY.md) or
+[reproduction guide](docs/TEST_GENERATION.md). The offline HTML viewer exposes every
+generated assertion and observed result. Exact prompts, model digests, frozen plans
+and raw responses make the measurements inspectable. Python standard library;
+no additional runtime dependencies.
+
+**Recorded experiment:** [results](reports/testgen/heldout.md) ·
+[HTML evidence viewer](reports/testgen/heldout.html) ·
+[raw generations](reports/testgen/heldout.jsonl) ·
+[frozen plan](reports/testgen/heldout-plan.json).
+Download/open the HTML file locally to use its expandable evidence rows.
+
+On the frozen 16-function test split, **Qwen2.5-Coder 3B caught 12/32 seeded bugs
+(37.5%) in both conditions**. Code-only produced 9/16 valid suites; documentation
+produced 8/16. There were no format, provider or execution failures. The paired
+difference was 0 percentage points (95% task-bootstrap interval: -18.75 to +12.5).
+This small experiment found no overall documentation gain; it does not establish
+performance on real repositories. **52 software tests pass**, independently of
+those model-quality scores.
+
+```bash
+python -m raglab.testgen validate
+python -m raglab.testgen demo
+python -m raglab.testgen evaluate --input reports/testgen/heldout.jsonl --report reports/testgen/replay.json
+```
+
+The demo uses reference assertions and is labeled **no LLM used**. Its 100% score
+validates the runner, not a model. Historical development attempts are preserved,
+including formatting defects, wrong assertions and provider failures.
+
+## RAG evaluation workbench
 
 A local workbench for evaluating retrieval-augmented generation: run a benchmark, compare scores, and inspect the evidence behind each failed answer.
 

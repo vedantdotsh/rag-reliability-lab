@@ -1,4 +1,6 @@
 .venv/
+reports/testgen/demo.*
+reports/testgen/ci-*
 __pycache__/
 *.py[cod]
 .pytest_cache/
