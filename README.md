@@ -16,10 +16,19 @@ no additional runtime dependencies.
 **API-key models:** OpenAI, Claude, Gemini, Grok, DeepSeek, Groq, OpenRouter and
 custom OpenAI-compatible endpoints are supported alongside Ollama. The
 [setup guide](docs/API_MODELS.md) covers local key configuration, model settings,
-and offline comparison reports. Hosted adapters are tested with local HTTP stubs;
-the recorded model measurements below remain the original Qwen experiment.
+and offline comparison reports. Hosted API adapters are tested with local HTTP
+stubs. Existing Codex and Cursor logins support separate subscription CLI runs;
+see the [subscription guide](docs/SUBSCRIPTION_BENCHMARK.md).
 
-**Recorded experiment:** [results](reports/testgen/heldout.md) ·
+**Subscription model evaluation (13 September 2026):** the
+[study and evidence index](reports/testgen/subscriptions-2026-09-13/README.md) and
+[HTML comparison](reports/testgen/subscriptions-2026-09-13/comparison.html) compare
+the available GPT, Grok and Composer models on the same 16-function split.
+The catalog and account-availability record distinguish completed runs from
+Cursor entries blocked by subscription quota. Each model links to its original
+generated tests and execution evidence.
+
+**Original local Qwen experiment:** [results](reports/testgen/heldout.md) ·
 [HTML evidence viewer](reports/testgen/heldout.html) ·
 [raw generations](reports/testgen/heldout.jsonl) ·
 [frozen plan](reports/testgen/heldout-plan.json).

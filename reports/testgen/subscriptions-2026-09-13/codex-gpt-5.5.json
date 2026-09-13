@@ -1,0 +1,5722 @@
+{
+  "cli_config": {
+    "cli_version": "codex-cli 0.154.0-alpha.6.2",
+    "protocol": "cli-v1",
+    "provider": "codex",
+    "reasoning_effort": "medium",
+    "sampling": "CLI defaults; no native output schema",
+    "session": "fresh empty working directory; no resume",
+    "timeout_seconds": 240,
+    "tool_policy": "prompt prohibits tools; observed tool calls disqualify the suite"
+  },
+  "version": "testgen-v4",
+  "dataset_sha256": "354a0ea1ccef60d607e51a78413acbf28f1c22c188dc985ef8d85c6348312d6b",
+  "source": "cli",
+  "model": "gpt-5.5",
+  "model_digest": null,
+  "options": {
+    "cli_version": "codex-cli 0.154.0-alpha.6.2",
+    "protocol": "cli-v1",
+    "provider": "codex",
+    "reasoning_effort": "medium",
+    "sampling": "CLI defaults; no native output schema",
+    "session": "fresh empty working directory; no resume",
+    "timeout_seconds": 240,
+    "tool_policy": "prompt prohibits tools; observed tool calls disqualify the suite"
+  },
+  "think": null,
+  "runtime_version": "codex-cli 0.154.0-alpha.6.2",
+  "selected_tasks": [
+    "balanced-brackets",
+    "business-days",
+    "discount",
+    "flatten",
+    "interval",
+    "inventory",
+    "ipv4",
+    "leap-year",
+    "luhn",
+    "merge-counts",
+    "percentile-rank",
+    "range-compression",
+    "rotate",
+    "run-length",
+    "transpose",
+    "version"
+  ],
+  "dataset_tasks": 24,
+  "splits": [
+    "test"
+  ],
+  "summary": {
+    "code_only": {
+      "suites": 16,
+      "mutants_total": 32,
+      "mutants_killed": 27,
+      "mutation_score": 0.8438,
+      "valid": 16,
+      "false_alarm": 0,
+      "invalid_generation": 0,
+      "generation_error": 0,
+      "execution_error": 0,
+      "median_latency_seconds": 8.404,
+      "prompt_tokens": 175988,
+      "completion_tokens": 3901
+    },
+    "code_docs": {
+      "suites": 16,
+      "mutants_total": 32,
+      "mutants_killed": 28,
+      "mutation_score": 0.875,
+      "valid": 16,
+      "false_alarm": 0,
+      "invalid_generation": 0,
+      "generation_error": 0,
+      "execution_error": 0,
+      "median_latency_seconds": 8.091,
+      "prompt_tokens": 176464,
+      "completion_tokens": 4110
+    }
+  },
+  "paired_deltas": [
+    {
+      "task_id": "balanced-brackets",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "business-days",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "discount",
+      "docs_minus_code": 0.5
+    },
+    {
+      "task_id": "flatten",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "interval",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "inventory",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "ipv4",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "leap-year",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "luhn",
+      "docs_minus_code": -0.5
+    },
+    {
+      "task_id": "merge-counts",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "percentile-rank",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "range-compression",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "rotate",
+      "docs_minus_code": 0.5
+    },
+    {
+      "task_id": "run-length",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "transpose",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "version",
+      "docs_minus_code": 0.0
+    }
+  ],
+  "rows": [
+    {
+      "task_id": "leap-year",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 15.92,
+      "prompt_tokens": 10986,
+      "completion_tokens": 560,
+      "raw": "{\"tests\":[{\"args\":[0],\"raises\":\"ValueError\"},{\"args\":[1],\"expected\":false},{\"args\":[4],\"expected\":true},{\"args\":[100],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:21:33.613936+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 0,
+        "reasoning_tokens": 516
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            0
+          ],
+          "raises": "ValueError"
+        },
+        {
+          "args": [
+            1
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            4
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            100
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "leap-year",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 16.645,
+      "prompt_tokens": 11025,
+      "completion_tokens": 560,
+      "raw": "{\"tests\":[{\"args\":[0],\"raises\":\"ValueError\"},{\"args\":[1],\"expected\":false},{\"args\":[4],\"expected\":true},{\"args\":[400],\"expected\":true}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:21:49.534756+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 516
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            0
+          ],
+          "raises": "ValueError"
+        },
+        {
+          "args": [
+            1
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            4
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            400
+          ],
+          "expected": true
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "discount",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 8.263,
+      "prompt_tokens": 10989,
+      "completion_tokens": 162,
+      "raw": "{\"tests\":[{\"args\":[100,25],\"expected\":75},{\"args\":[7,0],\"expected\":7},{\"args\":[7,100],\"expected\":0},{\"args\":[5,101],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:22:06.180400+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 0,
+        "reasoning_tokens": 110
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            100,
+            25
+          ],
+          "expected": 75
+        },
+        {
+          "args": [
+            7,
+            0
+          ],
+          "expected": 7
+        },
+        {
+          "args": [
+            7,
+            100
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            5,
+            101
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 75
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 7
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 75
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 7
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 75
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "discount",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 6.336,
+      "prompt_tokens": 11022,
+      "completion_tokens": 107,
+      "raw": "{\"tests\":[{\"args\":[1000,25],\"expected\":750},{\"args\":[999,33],\"expected\":669},{\"args\":[123,100],\"expected\":0},{\"args\":[-1,10],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:22:14.444083+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 0,
+        "reasoning_tokens": 53
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            1000,
+            25
+          ],
+          "expected": 750
+        },
+        {
+          "args": [
+            999,
+            33
+          ],
+          "expected": 669
+        },
+        {
+          "args": [
+            123,
+            100
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            -1,
+            10
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 750
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 669
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 750
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 670
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 750
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 669
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "interval",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 7.441,
+      "prompt_tokens": 10982,
+      "completion_tokens": 149,
+      "raw": "{\"tests\":[{\"args\":[1,5,3,7],\"expected\":true},{\"args\":[1,2,3,4],\"expected\":false},{\"args\":[1,3,3,5],\"expected\":false},{\"args\":[5,1,2,3],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:22:20.781378+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 81
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            1,
+            5,
+            3,
+            7
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            1,
+            3,
+            3,
+            5
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            5,
+            1,
+            2,
+            3
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "interval",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 9.335,
+      "prompt_tokens": 11018,
+      "completion_tokens": 124,
+      "raw": "{\"tests\":[{\"args\":[1,4,2,5],\"expected\":true},{\"args\":[1,3,3,6],\"expected\":false},{\"args\":[2,2,1,3],\"expected\":false},{\"args\":[5,1,0,2],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:22:28.223407+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 0,
+        "reasoning_tokens": 56
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            1,
+            4,
+            2,
+            5
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            1,
+            3,
+            3,
+            6
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            2,
+            2,
+            1,
+            3
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            5,
+            1,
+            0,
+            2
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "inventory",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 6.992,
+      "prompt_tokens": 10991,
+      "completion_tokens": 140,
+      "raw": "{\"tests\":[{\"args\":[10,[2,3]],\"expected\":5},{\"args\":[5,[5]],\"expected\":0},{\"args\":[0,[]],\"expected\":0},{\"args\":[3,[1,3]],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:22:37.559295+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 0,
+        "reasoning_tokens": 81
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            10,
+            [
+              2,
+              3
+            ]
+          ],
+          "expected": 5
+        },
+        {
+          "args": [
+            5,
+            [
+              5
+            ]
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            0,
+            []
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            3,
+            [
+              1,
+              3
+            ]
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 5
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 5
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": 8
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 4
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "inventory",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 15.754,
+      "prompt_tokens": 11021,
+      "completion_tokens": 576,
+      "raw": "{\"tests\":[{\"args\":[5,[2,3]],\"expected\":0},{\"args\":[7,[]],\"expected\":7},{\"args\":[-1,[]],\"raises\":\"ValueError\"},{\"args\":[4,[2,3]],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:22:44.551783+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 0,
+        "reasoning_tokens": 516
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            5,
+            [
+              2,
+              3
+            ]
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            7,
+            []
+          ],
+          "expected": 7
+        },
+        {
+          "args": [
+            -1,
+            []
+          ],
+          "raises": "ValueError"
+        },
+        {
+          "args": [
+            4,
+            [
+              2,
+              3
+            ]
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 7
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 7
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": 3
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 7
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "balanced-brackets",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 6.031,
+      "prompt_tokens": 11015,
+      "completion_tokens": 108,
+      "raw": "{\"tests\":[{\"args\":[\"\"],\"expected\":true},{\"args\":[\"([]){}\"],\"expected\":true},{\"args\":[\"([)]\"],\"expected\":false},{\"args\":[\"(\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:23:00.306843+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 60
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "([]){}"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "([)]"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "("
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "balanced-brackets",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 7.496,
+      "prompt_tokens": 11031,
+      "completion_tokens": 100,
+      "raw": "{\"tests\":[{\"args\":[\"\"],\"expected\":true},{\"args\":[\"a(b[c]{d}e)\"],\"expected\":true},{\"args\":[\"([)]\"],\"expected\":false},{\"args\":[\"(()\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:23:06.337974+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 46
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "a(b[c]{d}e)"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "([)]"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "(()"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "rotate",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 11.919,
+      "prompt_tokens": 10981,
+      "completion_tokens": 327,
+      "raw": "{\"tests\":[{\"args\":[[],3],\"expected\":[]},{\"args\":[[1,2,3],0],\"expected\":[1,2,3]},{\"args\":[[1,2,3,4],1],\"expected\":[4,1,2,3]},{\"args\":[[1,2,3],5],\"expected\":[2,3,1]}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:23:13.835630+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 245
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [],
+            3
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            0
+          ],
+          "expected": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4
+            ],
+            1
+          ],
+          "expected": [
+            4,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            5
+          ],
+          "expected": [
+            2,
+            3,
+            1
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2,
+                3
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                4,
+                1,
+                2,
+                3
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                2,
+                3,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  2,
+                  3,
+                  4,
+                  1
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  3,
+                  1,
+                  2
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  4,
+                  1,
+                  2,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  2,
+                  3,
+                  1
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "rotate",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 7.822,
+      "prompt_tokens": 11003,
+      "completion_tokens": 150,
+      "raw": "{\"tests\":[{\"args\":[[1,2,3,4],1],\"expected\":[4,1,2,3]},{\"args\":[[1,2,3,4],-1],\"expected\":[2,3,4,1]},{\"args\":[[5,6,7],3],\"expected\":[5,6,7]},{\"args\":[[],5],\"expected\":[]}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:23:25.754671+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 62
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4
+            ],
+            1
+          ],
+          "expected": [
+            4,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4
+            ],
+            -1
+          ],
+          "expected": [
+            2,
+            3,
+            4,
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              5,
+              6,
+              7
+            ],
+            3
+          ],
+          "expected": [
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "args": [
+            [],
+            5
+          ],
+          "expected": []
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                4,
+                1,
+                2,
+                3
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                2,
+                3,
+                4,
+                1
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                5,
+                6,
+                7
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  2,
+                  3,
+                  4,
+                  1
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  4,
+                  1,
+                  2,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  5,
+                  6,
+                  7
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  4,
+                  1,
+                  2,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  4,
+                  1,
+                  2,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  5,
+                  6,
+                  7
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "transpose",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 6.613,
+      "prompt_tokens": 10997,
+      "completion_tokens": 135,
+      "raw": "{\"tests\":[{\"args\":[[[1,2],[3,4]]],\"expected\":[[1,3],[2,4]]},{\"args\":[[]],\"expected\":[]},{\"args\":[[[]]],\"expected\":[]},{\"args\":[[[1],[2,3]]],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:23:33.579263+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 69
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              []
+            ]
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              [
+                1
+              ],
+              [
+                2,
+                3
+              ]
+            ]
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  4
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    3
+                  ],
+                  [
+                    2,
+                    4
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2
+                  ],
+                  [
+                    3,
+                    4
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  []
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "transpose",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 8.124,
+      "prompt_tokens": 11020,
+      "completion_tokens": 190,
+      "raw": "{\"tests\":[{\"args\":[[]],\"expected\":[]},{\"args\":[[[1,2],[3,4]]],\"expected\":[[1,3],[2,4]]},{\"args\":[[[],[]]],\"expected\":[]},{\"args\":[[[1],[2,3]]],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:23:40.192944+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 123
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              [],
+              []
+            ]
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              [
+                1
+              ],
+              [
+                2,
+                3
+              ]
+            ]
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  4
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    3
+                  ],
+                  [
+                    2,
+                    4
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2
+                  ],
+                  [
+                    3,
+                    4
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [],
+                  []
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "run-length",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 8.769,
+      "prompt_tokens": 11000,
+      "completion_tokens": 242,
+      "raw": "{\"tests\":[{\"args\":[\"\"],\"expected\":[]},{\"args\":[\"a\"],\"expected\":[[\"a\",1]]},{\"args\":[\"aaabbc\"],\"expected\":[[\"a\",3],[\"b\",2],[\"c\",1]]},{\"args\":[\"ababa\"],\"expected\":[[\"a\",1],[\"b\",1],[\"a\",1],[\"b\",1],[\"a\",1]]}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:23:48.318980+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 0,
+        "reasoning_tokens": 152
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            "a"
+          ],
+          "expected": [
+            [
+              "a",
+              1
+            ]
+          ]
+        },
+        {
+          "args": [
+            "aaabbc"
+          ],
+          "expected": [
+            [
+              "a",
+              3
+            ],
+            [
+              "b",
+              2
+            ],
+            [
+              "c",
+              1
+            ]
+          ]
+        },
+        {
+          "args": [
+            "ababa"
+          ],
+          "expected": [
+            [
+              "a",
+              1
+            ],
+            [
+              "b",
+              1
+            ],
+            [
+              "a",
+              1
+            ],
+            [
+              "b",
+              1
+            ],
+            [
+              "a",
+              1
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  1
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  3
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "c",
+                  1
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "a",
+                  1
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    5
+                  ],
+                  [
+                    "b",
+                    3
+                  ],
+                  [
+                    "c",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ],
+                  [
+                    "b",
+                    1
+                  ],
+                  [
+                    "a",
+                    1
+                  ],
+                  [
+                    "b",
+                    1
+                  ],
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    0
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    2
+                  ],
+                  [
+                    "b",
+                    1
+                  ],
+                  [
+                    "c",
+                    0
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    0
+                  ],
+                  [
+                    "b",
+                    0
+                  ],
+                  [
+                    "a",
+                    0
+                  ],
+                  [
+                    "b",
+                    0
+                  ],
+                  [
+                    "a",
+                    0
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "run-length",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 12.485,
+      "prompt_tokens": 11024,
+      "completion_tokens": 379,
+      "raw": "{\"tests\":[{\"args\":[\"\"],\"expected\":[]},{\"args\":[\"a\"],\"expected\":[[\"a\",1]]},{\"args\":[\"aaabbc\"],\"expected\":[[\"a\",3],[\"b\",2],[\"c\",1]]},{\"args\":[\"ababa\"],\"expected\":[[\"a\",1],[\"b\",1],[\"a\",1],[\"b\",1],[\"a\",1]]}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:23:57.087191+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 0,
+        "reasoning_tokens": 289
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            "a"
+          ],
+          "expected": [
+            [
+              "a",
+              1
+            ]
+          ]
+        },
+        {
+          "args": [
+            "aaabbc"
+          ],
+          "expected": [
+            [
+              "a",
+              3
+            ],
+            [
+              "b",
+              2
+            ],
+            [
+              "c",
+              1
+            ]
+          ]
+        },
+        {
+          "args": [
+            "ababa"
+          ],
+          "expected": [
+            [
+              "a",
+              1
+            ],
+            [
+              "b",
+              1
+            ],
+            [
+              "a",
+              1
+            ],
+            [
+              "b",
+              1
+            ],
+            [
+              "a",
+              1
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  1
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  3
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "c",
+                  1
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "a",
+                  1
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    5
+                  ],
+                  [
+                    "b",
+                    3
+                  ],
+                  [
+                    "c",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ],
+                  [
+                    "b",
+                    1
+                  ],
+                  [
+                    "a",
+                    1
+                  ],
+                  [
+                    "b",
+                    1
+                  ],
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    0
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    2
+                  ],
+                  [
+                    "b",
+                    1
+                  ],
+                  [
+                    "c",
+                    0
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    0
+                  ],
+                  [
+                    "b",
+                    0
+                  ],
+                  [
+                    "a",
+                    0
+                  ],
+                  [
+                    "b",
+                    0
+                  ],
+                  [
+                    "a",
+                    0
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "merge-counts",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 11.29,
+      "prompt_tokens": 10984,
+      "completion_tokens": 334,
+      "raw": "{\"tests\":[{\"args\":[{},{}],\"expected\":{}},{\"args\":[{\"a\":2},{\"a\":3}],\"expected\":{\"a\":5}},{\"args\":[{\"a\":2},{\"b\":4}],\"expected\":{\"a\":2,\"b\":4}},{\"args\":[{\"x\":5,\"y\":-1},{\"x\":-2,\"z\":0}],\"expected\":{\"x\":3,\"y\":-1,\"z\":0}}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:24:09.573654+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 235
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            {},
+            {}
+          ],
+          "expected": {}
+        },
+        {
+          "args": [
+            {
+              "a": 2
+            },
+            {
+              "a": 3
+            }
+          ],
+          "expected": {
+            "a": 5
+          }
+        },
+        {
+          "args": [
+            {
+              "a": 2
+            },
+            {
+              "b": 4
+            }
+          ],
+          "expected": {
+            "a": 2,
+            "b": 4
+          }
+        },
+        {
+          "args": [
+            {
+              "x": 5,
+              "y": -1
+            },
+            {
+              "x": -2,
+              "z": 0
+            }
+          ],
+          "expected": {
+            "x": 3,
+            "y": -1,
+            "z": 0
+          }
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": {}
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 5
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 2,
+                "b": 4
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "x": 3,
+                "y": -1,
+                "z": 0
+              }
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": {}
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "a": 3
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 2,
+                  "b": 4
+                }
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "x": -2,
+                  "y": -1,
+                  "z": 0
+                }
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": {}
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 5
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 2,
+                  "b": 4
+                }
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "x": 3,
+                  "y": -1
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "merge-counts",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 8.057,
+      "prompt_tokens": 11007,
+      "completion_tokens": 219,
+      "raw": "{\"tests\":[{\"args\":[{\"a\":1},{\"b\":2}],\"expected\":{\"a\":1,\"b\":2}},{\"args\":[{\"a\":3},{\"a\":4}],\"expected\":{\"a\":7}},{\"args\":[{\"a\":5},{\"a\":-5}],\"expected\":{\"a\":0}},{\"args\":[{},{\"x\":0}],\"expected\":{\"x\":0}}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:24:20.865246+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 131
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            {
+              "a": 1
+            },
+            {
+              "b": 2
+            }
+          ],
+          "expected": {
+            "a": 1,
+            "b": 2
+          }
+        },
+        {
+          "args": [
+            {
+              "a": 3
+            },
+            {
+              "a": 4
+            }
+          ],
+          "expected": {
+            "a": 7
+          }
+        },
+        {
+          "args": [
+            {
+              "a": 5
+            },
+            {
+              "a": -5
+            }
+          ],
+          "expected": {
+            "a": 0
+          }
+        },
+        {
+          "args": [
+            {},
+            {
+              "x": 0
+            }
+          ],
+          "expected": {
+            "x": 0
+          }
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 1,
+                "b": 2
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 7
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 0
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "x": 0
+              }
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 1,
+                  "b": 2
+                }
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "a": 4
+                }
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "a": -5
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "x": 0
+                }
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 1,
+                  "b": 2
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 7
+                }
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {}
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {}
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "flatten",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 8.134,
+      "prompt_tokens": 10961,
+      "completion_tokens": 184,
+      "raw": "{\"tests\":[{\"args\":[[[1,2],[3]]],\"expected\":[1,2,3]},{\"args\":[[[],[4],[]]],\"expected\":[4]},{\"args\":[[]],\"expected\":[]},{\"args\":[[\"ab\",\"c\"]],\"expected\":[\"a\",\"b\",\"c\"]}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:24:28.922604+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 115
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              [],
+              [
+                4
+              ],
+              []
+            ]
+          ],
+          "expected": [
+            4
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              "ab",
+              "c"
+            ]
+          ],
+          "expected": [
+            "a",
+            "b",
+            "c"
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2,
+                3
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                4
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                "a",
+                "b",
+                "c"
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  3,
+                  1,
+                  2
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  4
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  "c",
+                  "a",
+                  "b"
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  1,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  4
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  "a",
+                  "c"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "flatten",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 7.93,
+      "prompt_tokens": 10983,
+      "completion_tokens": 219,
+      "raw": "{\"tests\":[{\"args\":[[[1,2],[3]]],\"expected\":[1,2,3]},{\"args\":[[]],\"expected\":[]},{\"args\":[[[1],[],[2,2]]],\"expected\":[1,2,2]},{\"args\":[[[[1,2]],[\"a\"]]],\"expected\":[[1,2],\"a\"]}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:24:37.057961+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 138
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              [
+                1
+              ],
+              [],
+              [
+                2,
+                2
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                [
+                  1,
+                  2
+                ]
+              ],
+              [
+                "a"
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              2
+            ],
+            "a"
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2,
+                3
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2,
+                2
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  2
+                ],
+                "a"
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  3,
+                  1,
+                  2
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  2,
+                  2,
+                  1
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  "a",
+                  [
+                    1,
+                    2
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  1,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  1,
+                  2
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2
+                  ],
+                  "a"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "ipv4",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 8.544,
+      "prompt_tokens": 11003,
+      "completion_tokens": 160,
+      "raw": "{\"tests\":[{\"args\":[\"1.2.3.4\"],\"expected\":true},{\"args\":[\"0.0.0.0\"],\"expected\":true},{\"args\":[\"01.2.3.4\"],\"expected\":false},{\"args\":[\"255.255.255.256\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:24:44.987492+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 89
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "1.2.3.4"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "0.0.0.0"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "01.2.3.4"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "255.255.255.256"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "ipv4",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 11.155,
+      "prompt_tokens": 11043,
+      "completion_tokens": 139,
+      "raw": "{\"tests\":[{\"args\":[\"192.168.0.1\"],\"expected\":true},{\"args\":[\"1.2.3.256\"],\"expected\":false},{\"args\":[\"1.02.3.4\"],\"expected\":false},{\"args\":[\"1.2.\u0663.4\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:24:53.533811+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 0,
+        "reasoning_tokens": 68
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "192.168.0.1"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "1.2.3.256"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "1.02.3.4"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "1.2.\u0663.4"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "luhn",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 15.233,
+      "prompt_tokens": 11037,
+      "completion_tokens": 562,
+      "raw": "{\"tests\":[{\"args\":[\"\"],\"expected\":false},{\"args\":[\"a\"],\"expected\":false},{\"args\":[\"59\"],\"expected\":true},{\"args\":[\"58\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:25:04.688817+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 516
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "a"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "59"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "58"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "luhn",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 12.924,
+      "prompt_tokens": 11082,
+      "completion_tokens": 435,
+      "raw": "{\"tests\":[{\"args\":[\"18\"],\"expected\":true},{\"args\":[\"17\"],\"expected\":false},{\"args\":[\"\"],\"expected\":false},{\"args\":[\"\uff11\uff12\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:25:19.922853+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 389
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "18"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "17"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            ""
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "\uff11\uff12"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "business-days",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 9.288,
+      "prompt_tokens": 11026,
+      "completion_tokens": 276,
+      "raw": "{\"tests\":[{\"args\":[\"2024-01-01\",\"2024-01-06\"],\"expected\":5},{\"args\":[\"2024-01-06\",\"2024-01-08\"],\"expected\":0},{\"args\":[\"2024-01-03\",\"2024-01-03\"],\"expected\":0},{\"args\":[\"2024-01-02\",\"2024-01-01\"],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:25:32.847926+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 180
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "2024-01-01",
+            "2024-01-06"
+          ],
+          "expected": 5
+        },
+        {
+          "args": [
+            "2024-01-06",
+            "2024-01-08"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "2024-01-03",
+            "2024-01-03"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "2024-01-02",
+            "2024-01-01"
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 5
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 5
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 5
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "business-days",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 13.911,
+      "prompt_tokens": 11060,
+      "completion_tokens": 520,
+      "raw": "{\"tests\":[{\"args\":[\"2024-01-01\",\"2024-01-08\"],\"expected\":5},{\"args\":[\"2024-01-05\",\"2024-01-08\"],\"expected\":1},{\"args\":[\"2024-01-06\",\"2024-01-06\"],\"expected\":0},{\"args\":[\"2024-01-08\",\"2024-01-01\"],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:25:42.136975+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 424
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "2024-01-01",
+            "2024-01-08"
+          ],
+          "expected": 5
+        },
+        {
+          "args": [
+            "2024-01-05",
+            "2024-01-08"
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            "2024-01-06",
+            "2024-01-06"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "2024-01-08",
+            "2024-01-01"
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 5
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": 6
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": 6
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "version",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 8.2,
+      "prompt_tokens": 11057,
+      "completion_tokens": 143,
+      "raw": "{\"tests\":[{\"args\":[\"1.2\",\"1.10\"],\"expected\":-1},{\"args\":[\"2.0\",\"1.9.9\"],\"expected\":1},{\"args\":[\"1.2\",\"1.2.0\"],\"expected\":0},{\"args\":[\"1..2\",\"1.2\"],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:25:56.049105+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 66
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "1.2",
+            "1.10"
+          ],
+          "expected": -1
+        },
+        {
+          "args": [
+            "2.0",
+            "1.9.9"
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            "1.2",
+            "1.2.0"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "1..2",
+            "1.2"
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": -1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "TypeError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "version",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 6.575,
+      "prompt_tokens": 11099,
+      "completion_tokens": 132,
+      "raw": "{\"tests\":[{\"args\":[\"1.2\",\"1.3\"],\"expected\":-1},{\"args\":[\"2.0\",\"1.9.9\"],\"expected\":1},{\"args\":[\"1.0\",\"1\"],\"expected\":0},{\"args\":[\"01.2\",\"1.02\"],\"expected\":0}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:26:04.249718+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 60
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "1.2",
+            "1.3"
+          ],
+          "expected": -1
+        },
+        {
+          "args": [
+            "2.0",
+            "1.9.9"
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            "1.0",
+            "1"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "01.2",
+            "1.02"
+          ],
+          "expected": 0
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": -1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "TypeError"
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": -1
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "range-compression",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 9.889,
+      "prompt_tokens": 11001,
+      "completion_tokens": 298,
+      "raw": "{\"tests\":[{\"args\":[[]],\"expected\":[]},{\"args\":[[3]],\"expected\":[[3,3]]},{\"args\":[[4,2,3,2,1]],\"expected\":[[1,4]]},{\"args\":[[-2,-1,1,3,2,2]],\"expected\":[[-2,-1],[1,3]]}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:26:10.826405+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 0,
+        "reasoning_tokens": 216
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              3
+            ]
+          ],
+          "expected": [
+            [
+              3,
+              3
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              4,
+              2,
+              3,
+              2,
+              1
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              4
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              -2,
+              -1,
+              1,
+              3,
+              2,
+              2
+            ]
+          ],
+          "expected": [
+            [
+              -2,
+              -1
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  3,
+                  3
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  4
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  -2,
+                  -1
+                ],
+                [
+                  1,
+                  3
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    3,
+                    3
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2
+                  ],
+                  [
+                    2,
+                    4
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    -2,
+                    -1
+                  ],
+                  [
+                    1,
+                    2
+                  ],
+                  [
+                    2,
+                    3
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    3,
+                    3
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    2,
+                    2
+                  ],
+                  [
+                    3,
+                    3
+                  ],
+                  [
+                    4,
+                    4
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    -2,
+                    -2
+                  ],
+                  [
+                    -1,
+                    1
+                  ],
+                  [
+                    2,
+                    2
+                  ],
+                  [
+                    3,
+                    3
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "range-compression",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 7.654,
+      "prompt_tokens": 11022,
+      "completion_tokens": 151,
+      "raw": "{\"tests\":[{\"args\":[[]],\"expected\":[]},{\"args\":[[1]],\"expected\":[[1,1]]},{\"args\":[[3,1,2,2]],\"expected\":[[1,3]]},{\"args\":[[-2,0,1,3]],\"expected\":[[-2,-2],[0,1],[3,3]]}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:26:20.716485+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 71
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              3,
+              1,
+              2,
+              2
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              -2,
+              0,
+              1,
+              3
+            ]
+          ],
+          "expected": [
+            [
+              -2,
+              -2
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  1
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  3
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  -2,
+                  -2
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  3,
+                  3
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2
+                  ],
+                  [
+                    2,
+                    3
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    -2,
+                    -2
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    3,
+                    3
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    2,
+                    2
+                  ],
+                  [
+                    3,
+                    3
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    -2,
+                    0
+                  ],
+                  [
+                    1,
+                    3
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "percentile-rank",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 6.186,
+      "prompt_tokens": 10978,
+      "completion_tokens": 121,
+      "raw": "{\"tests\":[{\"args\":[[1,3,5],4],\"expected\":2},{\"args\":[[4,4,5],4],\"expected\":0},{\"args\":[[-2,0,2],3],\"expected\":3},{\"args\":[[],1],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:26:28.371217+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 55
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              3,
+              5
+            ],
+            4
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            [
+              4,
+              4,
+              5
+            ],
+            4
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            [
+              -2,
+              0,
+              2
+            ],
+            3
+          ],
+          "expected": 3
+        },
+        {
+          "args": [
+            [],
+            1
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 2
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 3
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 3
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 3
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "percentile-rank",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 6.377,
+      "prompt_tokens": 11004,
+      "completion_tokens": 109,
+      "raw": "{\"tests\":[{\"args\":[[1,2,3],3],\"expected\":2},{\"args\":[[2,2,2],2],\"expected\":0},{\"args\":[[-3,0,5],0],\"expected\":1},{\"args\":[[],1],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": null,
+        "response_id": null,
+        "done_reason": "turn.completed",
+        "requested_at": "2026-09-13T11:26:34.558597+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8704,
+        "reasoning_tokens": 43
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            3
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            [
+              2,
+              2,
+              2
+            ],
+            2
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            [
+              -3,
+              0,
+              5
+            ],
+            0
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            [],
+            1
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 2
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": 3
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 3
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "comparison": {
+    "mean_docs_minus_code": 0.0312,
+    "task_bootstrap_95_ci": [
+      -0.0625,
+      0.125
+    ],
+    "docs_wins": 2,
+    "ties": 13,
+    "code_wins": 1,
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 1729
+  },
+  "plan_sha256": "8daa9feb36a7cebe0eede7e66b9058859f01ca43cce9eb7ad5527f9c1d463b1c"
+}

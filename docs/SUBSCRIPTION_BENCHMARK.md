@@ -5,7 +5,7 @@ extract login tokens or turn a subscription into a raw API key. Results measure
 the selected model **through its CLI**, including that CLI's system instructions
 and defaults. They cannot isolate the underlying model from the surrounding agent.
 
-The [September 13 run directory](../reports/testgen/subscriptions-2026-09-13/)
+The [September 13 study](../reports/testgen/subscriptions-2026-09-13/README.md)
 contains the catalog snapshot, account-availability classification, per-model
 plans, raw generated test data and offline reports. `inventory.json` enumerates
 six listed Codex models and 35 Cursor model families. It selects one standard-speed
@@ -15,9 +15,11 @@ reasoning variants are not separate model runs.
 
 At the start of this study, Cursor's Other Models allowance was exhausted and
 on-demand spending was disabled. Its Cursor Models allowance still permitted
-Grok and Composer. The six Codex entries and three Cursor entries were therefore
-scheduled; the other 32 Cursor entries were classified as blocked without making
-generation calls. A blocked catalog entry has **no measured score**.
+Grok and Composer. All six Codex entries and three Cursor entries completed their
+32-prompt runs: **nine models, 288 independent prompts**. The other 32 Cursor
+entries were classified as blocked without making generation calls. A blocked
+catalog entry has **no measured score**. The [final comparison](../reports/testgen/subscriptions-2026-09-13/comparison.html)
+links each score to its original generated tests and execution evidence.
 
 ## Protocol
 

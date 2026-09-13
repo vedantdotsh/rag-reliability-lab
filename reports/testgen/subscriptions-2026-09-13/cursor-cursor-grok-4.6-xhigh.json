@@ -1,0 +1,5489 @@
+{
+  "cli_config": {
+    "cli_version": "2026.09.10-fd3934a",
+    "protocol": "cli-v1",
+    "provider": "cursor",
+    "reasoning_effort": "selected model variant",
+    "sampling": "CLI defaults; no native output schema",
+    "session": "fresh empty working directory; no resume",
+    "timeout_seconds": 240,
+    "tool_policy": "prompt prohibits tools; observed tool calls disqualify the suite"
+  },
+  "version": "testgen-v4",
+  "dataset_sha256": "354a0ea1ccef60d607e51a78413acbf28f1c22c188dc985ef8d85c6348312d6b",
+  "source": "cli",
+  "model": "cursor-grok-4.6-xhigh",
+  "model_digest": null,
+  "options": {
+    "cli_version": "2026.09.10-fd3934a",
+    "protocol": "cli-v1",
+    "provider": "cursor",
+    "reasoning_effort": "selected model variant",
+    "sampling": "CLI defaults; no native output schema",
+    "session": "fresh empty working directory; no resume",
+    "timeout_seconds": 240,
+    "tool_policy": "prompt prohibits tools; observed tool calls disqualify the suite"
+  },
+  "think": null,
+  "runtime_version": "2026.09.10-fd3934a",
+  "selected_tasks": [
+    "balanced-brackets",
+    "business-days",
+    "discount",
+    "flatten",
+    "interval",
+    "inventory",
+    "ipv4",
+    "leap-year",
+    "luhn",
+    "merge-counts",
+    "percentile-rank",
+    "range-compression",
+    "rotate",
+    "run-length",
+    "transpose",
+    "version"
+  ],
+  "dataset_tasks": 24,
+  "splits": [
+    "test"
+  ],
+  "summary": {
+    "code_only": {
+      "suites": 16,
+      "mutants_total": 32,
+      "mutants_killed": 27,
+      "mutation_score": 0.8438,
+      "valid": 16,
+      "false_alarm": 0,
+      "invalid_generation": 0,
+      "generation_error": 0,
+      "execution_error": 0,
+      "median_latency_seconds": 38.575,
+      "prompt_tokens": 246957,
+      "completion_tokens": 31197
+    },
+    "code_docs": {
+      "suites": 16,
+      "mutants_total": 32,
+      "mutants_killed": 29,
+      "mutation_score": 0.9062,
+      "valid": 16,
+      "false_alarm": 0,
+      "invalid_generation": 0,
+      "generation_error": 0,
+      "execution_error": 0,
+      "median_latency_seconds": 35.934,
+      "prompt_tokens": 247465,
+      "completion_tokens": 33995
+    }
+  },
+  "paired_deltas": [
+    {
+      "task_id": "balanced-brackets",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "business-days",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "discount",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "flatten",
+      "docs_minus_code": 0.5
+    },
+    {
+      "task_id": "interval",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "inventory",
+      "docs_minus_code": -0.5
+    },
+    {
+      "task_id": "ipv4",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "leap-year",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "luhn",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "merge-counts",
+      "docs_minus_code": 0.5
+    },
+    {
+      "task_id": "percentile-rank",
+      "docs_minus_code": 0.5
+    },
+    {
+      "task_id": "range-compression",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "rotate",
+      "docs_minus_code": 0.5
+    },
+    {
+      "task_id": "run-length",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "transpose",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "version",
+      "docs_minus_code": -0.5
+    }
+  ],
+  "rows": [
+    {
+      "task_id": "leap-year",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 64.854,
+      "prompt_tokens": 15422,
+      "completion_tokens": 3583,
+      "raw": "{\"tests\":[{\"args\":[0],\"raises\":\"ValueError\"},{\"args\":[4],\"expected\":true},{\"args\":[100],\"expected\":false},{\"args\":[400],\"expected\":true}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "74f692bf-4bed-4b65-8b08-9168b2773255",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:22:47.466524+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8832,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            0
+          ],
+          "raises": "ValueError"
+        },
+        {
+          "args": [
+            4
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            100
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            400
+          ],
+          "expected": true
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "leap-year",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 62.877,
+      "prompt_tokens": 15461,
+      "completion_tokens": 3498,
+      "raw": "{\"tests\":[{\"args\":[1],\"expected\":false},{\"args\":[4],\"expected\":true},{\"args\":[100],\"expected\":false},{\"args\":[400],\"expected\":true}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "7f293142-f2d1-4107-beff-7a11fe30a802",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:23:52.321040+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8832,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            1
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            4
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            100
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            400
+          ],
+          "expected": true
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "discount",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 44.536,
+      "prompt_tokens": 15425,
+      "completion_tokens": 2569,
+      "raw": "{\"tests\":[{\"args\":[3,50],\"expected\":1},{\"args\":[1,0],\"expected\":1},{\"args\":[1,100],\"expected\":0},{\"args\":[-1,0],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "6198ecab-a157-45cb-bb40-a1ef6b6fae1a",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:24:55.199294+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 1792,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            3,
+            50
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            1,
+            0
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            1,
+            100
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            -1,
+            0
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "discount",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 40.147,
+      "prompt_tokens": 15459,
+      "completion_tokens": 2284,
+      "raw": "{\"tests\":[{\"args\":[10,10],\"expected\":9},{\"args\":[3,50],\"expected\":1},{\"args\":[5,100],\"expected\":0},{\"args\":[1,101],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "d55bbc4e-5717-4f90-a0ce-f4e3c8a8111f",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:25:39.735732+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8832,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            10,
+            10
+          ],
+          "expected": 9
+        },
+        {
+          "args": [
+            3,
+            50
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            5,
+            100
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            1,
+            101
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 9
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 9
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 9
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "interval",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 39.706,
+      "prompt_tokens": 15419,
+      "completion_tokens": 1419,
+      "raw": "{\"tests\":[{\"args\":[0,2,1,3],\"expected\":true},{\"args\":[0,1,2,3],\"expected\":false},{\"args\":[0,1,1,2],\"expected\":false},{\"args\":[1,0,0,1],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "bc7e1d6f-37ef-4b02-aede-d5dd4deeb1ba",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:26:19.884784+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 0,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            0,
+            2,
+            1,
+            3
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            0,
+            1,
+            1,
+            2
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "interval",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 42.364,
+      "prompt_tokens": 15454,
+      "completion_tokens": 2331,
+      "raw": "{\"tests\":[{\"args\":[0,1,0,1],\"expected\":true},{\"args\":[0,1,1,2],\"expected\":false},{\"args\":[0,0,0,1],\"expected\":false},{\"args\":[1,0,0,1],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "170a5625-44ca-46f3-ba1f-7b1b02013d6f",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:26:59.591684+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 1792,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            0,
+            1,
+            1,
+            2
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "inventory",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 36.285,
+      "prompt_tokens": 15427,
+      "completion_tokens": 1805,
+      "raw": "{\"tests\":[{\"args\":[3,[1,1]],\"expected\":1},{\"args\":[2,[2]],\"expected\":0},{\"args\":[0,[]],\"expected\":0},{\"args\":[1,[2]],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "546df4e1-8c5e-4582-a44e-91c383f9f4df",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:27:41.956343+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 2304,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            3,
+            [
+              1,
+              1
+            ]
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            2,
+            [
+              2
+            ]
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            0,
+            []
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            1,
+            [
+              2
+            ]
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "inventory",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 38.638,
+      "prompt_tokens": 15450,
+      "completion_tokens": 1854,
+      "raw": "{\"tests\":[{\"args\":[2,[1]],\"expected\":1},{\"args\":[1,[]],\"expected\":1},{\"args\":[1,[1]],\"expected\":0},{\"args\":[1,[2]],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "a0007f33-c787-498f-bafe-97af69a7ab7d",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:28:18.242998+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 2304,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            2,
+            [
+              1
+            ]
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            1,
+            []
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            1,
+            [
+              1
+            ]
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            1,
+            [
+              2
+            ]
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "balanced-brackets",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 46.731,
+      "prompt_tokens": 15447,
+      "completion_tokens": 2288,
+      "raw": "{\"tests\":[{\"args\":[\"()\"],\"expected\":true},{\"args\":[\"(\"],\"expected\":false},{\"args\":[\")\"],\"expected\":false},{\"args\":[\"(]\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "9816d434-6d7b-4533-9e85-c947a43b978b",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:28:56.882145+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 2048,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "()"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "("
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            ")"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "(]"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "balanced-brackets",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 36.889,
+      "prompt_tokens": 15473,
+      "completion_tokens": 1842,
+      "raw": "{\"tests\":[{\"args\":[\"\"],\"expected\":true},{\"args\":[\"a()\"],\"expected\":true},{\"args\":[\"(]\"],\"expected\":false},{\"args\":[\"(\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "d00bd285-cc4a-41f4-a06c-774d3f7259d2",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:29:43.613118+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8832,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "a()"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "(]"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "("
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "rotate",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 25.973,
+      "prompt_tokens": 15415,
+      "completion_tokens": 1344,
+      "raw": "{\"tests\":[{\"args\":[[1,2,3],1],\"expected\":[3,1,2]},{\"args\":[[],1],\"expected\":[]},{\"args\":[[1,2],0],\"expected\":[1,2]},{\"args\":[[1,2],3],\"expected\":[2,1]}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "edc5fed3-9c89-414a-ab31-1a9eadd9b91f",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:30:20.503645+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 2304,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            1
+          ],
+          "expected": [
+            3,
+            1,
+            2
+          ]
+        },
+        {
+          "args": [
+            [],
+            1
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1,
+              2
+            ],
+            0
+          ],
+          "expected": [
+            1,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2
+            ],
+            3
+          ],
+          "expected": [
+            2,
+            1
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                3,
+                1,
+                2
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                2,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  2,
+                  3,
+                  1
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  2,
+                  1
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  3,
+                  1,
+                  2
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  2,
+                  1
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "rotate",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 31.913,
+      "prompt_tokens": 15443,
+      "completion_tokens": 1931,
+      "raw": "{\"tests\":[{\"args\":[[],0],\"expected\":[]},{\"args\":[[1,2],1],\"expected\":[2,1]},{\"args\":[[1,2,3],-1],\"expected\":[2,3,1]},{\"args\":[[1,2],2],\"expected\":[1,2]}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "a9929aee-4ab1-4556-8349-005cfd36f983",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:30:46.477621+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8832,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [],
+            0
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1,
+              2
+            ],
+            1
+          ],
+          "expected": [
+            2,
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            -1
+          ],
+          "expected": [
+            2,
+            3,
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2
+            ],
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                2,
+                1
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                2,
+                3,
+                1
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  2,
+                  1
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  3,
+                  1,
+                  2
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  2,
+                  1
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  3,
+                  1,
+                  2
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "transpose",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 31.208,
+      "prompt_tokens": 15433,
+      "completion_tokens": 1754,
+      "raw": "{\"tests\":[{\"args\":[[]],\"expected\":[]},{\"args\":[[[1,2],[3,4]]],\"expected\":[[1,3],[2,4]]},{\"args\":[[[1,2]]],\"expected\":[[1],[2]]},{\"args\":[[[1,2],[3]]],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "4068faae-0c58-4374-8591-222db1e5cd53",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:31:18.391068+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 2304,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                2
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3
+              ]
+            ]
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  4
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1
+                ],
+                [
+                  2
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    3
+                  ],
+                  [
+                    2,
+                    4
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1
+                  ],
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    3
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2
+                  ],
+                  [
+                    3,
+                    4
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "transpose",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 39.588,
+      "prompt_tokens": 15462,
+      "completion_tokens": 1956,
+      "raw": "{\"tests\":[{\"args\":[[]],\"expected\":[]},{\"args\":[[[1,2]]],\"expected\":[[1],[2]]},{\"args\":[[[]]],\"expected\":[]},{\"args\":[[[1,2],[3]]],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "1d49e22c-c5cc-4758-a0fb-39fd7f628f40",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:31:49.599555+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8832,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                2
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              []
+            ]
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3
+              ]
+            ]
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1
+                ],
+                [
+                  2
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1
+                  ],
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    3
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  []
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "run-length",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 23.223,
+      "prompt_tokens": 15436,
+      "completion_tokens": 991,
+      "raw": "{\"tests\":[{\"args\":[\"\"],\"expected\":[]},{\"args\":[\"a\"],\"expected\":[[\"a\",1]]},{\"args\":[\"aa\"],\"expected\":[[\"a\",2]]},{\"args\":[\"aba\"],\"expected\":[[\"a\",1],[\"b\",1],[\"a\",1]]}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "2c11b7d7-fc30-43bc-b53e-15d96fadad75",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:32:29.189032+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 2304,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            "a"
+          ],
+          "expected": [
+            [
+              "a",
+              1
+            ]
+          ]
+        },
+        {
+          "args": [
+            "aa"
+          ],
+          "expected": [
+            [
+              "a",
+              2
+            ]
+          ]
+        },
+        {
+          "args": [
+            "aba"
+          ],
+          "expected": [
+            [
+              "a",
+              1
+            ],
+            [
+              "b",
+              1
+            ],
+            [
+              "a",
+              1
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  1
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  2
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "a",
+                  1
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    3
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ],
+                  [
+                    "b",
+                    1
+                  ],
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    0
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    0
+                  ],
+                  [
+                    "b",
+                    0
+                  ],
+                  [
+                    "a",
+                    0
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "run-length",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 25.993,
+      "prompt_tokens": 15464,
+      "completion_tokens": 1278,
+      "raw": "{\"tests\":[{\"args\":[\"\"],\"expected\":[]},{\"args\":[\"a\"],\"expected\":[[\"a\",1]]},{\"args\":[\"aa\"],\"expected\":[[\"a\",2]]},{\"args\":[\"aba\"],\"expected\":[[\"a\",1],[\"b\",1],[\"a\",1]]}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "efd46fdd-be52-4272-b559-80ff4258c947",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:32:52.412257+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 1152,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            "a"
+          ],
+          "expected": [
+            [
+              "a",
+              1
+            ]
+          ]
+        },
+        {
+          "args": [
+            "aa"
+          ],
+          "expected": [
+            [
+              "a",
+              2
+            ]
+          ]
+        },
+        {
+          "args": [
+            "aba"
+          ],
+          "expected": [
+            [
+              "a",
+              1
+            ],
+            [
+              "b",
+              1
+            ],
+            [
+              "a",
+              1
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  1
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  2
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "a",
+                  1
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    3
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ],
+                  [
+                    "b",
+                    1
+                  ],
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    0
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    0
+                  ],
+                  [
+                    "b",
+                    0
+                  ],
+                  [
+                    "a",
+                    0
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "merge-counts",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 29.665,
+      "prompt_tokens": 15419,
+      "completion_tokens": 1467,
+      "raw": "{\"tests\":[{\"args\":[{\"a\":1},{\"a\":2}],\"expected\":{\"a\":3}},{\"args\":[{\"x\":7},{\"y\":8}],\"expected\":{\"x\":7,\"y\":8}},{\"args\":[{\"p\":1},{}],\"expected\":{\"p\":1}},{\"args\":[{},{\"q\":-3}],\"expected\":{\"q\":-3}}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "fd1f6c12-ca57-4ad7-902a-b3661b289e53",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:33:18.405160+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8832,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            {
+              "a": 1
+            },
+            {
+              "a": 2
+            }
+          ],
+          "expected": {
+            "a": 3
+          }
+        },
+        {
+          "args": [
+            {
+              "x": 7
+            },
+            {
+              "y": 8
+            }
+          ],
+          "expected": {
+            "x": 7,
+            "y": 8
+          }
+        },
+        {
+          "args": [
+            {
+              "p": 1
+            },
+            {}
+          ],
+          "expected": {
+            "p": 1
+          }
+        },
+        {
+          "args": [
+            {},
+            {
+              "q": -3
+            }
+          ],
+          "expected": {
+            "q": -3
+          }
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 3
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "x": 7,
+                "y": 8
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "p": 1
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "q": -3
+              }
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "a": 2
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "x": 7,
+                  "y": 8
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "p": 1
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "q": -3
+                }
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 3
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "x": 7,
+                  "y": 8
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "p": 1
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "q": -3
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "merge-counts",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 22.262,
+      "prompt_tokens": 15440,
+      "completion_tokens": 1542,
+      "raw": "{\"tests\":[{\"args\":[{\"a\":1},{\"a\":2}],\"expected\":{\"a\":3}},{\"args\":[{\"a\":1},{\"b\":2}],\"expected\":{\"a\":1,\"b\":2}},{\"args\":[{\"a\":1},{\"a\":-1}],\"expected\":{\"a\":0}},{\"args\":[{},{\"a\":1}],\"expected\":{\"a\":1}}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "360b4746-b358-4a39-b886-77475c5ad2d0",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:33:48.071127+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 1152,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            {
+              "a": 1
+            },
+            {
+              "a": 2
+            }
+          ],
+          "expected": {
+            "a": 3
+          }
+        },
+        {
+          "args": [
+            {
+              "a": 1
+            },
+            {
+              "b": 2
+            }
+          ],
+          "expected": {
+            "a": 1,
+            "b": 2
+          }
+        },
+        {
+          "args": [
+            {
+              "a": 1
+            },
+            {
+              "a": -1
+            }
+          ],
+          "expected": {
+            "a": 0
+          }
+        },
+        {
+          "args": [
+            {},
+            {
+              "a": 1
+            }
+          ],
+          "expected": {
+            "a": 1
+          }
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 3
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 1,
+                "b": 2
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 0
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 1
+              }
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "a": 2
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 1,
+                  "b": 2
+                }
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "a": -1
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 1
+                }
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 3
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 1,
+                  "b": 2
+                }
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {}
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 1
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "flatten",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 39.521,
+      "prompt_tokens": 15389,
+      "completion_tokens": 2242,
+      "raw": "{\"tests\":[{\"args\":[[[1],[2]]],\"expected\":[1,2]},{\"args\":[[]],\"expected\":[]},{\"args\":[[[]]],\"expected\":[]},{\"args\":[[[[3]]]],\"expected\":[[3]]}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "d9daf1c2-0b3e-4d32-bac6-f3b059f7120e",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:34:10.333534+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8832,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              [
+                1
+              ],
+              [
+                2
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            2
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              []
+            ]
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              [
+                [
+                  3
+                ]
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              3
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  3
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  2,
+                  1
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    3
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    3
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "flatten",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 40.626,
+      "prompt_tokens": 15413,
+      "completion_tokens": 1671,
+      "raw": "{\"tests\":[{\"args\":[[[1],[2,3]]],\"expected\":[1,2,3]},{\"args\":[[]],\"expected\":[]},{\"args\":[[[],[1]]],\"expected\":[1]},{\"args\":[[[1,[2]],[1]]],\"expected\":[1,[2],1]}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "d7c150b6-8244-4532-8d5c-5a1498d48bdc",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:34:49.854764+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 2304,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              [
+                1
+              ],
+              [
+                2,
+                3
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              [],
+              [
+                1
+              ]
+            ]
+          ],
+          "expected": [
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                [
+                  2
+                ]
+              ],
+              [
+                1
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            [
+              2
+            ],
+            1
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2,
+                3
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                [
+                  2
+                ],
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  2,
+                  3,
+                  1
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  1,
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  1,
+                  2
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  1,
+                  1
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "ipv4",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 38.095,
+      "prompt_tokens": 15442,
+      "completion_tokens": 2606,
+      "raw": "{\"tests\":[{\"args\":[\"1.2.3.4\"],\"expected\":true},{\"args\":[\"0.0.0.255\"],\"expected\":true},{\"args\":[\"0.0.0.256\"],\"expected\":false},{\"args\":[\"0.0.0.01\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "f7114dd6-fcc1-4b61-b38f-dc7a384bb102",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:35:30.481590+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8832,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "1.2.3.4"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "0.0.0.255"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "0.0.0.256"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "0.0.0.01"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "ipv4",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 34.978,
+      "prompt_tokens": 15477,
+      "completion_tokens": 3084,
+      "raw": "{\"tests\":[{\"args\":[\"1.2.3.4\"],\"expected\":true},{\"args\":[\"0.0.0.255\"],\"expected\":true},{\"args\":[\"1.2.3.01\"],\"expected\":false},{\"args\":[\"1.2.3.256\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "2248d8dc-2e78-4be6-9df7-0f6a96bab474",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:36:08.578468+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8832,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "1.2.3.4"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "0.0.0.255"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "1.2.3.01"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "1.2.3.256"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "luhn",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 39.055,
+      "prompt_tokens": 15470,
+      "completion_tokens": 2273,
+      "raw": "{\"tests\":[{\"args\":[\"\"],\"expected\":false},{\"args\":[\"a\"],\"expected\":false},{\"args\":[\"10\"],\"expected\":false},{\"args\":[\"59\"],\"expected\":true}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "a04d4d27-4906-432e-8a64-793813bcd608",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:36:43.556822+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8832,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "a"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "10"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "59"
+          ],
+          "expected": true
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "luhn",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 34.151,
+      "prompt_tokens": 15520,
+      "completion_tokens": 3292,
+      "raw": "{\"tests\":[{\"args\":[\"59\"],\"expected\":true},{\"args\":[\"1\"],\"expected\":false},{\"args\":[\"\"],\"expected\":false},{\"args\":[\"a\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "97c42774-5ac0-4d30-869e-0eecad93d303",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:37:22.615150+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 2304,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "59"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "1"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            ""
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "a"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "business-days",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 42.66,
+      "prompt_tokens": 15456,
+      "completion_tokens": 2520,
+      "raw": "{\"tests\":[{\"args\":[\"2024-01-01\",\"2024-01-06\"],\"expected\":5},{\"args\":[\"2024-01-01\",\"2024-01-01\"],\"expected\":0},{\"args\":[\"2024-01-05\",\"2024-01-08\"],\"expected\":1},{\"args\":[\"2024-01-02\",\"2024-01-01\"],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "8d625078-b856-47b3-a17e-51f669b5da68",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:37:56.770180+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7424,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "2024-01-01",
+            "2024-01-06"
+          ],
+          "expected": 5
+        },
+        {
+          "args": [
+            "2024-01-01",
+            "2024-01-01"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "2024-01-05",
+            "2024-01-08"
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            "2024-01-02",
+            "2024-01-01"
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 5
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 5
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 5
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "business-days",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 55.197,
+      "prompt_tokens": 15501,
+      "completion_tokens": 3265,
+      "raw": "{\"tests\":[{\"args\":[\"2024-01-01\",\"2024-01-03\"],\"expected\":2},{\"args\":[\"2024-01-06\",\"2024-01-07\"],\"expected\":0},{\"args\":[\"2024-01-04\",\"2024-01-04\"],\"expected\":0},{\"args\":[\"2024-01-05\",\"2024-01-02\"],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "146e84ac-3408-4098-a41a-85c85f77ee12",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:38:39.430129+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 2304,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "2024-01-01",
+            "2024-01-03"
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            "2024-01-06",
+            "2024-01-07"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "2024-01-04",
+            "2024-01-04"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "2024-01-05",
+            "2024-01-02"
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 2
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": 3
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "version",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 39.582,
+      "prompt_tokens": 15508,
+      "completion_tokens": 2361,
+      "raw": "{\"tests\":[{\"args\":[\"1.2\",\"1.3\"],\"expected\":-1},{\"args\":[\"1.10\",\"1.9\"],\"expected\":1},{\"args\":[\"1\",\"1.0\"],\"expected\":0},{\"args\":[\"\",\"1\"],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "7104cfd9-3b6d-4d45-a188-2c44faac046c",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:39:34.628218+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 0,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "1.2",
+            "1.3"
+          ],
+          "expected": -1
+        },
+        {
+          "args": [
+            "1.10",
+            "1.9"
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            "1",
+            "1.0"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "",
+            "1"
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": -1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "TypeError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "version",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 24.044,
+      "prompt_tokens": 15551,
+      "completion_tokens": 1645,
+      "raw": "{\"tests\":[{\"args\":[\"1.2\",\"1.3\"],\"expected\":-1},{\"args\":[\"1.2\",\"1\"],\"expected\":1},{\"args\":[\"01\",\"1\"],\"expected\":0},{\"args\":[\"1.\",\"1\"],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "e6735dd2-35ad-46a0-8ebf-5f36e668ca13",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:40:14.211342+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 0,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "1.2",
+            "1.3"
+          ],
+          "expected": -1
+        },
+        {
+          "args": [
+            "1.2",
+            "1"
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            "01",
+            "1"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "1.",
+            "1"
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": -1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "TypeError"
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "range-compression",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 19.816,
+      "prompt_tokens": 15442,
+      "completion_tokens": 864,
+      "raw": "{\"tests\":[{\"args\":[[]],\"expected\":[]},{\"args\":[[1,2]],\"expected\":[[1,2]]},{\"args\":[[1,3]],\"expected\":[[1,1],[3,3]]},{\"args\":[[2,2,1]],\"expected\":[[1,2]]}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "8554a97a-ffe8-492f-ba79-3352d102ea6c",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:40:38.255720+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8832,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1,
+              2
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              3
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              1
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              2,
+              2,
+              1
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              2
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  2
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  3,
+                  3
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  2
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    3,
+                    3
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2
+                  ],
+                  [
+                    2,
+                    2
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    2,
+                    2
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    3
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    2,
+                    2
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "range-compression",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 21.328,
+      "prompt_tokens": 15459,
+      "completion_tokens": 1378,
+      "raw": "{\"tests\":[{\"args\":[[]],\"expected\":[]},{\"args\":[[2,1]],\"expected\":[[1,2]]},{\"args\":[[0,0]],\"expected\":[[0,0]]},{\"args\":[[1,3]],\"expected\":[[1,1],[3,3]]}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "90d717b0-f36e-47a3-a7de-3015f3d267cb",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:40:58.071632+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8832,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              2,
+              1
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              0,
+              0
+            ]
+          ],
+          "expected": [
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              3
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              1
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  2
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  0,
+                  0
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  3,
+                  3
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    0
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    3,
+                    3
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    2,
+                    2
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    0,
+                    0
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    3
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "percentile-rank",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 26.463,
+      "prompt_tokens": 15407,
+      "completion_tokens": 1111,
+      "raw": "{\"tests\":[{\"args\":[[],0],\"raises\":\"ValueError\"},{\"args\":[[0],1],\"expected\":1},{\"args\":[[0],0],\"expected\":0},{\"args\":[[1,0,1],1],\"expected\":1}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "906b35bc-b91d-4584-b672-41b524b6f8c1",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:41:19.399831+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 8832,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [],
+            0
+          ],
+          "raises": "ValueError"
+        },
+        {
+          "args": [
+            [
+              0
+            ],
+            1
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            [
+              0
+            ],
+            0
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            [
+              1,
+              0,
+              1
+            ],
+            1
+          ],
+          "expected": 1
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 3
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "percentile-rank",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 26.085,
+      "prompt_tokens": 15438,
+      "completion_tokens": 1144,
+      "raw": "{\"tests\":[{\"args\":[[],0],\"raises\":\"ValueError\"},{\"args\":[[0,2],1],\"expected\":1},{\"args\":[[0,0],1],\"expected\":2},{\"args\":[[0],0],\"expected\":0}]}",
+      "api_metadata": {
+        "returned_model": "Cursor Grok 4.6 Extra High",
+        "response_id": "79c1a7a4-4cc7-4f99-ac80-73f023105465",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:41:45.863130+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 1792,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [],
+            0
+          ],
+          "raises": "ValueError"
+        },
+        {
+          "args": [
+            [
+              0,
+              2
+            ],
+            1
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            [
+              0,
+              0
+            ],
+            1
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            [
+              0
+            ],
+            0
+          ],
+          "expected": 0
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 2
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "comparison": {
+    "mean_docs_minus_code": 0.0625,
+    "task_bootstrap_95_ci": [
+      -0.0938,
+      0.2188
+    ],
+    "docs_wins": 4,
+    "ties": 10,
+    "code_wins": 2,
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 1729
+  },
+  "plan_sha256": "d35edda5eaa1cf8530009e4e4ed1567f52c4d8fd71e5c9a4b105f51fb7180b0a"
+}
