@@ -13,6 +13,12 @@ generated assertion and observed result. Exact prompts, model digests, frozen pl
 and raw responses make the measurements inspectable. Python standard library;
 no additional runtime dependencies.
 
+**API-key models:** OpenAI, Claude, Gemini, Grok, DeepSeek, Groq, OpenRouter and
+custom OpenAI-compatible endpoints are supported alongside Ollama. The
+[setup guide](docs/API_MODELS.md) covers local key configuration, model settings,
+and offline comparison reports. Hosted adapters are tested with local HTTP stubs;
+the recorded model measurements below remain the original Qwen experiment.
+
 **Recorded experiment:** [results](reports/testgen/heldout.md) ·
 [HTML evidence viewer](reports/testgen/heldout.html) ·
 [raw generations](reports/testgen/heldout.jsonl) ·
@@ -24,7 +30,7 @@ On the frozen 16-function test split, **Qwen2.5-Coder 3B caught 12/32 seeded bug
 produced 8/16. There were no format, provider or execution failures. The paired
 difference was 0 percentage points (95% task-bootstrap interval: -18.75 to +12.5).
 This small experiment found no overall documentation gain; it does not establish
-performance on real repositories. **52 software tests pass**, independently of
+performance on real repositories. Software tests run independently of
 those model-quality scores.
 
 ```bash

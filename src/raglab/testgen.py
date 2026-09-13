@@ -1,4 +1,4 @@
-"""Paired, data-only LLM test-generation benchmark using the local Ollama API."""
+"""Paired, data-only LLM test-generation benchmark for local and API-key models."""
 import argparse
 import ast
 import copy
@@ -15,7 +15,9 @@ from datetime import UTC, datetime
 from pathlib import Path
 from urllib import error, request
 
+from raglab import testgen_api
 from raglab.settings import PROJECT_ROOT
+from raglab.testgen_compare import write_comparison
 from raglab.testgen_view import render_html
 from raglab.testgen_worker import MAX_PAYLOAD, reject_constant, validate_tests
 
@@ -256,9 +258,9 @@ def local_model_digest(base_url, model):
     return match["digest"]
 
 
-def make_plan(tasks, model, model_digest, version=VERSION, runtime_version=None):
+def make_plan(tasks, model, model_digest, version=VERSION, runtime_version=None, api_config=None):
     selected = [task for task in tasks if task["split"] == "test"]
-    return {
+    plan = {
         "version": version, "dataset_sha256": digest(tasks),
         "model": model, "model_digest": model_digest, **inference_settings(model),
         "runtime_version": runtime_version,
@@ -272,29 +274,59 @@ def make_plan(tasks, model, model_digest, version=VERSION, runtime_version=None)
         ]),
         "policy": "One generation per task/condition; no retries or tuning on held-out outputs.",
     }
+    if api_config:
+        plan.pop("think", None)
+        plan.update(api_config=api_config, options=api_config["options"],
+                    adapter_sha256=digest(Path(testgen_api.__file__).read_text(encoding="utf-8")))
+    return plan
 
 
-def generate(tasks, selected, output, model, base_url, version=VERSION, plan=None):
+def generate(tasks, selected, output, model, base_url, version=VERSION, plan=None, api_config=None):
+    if not selected:
+        raise ValueError("No tasks selected")
     fingerprint = digest(tasks)
-    model_digest = local_model_digest(base_url, model)
-    runtime_version = api(base_url, "/api/version").get("version")
+    key = testgen_api.api_key(api_config) if api_config else None
+    if key and key in encoded([api_config, model, [prompt_for(task, condition, version)
+                                                 for task in selected for condition in CONDITIONS]]):
+        raise ValueError("Remove the credential from public configuration/dataset fields")
+    model_digest = None if api_config else local_model_digest(base_url, model)
+    runtime_version = None if api_config else api(base_url, "/api/version").get("version")
     if any(task["split"] == "test" for task in selected):
         if plan is None:
             raise ValueError("Held-out generation requires --plan from the freeze command")
-        expected = make_plan(tasks, model, model_digest, version, runtime_version)
+        expected = make_plan(tasks, model, model_digest, version, runtime_version, api_config)
         if plan.get("configuration") != expected or [t["id"] for t in selected] != expected["task_ids"]:
             raise ValueError("Frozen plan differs from current configuration or selected tasks")
     output.parent.mkdir(parents=True, exist_ok=True)
+    returned_models = set()
+    stopped = None
     with output.open("x", encoding="utf-8") as handle:
         for task in selected:
             for condition in CONDITIONS:
                 record = record_for(task, condition, fingerprint, model, model_digest,
-                                    "ollama", version)
+                                    "api" if api_config else "ollama", version)
                 record["runtime_version"] = runtime_version
+                if api_config:
+                    record.pop("think", None)
+                    record.update(api_config=api_config, options=api_config["options"],
+                                  request=testgen_api.request_for(api_config, model, record["prompt"]))
                 if plan:
                     record["plan_sha256"] = digest(plan)
                 started = time.perf_counter()
                 try:
+                    if api_config:
+                        record["requested_at"] = datetime.now(UTC).isoformat()
+                        if stopped:
+                            record.update(raw="", generation_error=stopped, request_sent=False)
+                        else:
+                            record.update(testgen_api.generate_one(api_config, record["request"], key))
+                            record["request_sent"] = True
+                            if record.get("http_status") in (401, 403, 429):
+                                stopped = (f"Request skipped after HTTP {record['http_status']}; "
+                                           "no retry was made")
+                        if record.get("returned_model"):
+                            returned_models.add(record["returned_model"])
+                        continue
                     response = api(base_url, "/api/chat", {
                         "model": model, "stream": False, "format": record["format"],
                         **inference_settings(model),
@@ -312,12 +344,16 @@ def generate(tasks, selected, output, model, base_url, version=VERSION, plan=Non
                         record["generation_error"] = "Model response did not finish normally"
                 except (error.URLError, TimeoutError, ValueError, KeyError) as exc:
                     record.update(raw="", generation_error=str(exc))
-                record["latency_seconds"] = round(time.perf_counter() - started, 3)
-                handle.write(encoded(record) + "\n")
-                handle.flush()
-                print(f"{task['id']} / {condition}: {record['latency_seconds']}s", flush=True)
-    final_digest = local_model_digest(base_url, model)
-    if final_digest != model_digest:
+                finally:
+                    record["latency_seconds"] = (None if record.get("request_sent") is False
+                                                 else round(time.perf_counter() - started, 3))
+                    handle.write(encoded(record) + "\n")
+                    handle.flush()
+                    print(f"{task['id']} / {condition}: {record['latency_seconds']}s"
+                          + (f" — {record['generation_error']}" if record.get("generation_error") else ""),
+                          flush=True)
+    final_digest = None if api_config else local_model_digest(base_url, model)
+    if final_digest != model_digest or len(returned_models) > 1:
         records = [json.loads(line) for line in output.read_text(encoding="utf-8").splitlines()]
         for record in records:
             record["generation_error"] = "Model changed during run; this attempt is invalid"
@@ -349,26 +385,38 @@ def evaluate(tasks, records):
                 or record["prompt_sha256"] != digest(prompt)):
             raise ValueError("Generation provenance does not match the dataset/prompt")
         if record["source"] not in ("ollama", "reference_fixture"):
-            raise ValueError("Unknown generation source")
+            if record["source"] != "api":
+                raise ValueError("Unknown generation source")
+            config = record["api_config"]
+            canonical = testgen_api.configuration(config["provider"], config["base_url"],
+                                                   config["api_key_env"], config["options"])
+            if (config != canonical or record["options"] != config["options"]
+                    or record["model_digest"] is not None or record.get("think") is not None
+                    or record["request"] != testgen_api.request_for(config, record["model"], prompt)):
+                raise ValueError("API configuration/request provenance does not match")
         configurations.add(encoded([record["model"], record["model_digest"],
                                        record["options"], record["source"], version,
                                        record.get("plan_sha256"), record.get("think"),
-                                       record.get("runtime_version")]))
+                                       record.get("runtime_version"), record.get("api_config")]))
         seen.add(key)
         row = {"task_id": task["id"], "split": task["split"], "condition": condition,
                "status": "valid", "killed": [], "mutants": len(task["mutants"]),
                "latency_seconds": record.get("latency_seconds"),
                "prompt_tokens": record.get("prompt_tokens"),
                "completion_tokens": record.get("completion_tokens"), "raw": record["raw"]}
+        if record["source"] == "api":
+            row["api_metadata"] = {field: record.get(field) for field in (
+                "returned_model", "response_id", "done_reason", "requested_at", "request_sent",
+                "http_status", "prompt_cached_tokens", "reasoning_tokens")}
         if record.get("generation_error"):
             row.update(status="generation_error", error=record["generation_error"])
             rows.append(row)
             continue
         try:
             tests = parse_generation(record["raw"])
-            if record["source"] == "ollama" and version != "testgen-v1" and len(tests) != 4:
+            if record["source"] != "reference_fixture" and version != "testgen-v1" and len(tests) != 4:
                 raise ValueError("Structured protocols require exactly four tests")
-            if record["source"] == "ollama" and version in ("testgen-v3", VERSION):
+            if record["source"] != "reference_fixture" and version in ("testgen-v3", VERSION):
                 arity = expected_format["properties"]["tests"]["items"]["oneOf"][0][
                     "properties"]["args"]["minItems"]
                 if any(len(case["args"]) != arity for case in tests):
@@ -393,6 +441,9 @@ def evaluate(tasks, records):
         rows.append(row)
     if len(configurations) != 1:
         raise ValueError("Paired comparison requires one model, digest, options, and source")
+    if len({r["returned_model"] for r in records if r.get("returned_model")}) > 1 and not all(
+            r.get("generation_error") for r in records):
+        raise ValueError("API returned multiple model identities in one run")
     selected_ids = {key[0] for key in seen}
     if seen != {(task_id, condition) for task_id in selected_ids for condition in CONDITIONS}:
         raise ValueError("Every selected task needs both prompt conditions")
@@ -421,6 +472,7 @@ def evaluate(tasks, records):
         paired.append({"task_id": task_id,
                        "docs_minus_code": scores["code_docs"] - scores["code_only"]})
     return {
+        **({"api_config": records[0]["api_config"]} if records[0]["source"] == "api" else {}),
         "version": records[0]["version"], "dataset_sha256": fingerprint,
         "source": records[0]["source"], "model": records[0]["model"],
         "model_digest": records[0]["model_digest"], "options": records[0]["options"],
@@ -443,7 +495,7 @@ def write_report(report, path):
     lines = [
         "# LLM test-generation benchmark", "",
         "**REFERENCE FIXTURE — no LLM was used; this checks the runner only.**" if fixture
-        else "**Local LLM run — exploratory results, not an estimate of general capability.**",
+        else "**LLM run — exploratory results, not an estimate of general capability.**",
         "", f"Model: `{report['model']}`",
         (f"Scope: {len(report['selected_tasks'])}/{report['dataset_tasks']} tasks; "
          f"splits: {', '.join(report['splits'])}."),
@@ -453,6 +505,10 @@ def write_report(report, path):
          "Generation errors | Execution errors | Median generation seconds | Input / output tokens |"),
         "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
+    if report.get("api_config"):
+        lines[6:6] = [f"API configuration: `{encoded(report['api_config'])}`", "",
+                      "Remote model weights are not verifiable; this freezes request settings only.",
+                      ""]
     for condition, item in report["summary"].items():
         lines.append(
             f"| {condition} | {item['mutants_killed']}/{item['mutants_total']} | "
@@ -467,7 +523,8 @@ def write_report(report, path):
         "implementation. Invalid suites and false alarms earn zero. Execution errors/timeouts "
         "never count as kills; all seeded mutants remain in the denominator."),
         "", ("Small synthetic dataset; one generation per task and condition. Fixed seed is "
-        "best-effort. Timings include local load/queue overhead; code-only runs first in each pair. "
+        "best-effort when supported. Timings include network/load/queue overhead; code-only runs "
+        "first in each pair. "
         "These results do not establish a statistically reliable prompt advantage."),
         "", (f"Mean paired documentation difference: "
              f"{report['comparison']['mean_docs_minus_code']:+.1%}. "
@@ -490,37 +547,62 @@ def main(argv=None):
                         help="Trusted author-written dataset; its Python code will execute")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("validate", help="Verify references pass and kill every seeded mutant")
+    commands.add_parser("providers", help="List API providers, roots and key environment names")
     freeze = commands.add_parser("freeze", help="Freeze the complete held-out experiment")
     freeze.add_argument("--model", required=True)
-    freeze.add_argument("--base-url", default="http://127.0.0.1:11434")
     freeze.add_argument("--output", type=Path, required=True)
     freeze.add_argument("--protocol", choices=("testgen-v1", "testgen-v2", "testgen-v3", VERSION),
                         default=VERSION)
     demo = commands.add_parser("demo", help="Offline reference-fixture runner check, not LLM results")
     demo.add_argument("--report", type=Path, default=PROJECT_ROOT / "reports/testgen/demo.json")
-    gen = commands.add_parser("generate", help="Generate paired JSON tests using an installed model")
+    gen = commands.add_parser("generate", help="Generate paired JSON tests using local or API models")
     gen.add_argument("--model", required=True)
-    gen.add_argument("--base-url", default="http://127.0.0.1:11434")
     gen.add_argument("--split", choices=("dev", "test"), default="dev")
     gen.add_argument("--limit", type=int)
     gen.add_argument("--output", type=Path, required=True)
     gen.add_argument("--protocol", choices=("testgen-v1", "testgen-v2", "testgen-v3", VERSION),
                      default=VERSION)
     gen.add_argument("--plan", type=Path)
+    for command in (freeze, gen):
+        command.add_argument("--provider", choices=("ollama", *testgen_api.PROVIDERS), default="ollama")
+        command.add_argument("--base-url", help="Override the provider API root")
+        command.add_argument("--api-key-env", help="Environment variable NAME; never a literal key")
+        command.add_argument("--api-options", type=Path,
+                             help="JSON file with provider-native generation options (no secrets)")
     evaluation = commands.add_parser("evaluate", help="Evaluate saved generations without an LLM")
     evaluation.add_argument("--input", type=Path, required=True)
     evaluation.add_argument("--report", type=Path, required=True)
+    comparison = commands.add_parser("compare", help="Replay and compare model runs on identical tasks")
+    comparison.add_argument("--input", type=Path, nargs="+", required=True)
+    comparison.add_argument("--report", type=Path, required=True)
     args = parser.parse_args(argv)
     try:
+        if args.command == "providers":
+            print("ollama\tlocal\thttp://127.0.0.1:11434\t(no key)")
+            for name, (style, base, env) in testgen_api.PROVIDERS.items():
+                print(f"{name}\t{style}\t{base or '--base-url required'}\t{env}")
+            return
+        api_config = None
+        if args.command in ("freeze", "generate"):
+            if args.provider != "ollama":
+                api_config = testgen_api.configuration(
+                    args.provider, args.base_url, args.api_key_env,
+                    json.loads(args.api_options.read_text(encoding="utf-8-sig"))
+                    if args.api_options else None)
+            elif args.api_key_env or args.api_options:
+                raise ValueError("API key/options flags require an API provider")
+            args.base_url = args.base_url or "http://127.0.0.1:11434"
         tasks = load_tasks(args.dataset)
         if args.command == "validate":
             print(encoded(validate_dataset(tasks)))
         elif args.command == "freeze":
             plan = {"created_at": datetime.now(UTC).isoformat(),
                     "configuration": make_plan(
-                        tasks, args.model, local_model_digest(args.base_url, args.model),
+                        tasks, args.model, None if api_config else
+                        local_model_digest(args.base_url, args.model),
                         version=args.protocol,
-                        runtime_version=api(args.base_url, "/api/version").get("version"))}
+                        runtime_version=None if api_config else
+                        api(args.base_url, "/api/version").get("version"), api_config=api_config)}
             args.output.parent.mkdir(parents=True, exist_ok=True)
             with args.output.open("x", encoding="utf-8") as handle:
                 handle.write(json.dumps(plan, indent=2) + "\n")
@@ -531,7 +613,13 @@ def main(argv=None):
                 raise ValueError("--limit must be positive")
             generate(tasks, selected[:args.limit], args.output, args.model,
                      args.base_url, args.protocol,
-                     json.loads(args.plan.read_text(encoding="utf-8")) if args.plan else None)
+                     json.loads(args.plan.read_text(encoding="utf-8")) if args.plan else None,
+                     api_config=api_config)
+        elif args.command == "compare":
+            reports = [evaluate(tasks, [json.loads(line) for line in path.read_text(
+                encoding="utf-8").splitlines() if line.strip()]) for path in args.input]
+            write_comparison(reports, args.report)
+            print(f"Comparison: {args.report.with_suffix('.html')}")
         else:
             if args.command == "demo":
                 records = []

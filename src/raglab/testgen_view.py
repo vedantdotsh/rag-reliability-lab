@@ -60,6 +60,9 @@ def evidence(row):
     if row.get("mutant_results"):
         parts.append("<details><summary>Seeded bug execution details</summary>"
                      f'<pre>{pretty(row["mutant_results"])}</pre></details>')
+    if row.get("api_metadata"):
+        parts.append("<details><summary>API response metadata</summary>"
+                     f'<pre>{pretty(row["api_metadata"])}</pre></details>')
     parts.append("<details><summary>Raw model response</summary>"
                  f'<pre>{esc(row.get("raw", ""))}</pre></details>')
     return '<details><summary>Inspect evidence</summary>' + "".join(parts) + "</details>"
@@ -71,6 +74,17 @@ def render_html(report):
     experiment = "Frozen held-out experiment" if heldout else "Development experiment"
     if fixture:
         experiment = "Offline runner check"
+    config = report.get("api_config")
+    if config and heldout:
+        experiment = "Frozen request settings / public test split"
+    runtime = (f"API: {config['provider']}" if config else
+               "Reference fixture" if fixture else
+               f"Ollama {report.get('runtime_version') or 'version not recorded'}")
+    api_details = ("<details><summary>API configuration</summary>"
+                   f"<pre>{pretty(config)}</pre>"
+                   "<p>Only request settings are frozen. Remote model weights cannot be verified. "
+                   "JSON is validated locally; native format constraints depend on these settings. "
+                   "Output token totals include reported reasoning tokens.</p></details>") if config else ""
     labels = {"code_only": "Code only", "code_docs": "Code + documentation"}
     cards = []
     for condition, item in report["summary"].items():
@@ -114,8 +128,8 @@ def render_html(report):
         f'<span>{len(report["selected_tasks"])}/{report["dataset_tasks"]} tasks</span>'
         f'<span>Split: {esc(", ".join(report["splits"]))}</span>'
         f'<span>{esc(report["version"])}</span><span>{experiment}</span>'
-        f'<span>Ollama {esc(report.get("runtime_version") or "version not recorded")}</span>'
-        f'</div></header>{banner}'
+        f'<span>{esc(runtime)}</span>'
+        f'</div></header>{banner}{api_details}'
         f'<section class="cards">{"".join(cards)}</section>'
         '<p>A suite earns bug-detection credit only when <strong>every assertion passes the '
         'correct implementation</strong>. Wrong assertions and malformed suites earn zero. '
@@ -133,7 +147,7 @@ def render_html(report):
         f'<th>Bugs found</th><th>Evidence</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>'
         '<footer>Dataset SHA-256: '
         f'<code>{esc(report["dataset_sha256"])}</code>'
-        f'<p>Model digest: <code>{esc(report.get("model_digest") or "Not applicable")}</code><br>'
+        f'<p>Model digest: <code>{esc(report.get("model_digest") or "Unavailable")}</code><br>'
         f'Frozen plan SHA-256: <code>{esc(report.get("plan_sha256") or "Not applicable")}</code></p>'
         '<p>Model results above are separate from '
         'the repository software tests. Local HTML report; no remote assets or tracking.</p>'

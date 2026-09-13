@@ -39,6 +39,11 @@ The module form, `python -m raglab.testgen`, works too. Report paths must end in
 
 ## Generate an experiment
 
+For hosted models, see the [API-key model guide](API_MODELS.md): OpenAI, Claude,
+Gemini, Grok, DeepSeek, Groq, OpenRouter and custom compatible endpoints. Local
+Ollama remains the default. `testgen-bench compare` replays multiple runs on the
+same tasks into one comparison report.
+
 Start Ollama and use an exact installed model name from `ollama list`. The
 benchmark never downloads a model itself. Install the selected model explicitly
 with `ollama pull qwen2.5-coder:3b` if needed. Use Ollama 0.34.0 for the recorded setup.
@@ -151,5 +156,5 @@ from integers and there is no floating-point tolerance.
 
 Reference suites pass their correct implementations and detect both mutants.
 This validates the selected examples, not mathematical correctness or coverage of
-all possible bugs. The project uses synthetic functions and local inference; it
+all possible bugs. The project uses synthetic functions and local or API inference; it
 contains no SAP source code or HANA integration.
