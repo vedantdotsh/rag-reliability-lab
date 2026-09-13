@@ -74,7 +74,7 @@ def render_html(report):
     experiment = "Frozen held-out experiment" if heldout else "Development experiment"
     if fixture:
         experiment = "Offline runner check"
-    config = report.get("api_config")
+    config = report.get("api_config") or report.get("cli_config")
     if config and heldout:
         experiment = "Frozen request settings / public test split"
     runtime = (f"API: {config['provider']}" if config else
@@ -85,6 +85,12 @@ def render_html(report):
                    "<p>Only request settings are frozen. Remote model weights cannot be verified. "
                    "JSON is validated locally; native format constraints depend on these settings. "
                    "Output token totals include reported reasoning tokens.</p></details>") if config else ""
+    if report.get("cli_config"):
+        runtime = f"Subscription CLI: {config['provider']}"
+        api_details = ("<details><summary>Subscription CLI configuration</summary>"
+                       f"<pre>{pretty(config)}</pre><p>Fresh prompt-only sessions. CLI system prompts "
+                       "and defaults remain part of the experiment. Tool use disqualifies a suite; "
+                       "these results measure the model through this CLI, not the raw API.</p></details>")
     labels = {"code_only": "Code only", "code_docs": "Code + documentation"}
     cards = []
     for condition, item in report["summary"].items():

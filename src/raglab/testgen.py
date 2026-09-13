@@ -15,7 +15,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 from urllib import error, request
 
-from raglab import testgen_api
+from raglab import testgen_api, testgen_cli
 from raglab.settings import PROJECT_ROOT
 from raglab.testgen_compare import write_comparison
 from raglab.testgen_view import render_html
@@ -258,7 +258,8 @@ def local_model_digest(base_url, model):
     return match["digest"]
 
 
-def make_plan(tasks, model, model_digest, version=VERSION, runtime_version=None, api_config=None):
+def make_plan(tasks, model, model_digest, version=VERSION, runtime_version=None, api_config=None,
+              cli_config=None):
     selected = [task for task in tasks if task["split"] == "test"]
     plan = {
         "version": version, "dataset_sha256": digest(tasks),
@@ -278,10 +279,16 @@ def make_plan(tasks, model, model_digest, version=VERSION, runtime_version=None,
         plan.pop("think", None)
         plan.update(api_config=api_config, options=api_config["options"],
                     adapter_sha256=digest(Path(testgen_api.__file__).read_text(encoding="utf-8")))
+    if cli_config:
+        plan.pop("think", None)
+        plan.update(cli_config=cli_config, options=cli_config,
+                    adapter_sha256=digest(Path(testgen_cli.__file__).read_text(encoding="utf-8")),
+                    cli_prefix_sha256=digest(testgen_cli.PREFIX))
     return plan
 
 
-def generate(tasks, selected, output, model, base_url, version=VERSION, plan=None, api_config=None):
+def generate(tasks, selected, output, model, base_url, version=VERSION, plan=None, api_config=None,
+             cli_config=None, cli_executable=None):
     if not selected:
         raise ValueError("No tasks selected")
     fingerprint = digest(tasks)
@@ -289,12 +296,16 @@ def generate(tasks, selected, output, model, base_url, version=VERSION, plan=Non
     if key and key in encoded([api_config, model, [prompt_for(task, condition, version)
                                                  for task in selected for condition in CONDITIONS]]):
         raise ValueError("Remove the credential from public configuration/dataset fields")
-    model_digest = None if api_config else local_model_digest(base_url, model)
-    runtime_version = None if api_config else api(base_url, "/api/version").get("version")
+    if api_config and cli_config:
+        raise ValueError("Choose one generation transport")
+    remote = api_config or cli_config
+    model_digest = None if remote else local_model_digest(base_url, model)
+    runtime_version = (cli_config["cli_version"] if cli_config else None if api_config
+                       else api(base_url, "/api/version").get("version"))
     if any(task["split"] == "test" for task in selected):
         if plan is None:
             raise ValueError("Held-out generation requires --plan from the freeze command")
-        expected = make_plan(tasks, model, model_digest, version, runtime_version, api_config)
+        expected = make_plan(tasks, model, model_digest, version, runtime_version, api_config, cli_config)
         if plan.get("configuration") != expected or [t["id"] for t in selected] != expected["task_ids"]:
             raise ValueError("Frozen plan differs from current configuration or selected tasks")
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -304,26 +315,35 @@ def generate(tasks, selected, output, model, base_url, version=VERSION, plan=Non
         for task in selected:
             for condition in CONDITIONS:
                 record = record_for(task, condition, fingerprint, model, model_digest,
-                                    "api" if api_config else "ollama", version)
+                                    "cli" if cli_config else "api" if api_config else "ollama", version)
                 record["runtime_version"] = runtime_version
                 if api_config:
                     record.pop("think", None)
                     record.update(api_config=api_config, options=api_config["options"],
                                   request=testgen_api.request_for(api_config, model, record["prompt"]))
+                if cli_config:
+                    record.pop("think", None)
+                    record.update(cli_config=cli_config, options=cli_config,
+                                  cli_prompt=testgen_cli.cli_prompt(record["prompt"]))
                 if plan:
                     record["plan_sha256"] = digest(plan)
                 started = time.perf_counter()
                 try:
-                    if api_config:
+                    if remote:
                         record["requested_at"] = datetime.now(UTC).isoformat()
                         if stopped:
                             record.update(raw="", generation_error=stopped, request_sent=False)
                         else:
-                            record.update(testgen_api.generate_one(api_config, record["request"], key))
+                            record.update(testgen_cli.generate_one(cli_config, cli_executable,
+                                                                  model, record["prompt"])
+                                          if cli_config else testgen_api.generate_one(
+                                              api_config, record["request"], key))
                             record["request_sent"] = True
                             if record.get("http_status") in (401, 403, 429):
                                 stopped = (f"Request skipped after HTTP {record['http_status']}; "
                                            "no retry was made")
+                            if record.get("blocked_reason"):
+                                stopped = "Request skipped: " + record["blocked_reason"]
                         if record.get("returned_model"):
                             returned_models.add(record["returned_model"])
                         continue
@@ -352,7 +372,7 @@ def generate(tasks, selected, output, model, base_url, version=VERSION, plan=Non
                     print(f"{task['id']} / {condition}: {record['latency_seconds']}s"
                           + (f" — {record['generation_error']}" if record.get("generation_error") else ""),
                           flush=True)
-    final_digest = None if api_config else local_model_digest(base_url, model)
+    final_digest = None if remote else local_model_digest(base_url, model)
     if final_digest != model_digest or len(returned_models) > 1:
         records = [json.loads(line) for line in output.read_text(encoding="utf-8").splitlines()]
         for record in records:
@@ -384,9 +404,7 @@ def evaluate(tasks, records):
                 or record["split"] != task["split"] or record["prompt"] != prompt
                 or record["prompt_sha256"] != digest(prompt)):
             raise ValueError("Generation provenance does not match the dataset/prompt")
-        if record["source"] not in ("ollama", "reference_fixture"):
-            if record["source"] != "api":
-                raise ValueError("Unknown generation source")
+        if record["source"] == "api":
             config = record["api_config"]
             canonical = testgen_api.configuration(config["provider"], config["base_url"],
                                                    config["api_key_env"], config["options"])
@@ -394,17 +412,28 @@ def evaluate(tasks, records):
                     or record["model_digest"] is not None or record.get("think") is not None
                     or record["request"] != testgen_api.request_for(config, record["model"], prompt)):
                 raise ValueError("API configuration/request provenance does not match")
+        elif record["source"] == "cli":
+            config = record["cli_config"]
+            canonical = testgen_cli.configuration(config["provider"], config["cli_version"],
+                                                  config["reasoning_effort"])
+            if (config != canonical or record["options"] != config
+                    or record["model_digest"] is not None or record.get("think") is not None
+                    or record["cli_prompt"] != testgen_cli.cli_prompt(prompt)):
+                raise ValueError("CLI configuration/prompt provenance does not match")
+        elif record["source"] not in ("ollama", "reference_fixture"):
+            raise ValueError("Unknown generation source")
         configurations.add(encoded([record["model"], record["model_digest"],
                                        record["options"], record["source"], version,
                                        record.get("plan_sha256"), record.get("think"),
-                                       record.get("runtime_version"), record.get("api_config")]))
+                                       record.get("runtime_version"), record.get("api_config"),
+                                       record.get("cli_config")]))
         seen.add(key)
         row = {"task_id": task["id"], "split": task["split"], "condition": condition,
                "status": "valid", "killed": [], "mutants": len(task["mutants"]),
                "latency_seconds": record.get("latency_seconds"),
                "prompt_tokens": record.get("prompt_tokens"),
                "completion_tokens": record.get("completion_tokens"), "raw": record["raw"]}
-        if record["source"] == "api":
+        if record["source"] in ("api", "cli"):
             row["api_metadata"] = {field: record.get(field) for field in (
                 "returned_model", "response_id", "done_reason", "requested_at", "request_sent",
                 "http_status", "prompt_cached_tokens", "reasoning_tokens")}
@@ -473,6 +502,7 @@ def evaluate(tasks, records):
                        "docs_minus_code": scores["code_docs"] - scores["code_only"]})
     return {
         **({"api_config": records[0]["api_config"]} if records[0]["source"] == "api" else {}),
+        **({"cli_config": records[0]["cli_config"]} if records[0]["source"] == "cli" else {}),
         "version": records[0]["version"], "dataset_sha256": fingerprint,
         "source": records[0]["source"], "model": records[0]["model"],
         "model_digest": records[0]["model_digest"], "options": records[0]["options"],
@@ -509,6 +539,9 @@ def write_report(report, path):
         lines[6:6] = [f"API configuration: `{encoded(report['api_config'])}`", "",
                       "Remote model weights are not verifiable; this freezes request settings only.",
                       ""]
+    if report.get("cli_config"):
+        lines[6:6] = [f"Subscription CLI configuration: `{encoded(report['cli_config'])}`", "",
+                      "CLI system prompts and defaults affect these results; remote weights are unverifiable.", ""]
     for condition, item in report["summary"].items():
         lines.append(
             f"| {condition} | {item['mutants_killed']}/{item['mutants_total']} | "

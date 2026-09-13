@@ -4,6 +4,10 @@ The same paired prompts, four-test budget and strict scoring work with hosted te
 models. Pick an exact model ID available to your API account. No model is downloaded
 or selected automatically, and the runner never silently switches models.
 
+For existing Codex/ChatGPT and Cursor logins, use the separate
+[subscription CLI benchmark](SUBSCRIPTION_BENCHMARK.md). Its results explicitly include
+the CLI's system instructions and defaults; a subscription login is not an API key.
+
 | `--provider` | API format | Default key environment variable |
 |---|---|---|
 | `ollama` | Local Ollama chat | None |

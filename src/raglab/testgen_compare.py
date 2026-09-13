@@ -25,7 +25,7 @@ def write_comparison(reports, path):
     table = []
     details = []
     for index, run in enumerate(reports, 1):
-        provider = run.get("api_config", {}).get("provider", run["source"])
+        provider = (run.get("api_config") or run.get("cli_config") or {}).get("provider", run["source"])
         label = f"{provider} / {run['model']}"
         for condition, item in run["summary"].items():
             failures = sum(item[k] for k in ("invalid_generation", "generation_error", "execution_error"))
@@ -37,7 +37,8 @@ def write_comparison(reports, path):
                           str(item["false_alarm"]), str(failures),
                           "?" if latency is None else str(latency), " / ".join(tokens)])
         settings = {key: run.get(key) for key in (
-            "model", "model_digest", "api_config", "options", "think", "runtime_version", "plan_sha256")}
+            "model", "model_digest", "api_config", "cli_config", "options", "think", "runtime_version",
+            "plan_sha256")}
         details.append(f"<details><summary>Run {index}: {esc(label)} — settings</summary>"
                        f"<pre>{pretty(settings)}</pre></details>")
     path.parent.mkdir(parents=True, exist_ok=True)
