@@ -199,7 +199,7 @@ SQLite stores immutable run snapshots in `reports/runs.sqlite3`, which is exclud
 
 Pytest records pass/fail/error/skip counts and then evaluates the benchmark even when a software test fails. A RAG gate failure does not change pytest's exit status; use `evaluate --gate` to enforce quality. An evaluation error is recorded as a fresh error, never a reused score. Set `RAGLAB_SKIP_DASHBOARD=1` to skip the hook deliberately. Collection-only sessions do not create runs.
 
-GitHub Actions runs linting, software tests and the quality gate on pushes and pull requests. The current baseline is expected to fail the **quality gate** step. Evaluation reports, the CI history database and dashboard assets are uploaded as workflow artifacts even when the gate fails. CI history is separate from local history and is not automatically synchronized. A failing workflow alone does not block merges; branch protection must require it after publication.
+The **Reliability checks** workflow runs linting and software tests once on each push and pull request, then validates and replays the test-generation benchmark and enforces the RAG quality gate. The current baseline is expected to fail the **quality gate** step. Both sets of evaluation evidence, the CI history database and dashboard assets are uploaded as workflow artifacts even when an evaluation fails. CI history is separate from local history and is not automatically synchronized. A failing workflow alone does not block merges; branch protection must require it after publication.
 
 ## Docker
 

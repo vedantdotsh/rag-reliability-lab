@@ -141,7 +141,8 @@ Set `RAGLAB_SKIP_DASHBOARD=1` to skip the existing RAG dashboard's pytest hook.
 CI validates the dataset, produces a labeled reference-fixture report, and replays
 the recorded held-out generations without an LLM.
 Software-test results and model-performance measurements are separate.
-The separate, existing RAG workflow still enforces its own answer-quality thresholds.
+The same workflow also enforces the RAG answer-quality thresholds and uploads both
+sets of evidence, including when an evaluation fails.
 
 ## Execution boundary
 

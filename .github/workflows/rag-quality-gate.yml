@@ -1,4 +1,4 @@
-name: RAG quality gate
+name: Reliability checks
 
 on:
   push:
@@ -16,8 +16,22 @@ jobs:
       - run: pip install -e ".[dev]"
       - run: ruff check src tests conftest.py
       - run: pytest -q
+        id: tests
+      - run: testgen-bench validate
+      - name: Check offline reference fixture (no LLM scores)
+        run: testgen-bench demo --report reports/testgen/ci-fixture.json
+      - name: Replay recorded held-out model responses (no inference)
+        run: testgen-bench evaluate --input reports/testgen/heldout.jsonl --report reports/testgen/ci-heldout.json
+      - name: Verify recorded scores reproduce exactly
+        run: git diff --no-index --exit-code reports/testgen/heldout.json reports/testgen/ci-heldout.json
       - name: Enforce RAG quality thresholds
+        if: ${{ !cancelled() && steps.tests.outcome == 'success' }}
         run: rag-eval evaluate --gate --report reports/ci.json --markdown reports/ci.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-generation-evidence
+          path: reports/testgen/ci-*.*
       - name: Publish evaluation evidence even when the gate fails
         if: always()
         uses: actions/upload-artifact@v4
