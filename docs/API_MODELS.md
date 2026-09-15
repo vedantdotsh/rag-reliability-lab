@@ -50,8 +50,7 @@ try {
     Remove-Item Env:\OPENAI_API_KEY
     $keyInput.Dispose()
 }
-python -m raglab.testgen evaluate --input reports/testgen/openai-pilot.jsonl --report reports/testgen/openai-pilot.json
-Start-Process reports/testgen/openai-pilot.html
+python -m raglab.testgen evaluate --input reports/testgen/openai-pilot.jsonl
 ```
 
 The pilot sends **two requests**: one per prompt condition. A full dev run sends
@@ -59,9 +58,9 @@ The pilot sends **two requests**: one per prompt condition. A full dev run sends
 incur charges. Freezing, replaying and comparing make no model calls and need no key.
 Use a different provider flag and its corresponding key variable for other services.
 
-The HTML files are static reports. Configure keys in the shell running generation;
-the browser neither receives keys nor makes inference requests. API reports show
-the provider and recorded settings. Each evidence row includes response metadata.
+Results print directly in the terminal. Add `--report PATH.json` to evaluation for
+an optional JSON export containing the settings and response evidence. No HTML or
+Markdown files are generated. Configure keys in the shell running generation.
 
 ## Model-specific settings
 
@@ -110,15 +109,15 @@ key is already set and use the `$modelId` you selected:
 ```powershell
 python -m raglab.testgen freeze --provider openai --model $modelId --output reports/testgen/openai-plan.json
 python -m raglab.testgen generate --provider openai --model $modelId --split test --plan reports/testgen/openai-plan.json --output reports/testgen/openai-test.jsonl
-python -m raglab.testgen evaluate --input reports/testgen/openai-test.jsonl --report reports/testgen/openai-test.json
-python -m raglab.testgen compare --input reports/testgen/heldout.jsonl reports/testgen/openai-test.jsonl --report reports/testgen/models.json
-Start-Process reports/testgen/models.html
+python -m raglab.testgen evaluate --input reports/testgen/openai-test.jsonl
+python -m raglab.testgen compare --input reports/testgen/heldout.jsonl reports/testgen/openai-test.jsonl
 ```
 
 Add more generation files after `--input` to extend the table. Comparison replays
 each run offline and rejects different datasets, protocols, task selections or
 splits. Reference fixtures cannot enter model comparisons. JSON retains each
-replayed run's full evidence; Markdown and HTML provide a side-by-side table.
+replayed run's full evidence when `--report PATH.json` is supplied; the terminal
+shows the comparison directly.
 There is no guessed dollar cost or general capability ranking.
 
 Use new filenames for each attempt. Generation and freezing refuse to overwrite

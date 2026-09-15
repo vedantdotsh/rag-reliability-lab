@@ -9,7 +9,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from raglab import testgen, testgen_cli
-from raglab.testgen_compare import write_comparison
+from raglab.testgen_compare import print_comparison, write_comparison
 
 
 def read_cli(command):
@@ -120,8 +120,8 @@ def main():
             try:
                 report = future.result()
                 reports.append(report)
-                print("COMPLETE", entry["provider"], entry["model"],
-                      {k: v["mutation_score"] for k, v in report["summary"].items()}, flush=True)
+                print(f"COMPLETE {entry['provider']} {entry['model']}", flush=True)
+                testgen.print_report(report)
             except (OSError, ValueError, KeyError, RuntimeError, subprocess.SubprocessError) as exc:
                 errors.append({**entry, "error": str(exc)})
                 print("FAILED", entry["provider"], entry["model"], str(exc), flush=True)
@@ -129,7 +129,10 @@ def main():
                         "completed": [r["model"] for r in reports], "errors": errors}
             progress_path.write_text(json.dumps(progress, indent=2) + "\n", encoding="utf-8")
             if len(reports) >= 2:
-                write_comparison(reports, args.output_dir / ((args.provider or "all") + "-comparison.json"))
+                comparison = write_comparison(
+                    reports, args.output_dir / ((args.provider or "all") + "-comparison.json"))
+    if len(reports) >= 2:
+        print_comparison(comparison)
     if errors:
         raise SystemExit(1)
 

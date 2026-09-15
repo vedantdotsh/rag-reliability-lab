@@ -1,0 +1,24 @@
+{
+  "raw": "{\"name-01\":\"Alder Analytics GmbH\",\"name-02\":\"Dr. Lena Vogt\",\"name-03\":\"Ana-Maria Weiss\",\"date-01\":\"2026-03-05\",\"date-02\":\"2026-08-31\",\"date-03\":\"2026-04-03\",\"amount-01\":\"952.00\",\"amount-02\":\"1469.06\",\"amount-03\":\"108.00\",\"json-01\":\"{\\\"invoice_id\\\":\\\"AX-204\\\",\\\"issue_date\\\":\\\"2026-04-07\\\",\\\"currency\\\":\\\"EUR\\\",\\\"total\\\":245.75}\",\"json-02\":\"{\\\"order_id\\\":\\\"PO-88\\\",\\\"items\\\":[{\\\"sku\\\":\\\"W-2\\\",\\\"quantity\\\":3},{\\\"sku\\\":\\\"R-9\\\",\\\"quantity\\\":1}]}\",\"json-03\":\"{\\\"employee\\\":\\\"Noor Patel\\\",\\\"approved\\\":false,\\\"submitted\\\":\\\"2026-05-08\\\"}\",\"missing-01\":\"{\\\"invoice_id\\\":\\\"Q-17\\\",\\\"due_date\\\":null}\",\"missing-02\":\"{\\\"vendor\\\":\\\"Riverstone Systems\\\",\\\"vat_id\\\":null}\",\"conflict-01\":\"{\\\"shipment_id\\\":\\\"SH-41\\\",\\\"delivery_date\\\":null,\\\"conflict\\\":true}\",\"conflict-02\":\"{\\\"order_id\\\":\\\"PO-19\\\",\\\"quantity\\\":10,\\\"total\\\":500.00}\"}",
+  "prompt_tokens": 13063,
+  "prompt_cached_tokens": 0,
+  "completion_tokens": 330,
+  "reasoning_tokens": 55,
+  "returned_model": null,
+  "done_reason": "turn.completed",
+  "session_id": "01a0a630-8aa6-7d93-80bb-068255b3f120",
+  "exit_code": 0,
+  "requested_model": "gpt-5.6-sol",
+  "provider": "codex",
+  "elapsed_seconds": 15.19340639999973,
+  "config": {
+    "provider": "codex",
+    "cli_version": "0.154.0-alpha.6.2",
+    "protocol": "cli-v1",
+    "reasoning_effort": "medium",
+    "sampling": "CLI defaults; no native output schema",
+    "timeout_seconds": 240,
+    "session": "fresh empty working directory; no resume",
+    "tool_policy": "prompt prohibits tools; observed tool calls disqualify the suite"
+  }
+}

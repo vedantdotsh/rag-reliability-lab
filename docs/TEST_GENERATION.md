@@ -13,29 +13,27 @@ The recorded experiment uses Qwen2.5-Coder 3B, protocol v4 and Ollama 0.34.0:
 [frozen plan](../reports/testgen/heldout-plan.json), and
 [case study with CV/post drafts](TEST_GENERATION_CASE_STUDY.md).
 
-Open a generated HTML report directly in a browser. Expand **Inspect evidence**
-to compare generated inputs and assertions with actual execution. JSON and
-Markdown reports sit beside the HTML file. The viewer works offline.
-The repository retains raw development generations and compact Markdown summaries;
-replay recreates their derived JSON and HTML views when needed.
+The linked HTML and Markdown files are archived evidence from the earlier web
+workflow. Current commands show results directly in the terminal. Raw generations
+remain available for offline replay and optional JSON export.
 
 From this checkout:
 
 ```bash
 python -m pip install -e ".[dev]"
 testgen-bench validate
-testgen-bench demo --report reports/testgen/demo.json
+testgen-bench demo
 ```
 
 The demo uses reference assertions, never an LLM. Its 100% score checks the runner;
 it is not model-performance evidence. Replay saved output without a model or API:
 
 ```bash
-testgen-bench evaluate --input reports/testgen/heldout.jsonl --report reports/testgen/replay.json
+testgen-bench evaluate --input reports/testgen/heldout.jsonl
 ```
 
-The module form, `python -m raglab.testgen`, works too. Report paths must end in
-`.json`; the command writes `.md` and `.html` alongside them.
+The module form, `python -m raglab.testgen`, works too. Add `--report PATH.json`
+for an optional JSON export. No HTML or Markdown files are generated.
 
 ## Generate an experiment
 
@@ -137,7 +135,7 @@ pytest -q
 testgen-bench validate
 ```
 
-Set `RAGLAB_SKIP_DASHBOARD=1` to skip the existing RAG dashboard's pytest hook.
+Normal test runs only print to the terminal and do not update the legacy dashboard.
 CI validates the dataset, produces a labeled reference-fixture report, and replays
 the recorded held-out generations without an LLM.
 Software-test results and model-performance measurements are separate.

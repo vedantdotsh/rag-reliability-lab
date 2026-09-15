@@ -17,8 +17,7 @@ from urllib import error, request
 
 from raglab import testgen_api, testgen_cli
 from raglab.settings import PROJECT_ROOT
-from raglab.testgen_compare import write_comparison
-from raglab.testgen_view import render_html
+from raglab.testgen_compare import comparison_report, print_comparison, write_comparison
 from raglab.testgen_worker import MAX_PAYLOAD, reject_constant, validate_tests
 
 DATASET = PROJECT_ROOT / "data" / "testgen" / "tasks.jsonl"
@@ -518,60 +517,48 @@ def evaluate(tasks, records):
 
 def write_report(report, path):
     if path.suffix != ".json":
-        raise ValueError("Report path must end in .json; .md and .html are written alongside it")
+        raise ValueError("Report path must end in .json")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+
+
+def print_report(report):
     fixture = report["source"] == "reference_fixture"
-    lines = [
-        "# LLM test-generation benchmark", "",
-        "**REFERENCE FIXTURE — no LLM was used; this checks the runner only.**" if fixture
-        else "**LLM run — exploratory results, not an estimate of general capability.**",
-        "", f"Model: `{report['model']}`",
-        (f"Scope: {len(report['selected_tasks'])}/{report['dataset_tasks']} tasks; "
-         f"splits: {', '.join(report['splits'])}."),
-        f"Dataset SHA-256: `{report['dataset_sha256']}`", "",
-        f"Protocol: `{report['version']}`", "",
-        ("| Prompt | Bugs caught / total | Score | Valid suites | False alarms | Invalid | "
-         "Generation errors | Execution errors | Median generation seconds | Input / output tokens |"),
-        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
-    ]
-    if report.get("api_config"):
-        lines[6:6] = [f"API configuration: `{encoded(report['api_config'])}`", "",
-                      "Remote model weights are not verifiable; this freezes request settings only.",
-                      ""]
-    if report.get("cli_config"):
-        lines[6:6] = [f"Subscription CLI configuration: `{encoded(report['cli_config'])}`", "",
-                      "CLI system prompts and defaults affect these results; remote weights are unverifiable.", ""]
+    print("LLM test-generation benchmark")
+    print(f"Model: {report['model']}")
+    print(f"Source: {report['source']}")
+    if fixture:
+        print("Reference fixture: no LLM was used; this checks the runner only.")
+    print(f"Scope: {len(report['selected_tasks'])}/{report['dataset_tasks']} tasks; "
+          f"splits {', '.join(report['splits'])}; protocol {report['version']}")
+    failed_rows = [row for row in report["rows"] if row["status"] != "valid"]
+    print(f"Status: {'complete' if not failed_rows else 'completed with failed suites'}")
     for condition, item in report["summary"].items():
-        lines.append(
-            f"| {condition} | {item['mutants_killed']}/{item['mutants_total']} | "
-            f"{item['mutation_score']:.1%} | {item['valid']}/{item['suites']} | "
-            f"{item['false_alarm']} | {item['invalid_generation']} | "
-            f"{item['generation_error']} | {item['execution_error']} | "
-            f"{item['median_latency_seconds']} | "
-            f"{item['prompt_tokens']} / {item['completion_tokens']} |"
-        )
-    lines += [
-        "", ("A suite earns bug-detection credit only after every assertion passes the correct "
-        "implementation. Invalid suites and false alarms earn zero. Execution errors/timeouts "
-        "never count as kills; all seeded mutants remain in the denominator."),
-        "", ("Small synthetic dataset; one generation per task and condition. Fixed seed is "
-        "best-effort when supported. Timings include network/load/queue overhead; code-only runs "
-        "first in each pair. "
-        "These results do not establish a statistically reliable prompt advantage."),
-        "", (f"Mean paired documentation difference: "
-             f"{report['comparison']['mean_docs_minus_code']:+.1%}. "
-             f"95% task-bootstrap interval: "
-             f"{report['comparison']['task_bootstrap_95_ci'][0]:+.1%} to "
-             f"{report['comparison']['task_bootstrap_95_ci'][1]:+.1%}. "
-             "This resamples tasks, not repeated model generations."),
-        "", "## Paired scores", "", "| Task | Documentation minus code-only score |",
-        "|---|---:|",
-    ]
-    lines.extend(f"| {row['task_id']} | {row['docs_minus_code']:+.1%} |"
-                 for row in report["paired_deltas"])
-    path.with_suffix(".md").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    path.with_suffix(".html").write_text(render_html(report), encoding="utf-8")
+        latency = ("unavailable" if item["median_latency_seconds"] is None else
+                   f"{item['median_latency_seconds']}s")
+        tokens = ("unavailable" if item["prompt_tokens"] is None or
+                  item["completion_tokens"] is None else
+                  f"{item['prompt_tokens']} input / {item['completion_tokens']} output")
+        print(f"{condition}: {item['mutants_killed']}/{item['mutants_total']} bugs caught "
+              f"({item['mutation_score']:.1%}); valid {item['valid']}/{item['suites']}; "
+              f"false alarms {item['false_alarm']}; invalid {item['invalid_generation']}; "
+              f"generation errors {item['generation_error']}; execution errors "
+              f"{item['execution_error']}; median {latency}; tokens {tokens}")
+    comparison = report["comparison"]
+    print("Documentation effect: "
+          f"mean {comparison['mean_docs_minus_code']:+.1%}; task-bootstrap 95% interval "
+          f"{comparison['task_bootstrap_95_ci'][0]:+.1%} to "
+          f"{comparison['task_bootstrap_95_ci'][1]:+.1%}")
+    if failed_rows:
+        print("Failed items:")
+        for row in failed_rows:
+            print(f"  {row['task_id']} / {row['condition']}: {row['status']}"
+                  + (f" ({row['error']})" if row.get("error") else ""))
+    else:
+        print("Failed items: none")
+    print("Limitations: small synthetic dataset; one generation per task and condition; "
+          "provider defaults, timing overhead, and remote model identity limit comparisons. "
+          "The interval resamples tasks, not repeated generations.")
 
 
 def main(argv=None):
@@ -587,7 +574,7 @@ def main(argv=None):
     freeze.add_argument("--protocol", choices=("testgen-v1", "testgen-v2", "testgen-v3", VERSION),
                         default=VERSION)
     demo = commands.add_parser("demo", help="Offline reference-fixture runner check, not LLM results")
-    demo.add_argument("--report", type=Path, default=PROJECT_ROOT / "reports/testgen/demo.json")
+    demo.add_argument("--report", type=Path, help="Optional JSON report path")
     gen = commands.add_parser("generate", help="Generate paired JSON tests using local or API models")
     gen.add_argument("--model", required=True)
     gen.add_argument("--split", choices=("dev", "test"), default="dev")
@@ -604,10 +591,10 @@ def main(argv=None):
                              help="JSON file with provider-native generation options (no secrets)")
     evaluation = commands.add_parser("evaluate", help="Evaluate saved generations without an LLM")
     evaluation.add_argument("--input", type=Path, required=True)
-    evaluation.add_argument("--report", type=Path, required=True)
+    evaluation.add_argument("--report", type=Path, help="Optional JSON report path")
     comparison = commands.add_parser("compare", help="Replay and compare model runs on identical tasks")
     comparison.add_argument("--input", type=Path, nargs="+", required=True)
-    comparison.add_argument("--report", type=Path, required=True)
+    comparison.add_argument("--report", type=Path, help="Optional JSON comparison path")
     args = parser.parse_args(argv)
     try:
         if args.command == "providers":
@@ -651,8 +638,10 @@ def main(argv=None):
         elif args.command == "compare":
             reports = [evaluate(tasks, [json.loads(line) for line in path.read_text(
                 encoding="utf-8").splitlines() if line.strip()]) for path in args.input]
-            write_comparison(reports, args.report)
-            print(f"Comparison: {args.report.with_suffix('.html')}")
+            compared = write_comparison(reports, args.report) if args.report else comparison_report(reports)
+            print_comparison(compared)
+            if args.report:
+                print(f"JSON comparison: {args.report}")
         else:
             if args.command == "demo":
                 records = []
@@ -666,9 +655,10 @@ def main(argv=None):
                 records = [json.loads(line) for line in args.input.read_text(
                     encoding="utf-8").splitlines() if line.strip()]
             report = evaluate(tasks, records)
-            write_report(report, args.report)
-            print(encoded(report["summary"]))
-            print(f"Report: {args.report.with_suffix('.md')}")
+            print_report(report)
+            if args.report:
+                write_report(report, args.report)
+                print(f"JSON report: {args.report}")
     except (ValueError, KeyError, OSError, RecursionError) as exc:
         parser.exit(1, f"Error: {exc}\n")
 

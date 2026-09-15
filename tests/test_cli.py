@@ -5,8 +5,6 @@ import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from raglab.dashboard import read_runs
-
 
 class CliTests(unittest.TestCase):
     def test_gate_exit_codes_and_saved_failure_reason(self):
@@ -30,7 +28,6 @@ class CliTests(unittest.TestCase):
                         sys.executable, "-m", "raglab", "evaluate", "--gate",
                         "--corpus", str(corpus), "--cases", str(cases),
                         "--thresholds", str(thresholds), "--report", str(report),
-                        "--markdown", str(root / "report.md"),
                     ], capture_output=True, text=True, check=False)
                     self.assertEqual(result.returncode, expected_exit, result.stderr)
                     self.assertNotIn("Traceback", result.stderr)
@@ -39,10 +36,18 @@ class CliTests(unittest.TestCase):
                         self.assertFalse(payload["gate"]["passed"])
                         self.assertIsNone(payload["gate"]["checks"][0]["actual"])
                         self.assertIn("N/A", result.stdout)
-                        history = read_runs(root / "runs.sqlite3")
-                        self.assertEqual(len(history), 2)
-                        self.assertFalse(history[0]["gate"]["passed"])
-                        self.assertEqual(history[0]["trigger"], "evaluation")
+                    self.assertFalse((root / "runs.sqlite3").exists())
+                    self.assertFalse((root / "report.md").exists())
+
+    def test_default_evaluation_prints_results_without_files(self):
+        with TemporaryDirectory() as directory:
+            result = subprocess.run([
+                sys.executable, "-m", "raglab", "evaluate",
+            ], cwd=directory, capture_output=True, text=True, check=False)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn("Quality gate:", result.stdout)
+            self.assertIn("Cases needing review", result.stdout)
+            self.assertEqual(list(Path(directory).iterdir()), [])
 
     def test_old_baseline_comparison_is_a_clear_input_error(self):
         with TemporaryDirectory() as directory:

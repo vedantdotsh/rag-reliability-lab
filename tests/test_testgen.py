@@ -233,7 +233,8 @@ class TestGenerationTests(unittest.TestCase):
             path = Path(directory) / "report.json"
             testgen.write_report(report, path)
             self.assertEqual(json.loads(path.read_text())["source"], "reference_fixture")
-            self.assertIn("no LLM was used", path.with_suffix(".md").read_text(encoding="utf-8"))
+            self.assertFalse(path.with_suffix(".md").exists())
+            self.assertFalse(path.with_suffix(".html").exists())
 
     def test_ollama_pair_records_real_metadata_and_rejects_overwrite(self):
         with TemporaryDirectory() as directory:

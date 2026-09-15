@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>General LLM evaluation reports</title>
+<style>
+  :root { color-scheme: light; font-family: system-ui, sans-serif; color: #172033; }
+  body { max-width: 980px; margin: 0 auto; padding: 2rem 1rem 4rem; background: #f7f9fc; }
+  header, section { background: white; border: 1px solid #d9e0eb; border-radius: .8rem;
+                    padding: 1.3rem; margin-bottom: 1rem; }
+  h1, h2 { margin-top: 0; } .grid { display: grid; gap: 1rem;
+                                  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .card { border: 1px solid #d9e0eb; border-radius: .6rem; padding: 1rem; }
+  .metric { font-size: 1.7rem; font-weight: 700; } a { color: #174ea6; }
+  .finding { border-left: .35rem solid #b45309; background: #fff8eb; }
+  .muted { color: #586477; }
+</style>
+<main>
+  <header>
+    <p class="muted">RELIABILITY LAB / LOCAL DIAGNOSTIC</p>
+    <h1>General LLM evaluation</h1>
+    <p>The full curated pack contains <strong>60 base problems</strong> and
+      <strong>100 prompt variants</strong>. The live smoke below sampled 4 base problems,
+      6 variants, and 2 trials per variant. It is a workflow check, not a ranking.</p>
+  </header>
+  <section>
+    <h2>Candidate smoke · 15 September 2026</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>Codex · gpt-5.6-sol</h3>
+        <p class="metric">12/12</p>
+        <p>Correct trials · 0 errors · 0 invalid responses · 0.0 pp paired robustness change</p>
+        <p><a href="smoke-2026-09-15/codex-report.html">Open HTML report</a> ·
+          <a href="smoke-2026-09-15/codex-report.json">JSON</a> ·
+          <a href="smoke-2026-09-15/codex-plan.json">frozen plan</a> ·
+          <a href="smoke-2026-09-15/codex-generations.jsonl">raw responses</a></p>
+      </article>
+      <article class="card">
+        <h3>Cursor · Grok 4.6 Extra High</h3>
+        <p class="metric">12/12</p>
+        <p>Correct trials · 0 errors · 0 invalid responses · 0.0 pp paired robustness change</p>
+        <p><a href="smoke-2026-09-15/cursor-report.html">Open HTML report</a> ·
+          <a href="smoke-2026-09-15/cursor-report.json">JSON</a> ·
+          <a href="smoke-2026-09-15/cursor-plan.json">frozen plan</a> ·
+          <a href="smoke-2026-09-15/cursor-generations.jsonl">raw responses</a></p>
+      </article>
+    </div>
+  </section>
+  <section class="finding">
+    <h2>Judge control finding</h2>
+    <p class="metric">20/24 correct</p>
+    <p>The Sol judge correctly preferred the clean answer in all 12 corruption presentations, but falsely rejected
+      4 of 12 equivalent-answer presentations. Both accepted alias pairs failed in both A/B orders;
+      there were no order flips. This is why judge results stay separate from candidate scores.</p>
+    <p><a href="smoke-2026-09-15/judge-report.html">Open judge HTML report</a> ·
+      <a href="smoke-2026-09-15/judge-report.json">JSON</a> ·
+      <a href="smoke-2026-09-15/judge-plan.json">frozen plan</a> ·
+      <a href="smoke-2026-09-15/judge-generations.jsonl">raw responses</a></p>
+  </section>
+  <section>
+    <h2>Deterministic fixtures</h2>
+    <p>These reports exercise replay and rendering without model calls. Their perfect scores are
+      implementation checks.</p>
+    <p><a href="fixture/fixture-report.html">Candidate fixture</a> ·
+      <a href="judge-fixture/judge-fixture-report.html">Judge fixture</a></p>
+  </section>
+  <section>
+    <h2>Hash scope</h2>
+    <p>The frozen candidate plan identifies the complete 60-problem pack. Each candidate report's
+      dataset hash identifies the evaluated four-problem subset shown in that report. Keep the linked
+      plan with its report to preserve both the selection provenance and the reported scope.</p>
+  </section>
+</main>
+</html>

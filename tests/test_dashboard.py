@@ -81,7 +81,8 @@ class DashboardTests(unittest.TestCase):
                 "expected_doc_ids": ["refund"], "required_facts": ["30 days"],
             }) + "\n", encoding="utf-8")
             shutil.copyfile(Path(__file__).resolve().parents[1] / "conftest.py", root / "conftest.py")
-            environment = {**os.environ, "RAGLAB_SKIP_DASHBOARD": "0"}
+            environment = {**os.environ, "RAGLAB_SKIP_DASHBOARD": "0",
+                           "RAGLAB_RECORD_DASHBOARD": "1"}
             for succeeds, thresholds, expected_exit in (
                 (False, {"faithfulness": 1}, 1),
                 (True, {"unmeasured_metric": 1}, 0),
@@ -104,6 +105,15 @@ class DashboardTests(unittest.TestCase):
                     self.assertEqual(run["trigger"], "pytest")
                     self.assertEqual(run["gate"]["passed"], not succeeds)
             self.assertEqual(len(read_runs(root / "reports/runs.sqlite3")), 2)
+
+            environment.pop("RAGLAB_RECORD_DASHBOARD")
+            before = (root / "reports/runs.sqlite3").read_bytes()
+            completed = subprocess.run([
+                sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider", "test_sample.py",
+            ], cwd=root, env=environment, capture_output=True, text=True, check=False)
+            self.assertEqual(completed.returncode, 0, completed.stdout)
+            self.assertNotIn("Dashboard", completed.stdout)
+            self.assertEqual((root / "reports/runs.sqlite3").read_bytes(), before)
 
 
 if __name__ == "__main__":

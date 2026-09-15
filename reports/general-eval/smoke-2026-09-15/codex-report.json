@@ -1,0 +1,731 @@
+{
+  "kind": "general_llm_evaluation",
+  "version": "general-eval-v1",
+  "dataset_sha256": "5659e1d9aadbdcce496bb82f369117f9fb7588013ffd0d02e676f0ebd5e22c46",
+  "plan_sha256": "70d654c22d409d55b90d292479252c347c14dc6f89c9df5811b2ced7747dd9b1",
+  "system": "gpt-5.6-sol",
+  "source": "cli",
+  "fixture_notice": null,
+  "scope": {
+    "base_problems": 4,
+    "prompt_variants": 6,
+    "samples": 2,
+    "trials": 12
+  },
+  "summary": {
+    "base_problems": 4,
+    "families": 4,
+    "prompt_variants": 6,
+    "trials": 12,
+    "correct": 12,
+    "all_variant_trial_success_rate": 1.0,
+    "baseline_macro_success": 1,
+    "run_complete": true,
+    "provider_failures": 0,
+    "skipped_after_block": 0,
+    "harness_errors": 0,
+    "invalid_responses": 0,
+    "answered": 10,
+    "abstained": 2,
+    "unknown_disposition": 0,
+    "coverage": 0.8333,
+    "attempted_accuracy": 1.0,
+    "constraint_passes": 36,
+    "constraint_total": 36
+  },
+  "domains": {
+    "grounded_factuality": {
+      "base_problems": 1,
+      "families": 1,
+      "prompt_variants": 1,
+      "trials": 2,
+      "correct": 2,
+      "all_variant_trial_success_rate": 1.0,
+      "baseline_macro_success": 1,
+      "run_complete": true,
+      "provider_failures": 0,
+      "skipped_after_block": 0,
+      "harness_errors": 0,
+      "invalid_responses": 0,
+      "answered": 0,
+      "abstained": 2,
+      "unknown_disposition": 0,
+      "coverage": 0.0,
+      "attempted_accuracy": null,
+      "constraint_passes": 0,
+      "constraint_total": 0
+    },
+    "instruction": {
+      "base_problems": 1,
+      "families": 1,
+      "prompt_variants": 3,
+      "trials": 6,
+      "correct": 6,
+      "all_variant_trial_success_rate": 1.0,
+      "baseline_macro_success": 1,
+      "run_complete": true,
+      "provider_failures": 0,
+      "skipped_after_block": 0,
+      "harness_errors": 0,
+      "invalid_responses": 0,
+      "answered": 6,
+      "abstained": 0,
+      "unknown_disposition": 0,
+      "coverage": 1.0,
+      "attempted_accuracy": 1.0,
+      "constraint_passes": 30,
+      "constraint_total": 30
+    },
+    "reasoning": {
+      "base_problems": 1,
+      "families": 1,
+      "prompt_variants": 1,
+      "trials": 2,
+      "correct": 2,
+      "all_variant_trial_success_rate": 1.0,
+      "baseline_macro_success": 1,
+      "run_complete": true,
+      "provider_failures": 0,
+      "skipped_after_block": 0,
+      "harness_errors": 0,
+      "invalid_responses": 0,
+      "answered": 2,
+      "abstained": 0,
+      "unknown_disposition": 0,
+      "coverage": 1.0,
+      "attempted_accuracy": 1.0,
+      "constraint_passes": 2,
+      "constraint_total": 2
+    },
+    "transformation": {
+      "base_problems": 1,
+      "families": 1,
+      "prompt_variants": 1,
+      "trials": 2,
+      "correct": 2,
+      "all_variant_trial_success_rate": 1.0,
+      "baseline_macro_success": 1,
+      "run_complete": true,
+      "provider_failures": 0,
+      "skipped_after_block": 0,
+      "harness_errors": 0,
+      "invalid_responses": 0,
+      "answered": 2,
+      "abstained": 0,
+      "unknown_disposition": 0,
+      "coverage": 1.0,
+      "attempted_accuracy": 1.0,
+      "constraint_passes": 4,
+      "constraint_total": 4
+    }
+  },
+  "repeated_success": [
+    {
+      "base_id": "fact-07",
+      "domain": "grounded_factuality",
+      "variant_id": "base",
+      "samples": 2,
+      "successes": 2,
+      "success_rate": 1.0,
+      "pass_pow_n": 1.0,
+      "pass_at_n": 1.0
+    },
+    {
+      "base_id": "inst-05",
+      "domain": "instruction",
+      "variant_id": "base",
+      "samples": 2,
+      "successes": 2,
+      "success_rate": 1.0,
+      "pass_pow_n": 1.0,
+      "pass_at_n": 1.0
+    },
+    {
+      "base_id": "inst-05",
+      "domain": "instruction",
+      "variant_id": "equiv-a",
+      "samples": 2,
+      "successes": 2,
+      "success_rate": 1.0,
+      "pass_pow_n": 1.0,
+      "pass_at_n": 1.0
+    },
+    {
+      "base_id": "inst-05",
+      "domain": "instruction",
+      "variant_id": "equiv-b",
+      "samples": 2,
+      "successes": 2,
+      "success_rate": 1.0,
+      "pass_pow_n": 1.0,
+      "pass_at_n": 1.0
+    },
+    {
+      "base_id": "reason-09",
+      "domain": "reasoning",
+      "variant_id": "base",
+      "samples": 2,
+      "successes": 2,
+      "success_rate": 1.0,
+      "pass_pow_n": 1.0,
+      "pass_at_n": 1.0
+    },
+    {
+      "base_id": "transform-08",
+      "domain": "transformation",
+      "variant_id": "base",
+      "samples": 2,
+      "successes": 2,
+      "success_rate": 1.0,
+      "pass_pow_n": 1.0,
+      "pass_at_n": 1.0
+    }
+  ],
+  "paired_robustness": {
+    "summary": {
+      "paired_base_items": 1,
+      "paired_comparisons": 2,
+      "mean_variant_minus_base": 0,
+      "variant_wins": 0,
+      "ties": 2,
+      "base_wins": 0,
+      "uncertainty": "Descriptive paired base-item effects; no confidence interval is claimed."
+    },
+    "items": [
+      {
+        "base_id": "inst-05",
+        "domain": "instruction",
+        "variant_id": "equiv-a",
+        "base_success": 1,
+        "variant_success": 1,
+        "delta": 0
+      },
+      {
+        "base_id": "inst-05",
+        "domain": "instruction",
+        "variant_id": "equiv-b",
+        "base_success": 1,
+        "variant_success": 1,
+        "delta": 0
+      }
+    ]
+  },
+  "rows": [
+    {
+      "system": "5f44aa19f22eb030bf5de46e2644461bf4a82de24badb9d640396a8b197bf50b",
+      "base_id": "reason-09",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1,
+      "domain": "reasoning",
+      "family": "sequences",
+      "prompt": "The sequence 2, 5, 8, 11 increases by the same amount each time. Return the next integer.\n\nReturn exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.",
+      "reference": {
+        "answers": [
+          14
+        ],
+        "disposition": "answered",
+        "constraints": [
+          {
+            "kind": "type",
+            "value": "integer"
+          }
+        ]
+      },
+      "raw": "{\"answer\":14,\"disposition\":\"answered\"}",
+      "generation_error": null,
+      "latency_seconds": 3.808,
+      "execution_status": "completed",
+      "transport_status": "completed",
+      "disposition": "answered",
+      "format_valid": true,
+      "correct": true,
+      "constraint_passes": 1,
+      "constraint_total": 1
+    },
+    {
+      "system": "5f44aa19f22eb030bf5de46e2644461bf4a82de24badb9d640396a8b197bf50b",
+      "base_id": "inst-05",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1,
+      "domain": "instruction",
+      "family": "boundary-constraints",
+      "prompt": "The answer value is BEGIN, then calm, then END, joined by single spaces.\n\nReturn exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.",
+      "reference": {
+        "answers": [
+          "BEGIN calm END"
+        ],
+        "disposition": "answered",
+        "constraints": [
+          {
+            "kind": "type",
+            "value": "string"
+          },
+          {
+            "kind": "word_count",
+            "value": 3
+          },
+          {
+            "kind": "starts_with",
+            "value": "BEGIN"
+          },
+          {
+            "kind": "ends_with",
+            "value": "END"
+          },
+          {
+            "kind": "contains_all",
+            "value": [
+              "calm"
+            ]
+          }
+        ]
+      },
+      "raw": "{\"answer\":\"BEGIN calm END\",\"disposition\":\"answered\"}",
+      "generation_error": null,
+      "latency_seconds": 5.029,
+      "execution_status": "completed",
+      "transport_status": "completed",
+      "disposition": "answered",
+      "format_valid": true,
+      "correct": true,
+      "constraint_passes": 5,
+      "constraint_total": 5
+    },
+    {
+      "system": "5f44aa19f22eb030bf5de46e2644461bf4a82de24badb9d640396a8b197bf50b",
+      "base_id": "reason-09",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2,
+      "domain": "reasoning",
+      "family": "sequences",
+      "prompt": "The sequence 2, 5, 8, 11 increases by the same amount each time. Return the next integer.\n\nReturn exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.",
+      "reference": {
+        "answers": [
+          14
+        ],
+        "disposition": "answered",
+        "constraints": [
+          {
+            "kind": "type",
+            "value": "integer"
+          }
+        ]
+      },
+      "raw": "{\"answer\":14,\"disposition\":\"answered\"}",
+      "generation_error": null,
+      "latency_seconds": 6.954,
+      "execution_status": "completed",
+      "transport_status": "completed",
+      "disposition": "answered",
+      "format_valid": true,
+      "correct": true,
+      "constraint_passes": 1,
+      "constraint_total": 1
+    },
+    {
+      "system": "5f44aa19f22eb030bf5de46e2644461bf4a82de24badb9d640396a8b197bf50b",
+      "base_id": "transform-08",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1,
+      "domain": "transformation",
+      "family": "chunking",
+      "prompt": "Split [1,2,3,4,5] into consecutive chunks of exactly 2 items, except the final chunk may be shorter.\n\nReturn exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.",
+      "reference": {
+        "answers": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              5
+            ]
+          ]
+        ],
+        "disposition": "answered",
+        "constraints": [
+          {
+            "kind": "type",
+            "value": "array"
+          },
+          {
+            "kind": "length",
+            "value": 3
+          }
+        ]
+      },
+      "raw": "{\"answer\":[[1,2],[3,4],[5]],\"disposition\":\"answered\"}",
+      "generation_error": null,
+      "latency_seconds": 4.45,
+      "execution_status": "completed",
+      "transport_status": "completed",
+      "disposition": "answered",
+      "format_valid": true,
+      "correct": true,
+      "constraint_passes": 2,
+      "constraint_total": 2
+    },
+    {
+      "system": "5f44aa19f22eb030bf5de46e2644461bf4a82de24badb9d640396a8b197bf50b",
+      "base_id": "inst-05",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1,
+      "domain": "instruction",
+      "family": "boundary-constraints",
+      "prompt": "Return exactly the three-word string 'BEGIN calm END' without the quote marks.\n\nReturn exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.",
+      "reference": {
+        "answers": [
+          "BEGIN calm END"
+        ],
+        "disposition": "answered",
+        "constraints": [
+          {
+            "kind": "type",
+            "value": "string"
+          },
+          {
+            "kind": "word_count",
+            "value": 3
+          },
+          {
+            "kind": "starts_with",
+            "value": "BEGIN"
+          },
+          {
+            "kind": "ends_with",
+            "value": "END"
+          },
+          {
+            "kind": "contains_all",
+            "value": [
+              "calm"
+            ]
+          }
+        ]
+      },
+      "raw": "{\"answer\":\"BEGIN calm END\",\"disposition\":\"answered\"}",
+      "generation_error": null,
+      "latency_seconds": 4.067,
+      "execution_status": "completed",
+      "transport_status": "completed",
+      "disposition": "answered",
+      "format_valid": true,
+      "correct": true,
+      "constraint_passes": 5,
+      "constraint_total": 5
+    },
+    {
+      "system": "5f44aa19f22eb030bf5de46e2644461bf4a82de24badb9d640396a8b197bf50b",
+      "base_id": "inst-05",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2,
+      "domain": "instruction",
+      "family": "boundary-constraints",
+      "prompt": "The answer value is BEGIN, then calm, then END, joined by single spaces.\n\nReturn exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.",
+      "reference": {
+        "answers": [
+          "BEGIN calm END"
+        ],
+        "disposition": "answered",
+        "constraints": [
+          {
+            "kind": "type",
+            "value": "string"
+          },
+          {
+            "kind": "word_count",
+            "value": 3
+          },
+          {
+            "kind": "starts_with",
+            "value": "BEGIN"
+          },
+          {
+            "kind": "ends_with",
+            "value": "END"
+          },
+          {
+            "kind": "contains_all",
+            "value": [
+              "calm"
+            ]
+          }
+        ]
+      },
+      "raw": "{\"answer\":\"BEGIN calm END\",\"disposition\":\"answered\"}",
+      "generation_error": null,
+      "latency_seconds": 4.103,
+      "execution_status": "completed",
+      "transport_status": "completed",
+      "disposition": "answered",
+      "format_valid": true,
+      "correct": true,
+      "constraint_passes": 5,
+      "constraint_total": 5
+    },
+    {
+      "system": "5f44aa19f22eb030bf5de46e2644461bf4a82de24badb9d640396a8b197bf50b",
+      "base_id": "inst-05",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1,
+      "domain": "instruction",
+      "family": "boundary-constraints",
+      "prompt": "Make a three-word string that starts with BEGIN, has calm in the middle, ends with END, and uses single spaces.\n\nReturn exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.",
+      "reference": {
+        "answers": [
+          "BEGIN calm END"
+        ],
+        "disposition": "answered",
+        "constraints": [
+          {
+            "kind": "type",
+            "value": "string"
+          },
+          {
+            "kind": "word_count",
+            "value": 3
+          },
+          {
+            "kind": "starts_with",
+            "value": "BEGIN"
+          },
+          {
+            "kind": "ends_with",
+            "value": "END"
+          },
+          {
+            "kind": "contains_all",
+            "value": [
+              "calm"
+            ]
+          }
+        ]
+      },
+      "raw": "{\"answer\":\"BEGIN calm END\",\"disposition\":\"answered\"}",
+      "generation_error": null,
+      "latency_seconds": 3.829,
+      "execution_status": "completed",
+      "transport_status": "completed",
+      "disposition": "answered",
+      "format_valid": true,
+      "correct": true,
+      "constraint_passes": 5,
+      "constraint_total": 5
+    },
+    {
+      "system": "5f44aa19f22eb030bf5de46e2644461bf4a82de24badb9d640396a8b197bf50b",
+      "base_id": "fact-07",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2,
+      "domain": "grounded_factuality",
+      "family": "unanswerable",
+      "prompt": "Evidence: The recipe names flour, water, salt, and yeast. Question: How long should the dough bake? Use only the supplied evidence. If it is insufficient, use disposition abstained and answer null.\n\nReturn exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.",
+      "reference": {
+        "answers": [],
+        "disposition": "abstained",
+        "constraints": []
+      },
+      "raw": "{\"answer\":null,\"disposition\":\"abstained\"}",
+      "generation_error": null,
+      "latency_seconds": 4.042,
+      "execution_status": "completed",
+      "transport_status": "completed",
+      "disposition": "abstained",
+      "format_valid": true,
+      "correct": true,
+      "constraint_passes": 0,
+      "constraint_total": 0
+    },
+    {
+      "system": "5f44aa19f22eb030bf5de46e2644461bf4a82de24badb9d640396a8b197bf50b",
+      "base_id": "inst-05",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2,
+      "domain": "instruction",
+      "family": "boundary-constraints",
+      "prompt": "Make a three-word string that starts with BEGIN, has calm in the middle, ends with END, and uses single spaces.\n\nReturn exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.",
+      "reference": {
+        "answers": [
+          "BEGIN calm END"
+        ],
+        "disposition": "answered",
+        "constraints": [
+          {
+            "kind": "type",
+            "value": "string"
+          },
+          {
+            "kind": "word_count",
+            "value": 3
+          },
+          {
+            "kind": "starts_with",
+            "value": "BEGIN"
+          },
+          {
+            "kind": "ends_with",
+            "value": "END"
+          },
+          {
+            "kind": "contains_all",
+            "value": [
+              "calm"
+            ]
+          }
+        ]
+      },
+      "raw": "{\"answer\":\"BEGIN calm END\",\"disposition\":\"answered\"}",
+      "generation_error": null,
+      "latency_seconds": 4.24,
+      "execution_status": "completed",
+      "transport_status": "completed",
+      "disposition": "answered",
+      "format_valid": true,
+      "correct": true,
+      "constraint_passes": 5,
+      "constraint_total": 5
+    },
+    {
+      "system": "5f44aa19f22eb030bf5de46e2644461bf4a82de24badb9d640396a8b197bf50b",
+      "base_id": "inst-05",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2,
+      "domain": "instruction",
+      "family": "boundary-constraints",
+      "prompt": "Return exactly the three-word string 'BEGIN calm END' without the quote marks.\n\nReturn exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.",
+      "reference": {
+        "answers": [
+          "BEGIN calm END"
+        ],
+        "disposition": "answered",
+        "constraints": [
+          {
+            "kind": "type",
+            "value": "string"
+          },
+          {
+            "kind": "word_count",
+            "value": 3
+          },
+          {
+            "kind": "starts_with",
+            "value": "BEGIN"
+          },
+          {
+            "kind": "ends_with",
+            "value": "END"
+          },
+          {
+            "kind": "contains_all",
+            "value": [
+              "calm"
+            ]
+          }
+        ]
+      },
+      "raw": "{\"answer\":\"BEGIN calm END\",\"disposition\":\"answered\"}",
+      "generation_error": null,
+      "latency_seconds": 4.777,
+      "execution_status": "completed",
+      "transport_status": "completed",
+      "disposition": "answered",
+      "format_valid": true,
+      "correct": true,
+      "constraint_passes": 5,
+      "constraint_total": 5
+    },
+    {
+      "system": "5f44aa19f22eb030bf5de46e2644461bf4a82de24badb9d640396a8b197bf50b",
+      "base_id": "transform-08",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2,
+      "domain": "transformation",
+      "family": "chunking",
+      "prompt": "Split [1,2,3,4,5] into consecutive chunks of exactly 2 items, except the final chunk may be shorter.\n\nReturn exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.",
+      "reference": {
+        "answers": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              5
+            ]
+          ]
+        ],
+        "disposition": "answered",
+        "constraints": [
+          {
+            "kind": "type",
+            "value": "array"
+          },
+          {
+            "kind": "length",
+            "value": 3
+          }
+        ]
+      },
+      "raw": "{\"answer\":[[1,2],[3,4],[5]],\"disposition\":\"answered\"}",
+      "generation_error": null,
+      "latency_seconds": 4.38,
+      "execution_status": "completed",
+      "transport_status": "completed",
+      "disposition": "answered",
+      "format_valid": true,
+      "correct": true,
+      "constraint_passes": 2,
+      "constraint_total": 2
+    },
+    {
+      "system": "5f44aa19f22eb030bf5de46e2644461bf4a82de24badb9d640396a8b197bf50b",
+      "base_id": "fact-07",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1,
+      "domain": "grounded_factuality",
+      "family": "unanswerable",
+      "prompt": "Evidence: The recipe names flour, water, salt, and yeast. Question: How long should the dough bake? Use only the supplied evidence. If it is insufficient, use disposition abstained and answer null.\n\nReturn exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.",
+      "reference": {
+        "answers": [],
+        "disposition": "abstained",
+        "constraints": []
+      },
+      "raw": "{\"answer\":null,\"disposition\":\"abstained\"}",
+      "generation_error": null,
+      "latency_seconds": 4.752,
+      "execution_status": "completed",
+      "transport_status": "completed",
+      "disposition": "abstained",
+      "format_valid": true,
+      "correct": true,
+      "constraint_passes": 0,
+      "constraint_total": 0
+    }
+  ],
+  "limitations": [
+    "Curated local diagnostic pack; it is not a replication of IFBench, LiveBench, or REFLECT.",
+    "Reference labels were code-audited locally, not human-validated.",
+    "Repeated trials do not add independent problem diversity.",
+    "No aggregate intelligence score or population-level confidence interval is reported."
+  ]
+}

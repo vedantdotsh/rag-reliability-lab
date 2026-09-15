@@ -1,0 +1,298 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>General LLM evaluation</title>
+<style>body{font:16px system-ui;max-width:1200px;margin:2rem auto;padding:0 1rem;color:#172033}
+table{border-collapse:collapse;width:100%;margin:1rem 0}th,td{border:1px solid #ccd3df;padding:.55rem;text-align:left;vertical-align:top}
+th{background:#eef2f8}pre{white-space:pre-wrap;max-width:48rem;margin:0}code{overflow-wrap:anywhere}
+.cards{display:flex;gap:1rem;flex-wrap:wrap}.card{padding:1rem;background:#f5f7fb;border-radius:.5rem}</style>
+<main><h1>General LLM evaluation</h1><p><strong>cursor-grok-4.6-xhigh</strong> · 4 base problems ·
+6 prompt variants · 12 trials</p>
+<div class="cards"><div class="card">Run status <strong>complete</strong><br>Skipped: 0 · harness errors: 0</div><div class="card">Baseline macro success <strong>100.0%</strong></div>
+<div class="card">Provider failures <strong>0</strong></div>
+<div class="card">Invalid responses <strong>0</strong></div></div>
+<h2>Domain results</h2><table><thead><tr><th>Domain</th><th>Problems</th><th>Variants</th><th>Trials</th><th>Correct trials</th><th>Baseline macro</th><th>Provider failures</th><th>Invalid</th><th>Answered</th><th>Abstained</th></tr></thead><tbody><tr><td>grounded_factuality</td><td>1</td><td>1</td><td>2</td><td>2</td><td>100.0%</td><td>0</td><td>0</td><td>0</td><td>2</td></tr><tr><td>instruction</td><td>1</td><td>3</td><td>6</td><td>6</td><td>100.0%</td><td>0</td><td>0</td><td>6</td><td>0</td></tr><tr><td>reasoning</td><td>1</td><td>1</td><td>2</td><td>2</td><td>100.0%</td><td>0</td><td>0</td><td>2</td><td>0</td></tr><tr><td>transformation</td><td>1</td><td>1</td><td>2</td><td>2</td><td>100.0%</td><td>0</td><td>0</td><td>2</td><td>0</td></tr></tbody></table>
+<h2>Repeated success</h2><p>6/6 problem-variant cells passed every repeated attempt. <code>pass^n</code> requires every repeated attempt to pass; <code>pass@n</code> describes retry opportunity.</p><details><summary>Inspect repeated-success cells</summary><table><thead><tr><th>Problem</th><th>Variant</th><th>Successes</th><th>pass^n</th><th>pass@n</th></tr></thead><tbody><tr><td>fact-07</td><td>base</td><td>2/2</td><td>100.0%</td><td>100.0%</td></tr><tr><td>inst-05</td><td>base</td><td>2/2</td><td>100.0%</td><td>100.0%</td></tr><tr><td>inst-05</td><td>equiv-a</td><td>2/2</td><td>100.0%</td><td>100.0%</td></tr><tr><td>inst-05</td><td>equiv-b</td><td>2/2</td><td>100.0%</td><td>100.0%</td></tr><tr><td>reason-09</td><td>base</td><td>2/2</td><td>100.0%</td><td>100.0%</td></tr><tr><td>transform-08</td><td>base</td><td>2/2</td><td>100.0%</td><td>100.0%</td></tr></tbody></table></details>
+<h2>Prompt robustness</h2><p>2 paired variant comparisons across 1 base problems. Mean variant-minus-base: <strong>+0.0 percentage points</strong>. Variant wins: 0; ties: 2; base wins: 0.</p><p>Descriptive paired base-item effects; no confidence interval is claimed.</p>
+<h2>Limits</h2><ul><li>Curated local diagnostic pack; it is not a replication of IFBench, LiveBench, or REFLECT.</li><li>Reference labels were code-audited locally, not human-validated.</li><li>Repeated trials do not add independent problem diversity.</li><li>No aggregate intelligence score or population-level confidence interval is reported.</li></ul><details><summary>Inspect raw evidence</summary><table><thead><tr><th>Problem</th><th>Variant</th><th>Sample</th><th>Disposition</th><th>Result</th><th>Prompt</th><th>Reference grader</th><th>Raw response</th><th>Error</th></tr></thead><tbody><tr><td>reason-09</td><td>base</td><td>1</td><td>answered</td><td>pass</td><td><pre>The sequence 2, 5, 8, 11 increases by the same amount each time. Return the next integer.
+
+Return exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.</pre></td><td><pre>{
+  &quot;answers&quot;: [
+    14
+  ],
+  &quot;disposition&quot;: &quot;answered&quot;,
+  &quot;constraints&quot;: [
+    {
+      &quot;kind&quot;: &quot;type&quot;,
+      &quot;value&quot;: &quot;integer&quot;
+    }
+  ]
+}</pre></td><td><pre>{&quot;answer&quot;: 14, &quot;disposition&quot;: &quot;answered&quot;}</pre></td><td></td></tr><tr><td>inst-05</td><td>equiv-b</td><td>1</td><td>answered</td><td>pass</td><td><pre>The answer value is BEGIN, then calm, then END, joined by single spaces.
+
+Return exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.</pre></td><td><pre>{
+  &quot;answers&quot;: [
+    &quot;BEGIN calm END&quot;
+  ],
+  &quot;disposition&quot;: &quot;answered&quot;,
+  &quot;constraints&quot;: [
+    {
+      &quot;kind&quot;: &quot;type&quot;,
+      &quot;value&quot;: &quot;string&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;word_count&quot;,
+      &quot;value&quot;: 3
+    },
+    {
+      &quot;kind&quot;: &quot;starts_with&quot;,
+      &quot;value&quot;: &quot;BEGIN&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;ends_with&quot;,
+      &quot;value&quot;: &quot;END&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;contains_all&quot;,
+      &quot;value&quot;: [
+        &quot;calm&quot;
+      ]
+    }
+  ]
+}</pre></td><td><pre>{&quot;answer&quot;:&quot;BEGIN calm END&quot;,&quot;disposition&quot;:&quot;answered&quot;}</pre></td><td></td></tr><tr><td>reason-09</td><td>base</td><td>2</td><td>answered</td><td>pass</td><td><pre>The sequence 2, 5, 8, 11 increases by the same amount each time. Return the next integer.
+
+Return exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.</pre></td><td><pre>{
+  &quot;answers&quot;: [
+    14
+  ],
+  &quot;disposition&quot;: &quot;answered&quot;,
+  &quot;constraints&quot;: [
+    {
+      &quot;kind&quot;: &quot;type&quot;,
+      &quot;value&quot;: &quot;integer&quot;
+    }
+  ]
+}</pre></td><td><pre>{&quot;answer&quot;: 14, &quot;disposition&quot;: &quot;answered&quot;}</pre></td><td></td></tr><tr><td>transform-08</td><td>base</td><td>1</td><td>answered</td><td>pass</td><td><pre>Split [1,2,3,4,5] into consecutive chunks of exactly 2 items, except the final chunk may be shorter.
+
+Return exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.</pre></td><td><pre>{
+  &quot;answers&quot;: [
+    [
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5
+      ]
+    ]
+  ],
+  &quot;disposition&quot;: &quot;answered&quot;,
+  &quot;constraints&quot;: [
+    {
+      &quot;kind&quot;: &quot;type&quot;,
+      &quot;value&quot;: &quot;array&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;length&quot;,
+      &quot;value&quot;: 3
+    }
+  ]
+}</pre></td><td><pre>{&quot;answer&quot;: [[1, 2], [3, 4], [5]], &quot;disposition&quot;: &quot;answered&quot;}</pre></td><td></td></tr><tr><td>inst-05</td><td>base</td><td>1</td><td>answered</td><td>pass</td><td><pre>Return exactly the three-word string &#x27;BEGIN calm END&#x27; without the quote marks.
+
+Return exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.</pre></td><td><pre>{
+  &quot;answers&quot;: [
+    &quot;BEGIN calm END&quot;
+  ],
+  &quot;disposition&quot;: &quot;answered&quot;,
+  &quot;constraints&quot;: [
+    {
+      &quot;kind&quot;: &quot;type&quot;,
+      &quot;value&quot;: &quot;string&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;word_count&quot;,
+      &quot;value&quot;: 3
+    },
+    {
+      &quot;kind&quot;: &quot;starts_with&quot;,
+      &quot;value&quot;: &quot;BEGIN&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;ends_with&quot;,
+      &quot;value&quot;: &quot;END&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;contains_all&quot;,
+      &quot;value&quot;: [
+        &quot;calm&quot;
+      ]
+    }
+  ]
+}</pre></td><td><pre>{&quot;answer&quot;:&quot;BEGIN calm END&quot;,&quot;disposition&quot;:&quot;answered&quot;}</pre></td><td></td></tr><tr><td>inst-05</td><td>equiv-b</td><td>2</td><td>answered</td><td>pass</td><td><pre>The answer value is BEGIN, then calm, then END, joined by single spaces.
+
+Return exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.</pre></td><td><pre>{
+  &quot;answers&quot;: [
+    &quot;BEGIN calm END&quot;
+  ],
+  &quot;disposition&quot;: &quot;answered&quot;,
+  &quot;constraints&quot;: [
+    {
+      &quot;kind&quot;: &quot;type&quot;,
+      &quot;value&quot;: &quot;string&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;word_count&quot;,
+      &quot;value&quot;: 3
+    },
+    {
+      &quot;kind&quot;: &quot;starts_with&quot;,
+      &quot;value&quot;: &quot;BEGIN&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;ends_with&quot;,
+      &quot;value&quot;: &quot;END&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;contains_all&quot;,
+      &quot;value&quot;: [
+        &quot;calm&quot;
+      ]
+    }
+  ]
+}</pre></td><td><pre>{&quot;answer&quot;:&quot;BEGIN calm END&quot;,&quot;disposition&quot;:&quot;answered&quot;}</pre></td><td></td></tr><tr><td>inst-05</td><td>equiv-a</td><td>1</td><td>answered</td><td>pass</td><td><pre>Make a three-word string that starts with BEGIN, has calm in the middle, ends with END, and uses single spaces.
+
+Return exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.</pre></td><td><pre>{
+  &quot;answers&quot;: [
+    &quot;BEGIN calm END&quot;
+  ],
+  &quot;disposition&quot;: &quot;answered&quot;,
+  &quot;constraints&quot;: [
+    {
+      &quot;kind&quot;: &quot;type&quot;,
+      &quot;value&quot;: &quot;string&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;word_count&quot;,
+      &quot;value&quot;: 3
+    },
+    {
+      &quot;kind&quot;: &quot;starts_with&quot;,
+      &quot;value&quot;: &quot;BEGIN&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;ends_with&quot;,
+      &quot;value&quot;: &quot;END&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;contains_all&quot;,
+      &quot;value&quot;: [
+        &quot;calm&quot;
+      ]
+    }
+  ]
+}</pre></td><td><pre>{&quot;answer&quot;:&quot;BEGIN calm END&quot;,&quot;disposition&quot;:&quot;answered&quot;}</pre></td><td></td></tr><tr><td>fact-07</td><td>base</td><td>2</td><td>abstained</td><td>pass</td><td><pre>Evidence: The recipe names flour, water, salt, and yeast. Question: How long should the dough bake? Use only the supplied evidence. If it is insufficient, use disposition abstained and answer null.
+
+Return exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.</pre></td><td><pre>{
+  &quot;answers&quot;: [],
+  &quot;disposition&quot;: &quot;abstained&quot;,
+  &quot;constraints&quot;: []
+}</pre></td><td><pre>{&quot;answer&quot;: null, &quot;disposition&quot;: &quot;abstained&quot;}</pre></td><td></td></tr><tr><td>inst-05</td><td>equiv-a</td><td>2</td><td>answered</td><td>pass</td><td><pre>Make a three-word string that starts with BEGIN, has calm in the middle, ends with END, and uses single spaces.
+
+Return exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.</pre></td><td><pre>{
+  &quot;answers&quot;: [
+    &quot;BEGIN calm END&quot;
+  ],
+  &quot;disposition&quot;: &quot;answered&quot;,
+  &quot;constraints&quot;: [
+    {
+      &quot;kind&quot;: &quot;type&quot;,
+      &quot;value&quot;: &quot;string&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;word_count&quot;,
+      &quot;value&quot;: 3
+    },
+    {
+      &quot;kind&quot;: &quot;starts_with&quot;,
+      &quot;value&quot;: &quot;BEGIN&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;ends_with&quot;,
+      &quot;value&quot;: &quot;END&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;contains_all&quot;,
+      &quot;value&quot;: [
+        &quot;calm&quot;
+      ]
+    }
+  ]
+}</pre></td><td><pre>{&quot;answer&quot;:&quot;BEGIN calm END&quot;,&quot;disposition&quot;:&quot;answered&quot;}</pre></td><td></td></tr><tr><td>inst-05</td><td>base</td><td>2</td><td>answered</td><td>pass</td><td><pre>Return exactly the three-word string &#x27;BEGIN calm END&#x27; without the quote marks.
+
+Return exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.</pre></td><td><pre>{
+  &quot;answers&quot;: [
+    &quot;BEGIN calm END&quot;
+  ],
+  &quot;disposition&quot;: &quot;answered&quot;,
+  &quot;constraints&quot;: [
+    {
+      &quot;kind&quot;: &quot;type&quot;,
+      &quot;value&quot;: &quot;string&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;word_count&quot;,
+      &quot;value&quot;: 3
+    },
+    {
+      &quot;kind&quot;: &quot;starts_with&quot;,
+      &quot;value&quot;: &quot;BEGIN&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;ends_with&quot;,
+      &quot;value&quot;: &quot;END&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;contains_all&quot;,
+      &quot;value&quot;: [
+        &quot;calm&quot;
+      ]
+    }
+  ]
+}</pre></td><td><pre>{&quot;answer&quot;:&quot;BEGIN calm END&quot;,&quot;disposition&quot;:&quot;answered&quot;}</pre></td><td></td></tr><tr><td>transform-08</td><td>base</td><td>2</td><td>answered</td><td>pass</td><td><pre>Split [1,2,3,4,5] into consecutive chunks of exactly 2 items, except the final chunk may be shorter.
+
+Return exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.</pre></td><td><pre>{
+  &quot;answers&quot;: [
+    [
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5
+      ]
+    ]
+  ],
+  &quot;disposition&quot;: &quot;answered&quot;,
+  &quot;constraints&quot;: [
+    {
+      &quot;kind&quot;: &quot;type&quot;,
+      &quot;value&quot;: &quot;array&quot;
+    },
+    {
+      &quot;kind&quot;: &quot;length&quot;,
+      &quot;value&quot;: 3
+    }
+  ]
+}</pre></td><td><pre>{&quot;answer&quot;: [[1, 2], [3, 4], [5]], &quot;disposition&quot;: &quot;answered&quot;}</pre></td><td></td></tr><tr><td>fact-07</td><td>base</td><td>1</td><td>abstained</td><td>pass</td><td><pre>Evidence: The recipe names flour, water, salt, and yeast. Question: How long should the dough bake? Use only the supplied evidence. If it is insufficient, use disposition abstained and answer null.
+
+Return exactly one JSON object with keys answer and disposition. Disposition must be answered or abstained. Use null for answer only when abstaining. Do not add markdown or explanation.</pre></td><td><pre>{
+  &quot;answers&quot;: [],
+  &quot;disposition&quot;: &quot;abstained&quot;,
+  &quot;constraints&quot;: []
+}</pre></td><td><pre>{&quot;answer&quot;:null,&quot;disposition&quot;:&quot;abstained&quot;}</pre></td><td></td></tr></tbody></table></details>
+<footer><p>Dataset <code>5659e1d9aadbdcce496bb82f369117f9fb7588013ffd0d02e676f0ebd5e22c46</code><br>Plan <code>76ae2b72692c9917870de39495116c34459c4cc48b5cff9656faf3a711b973ef</code></p></footer></main></html>

@@ -14,8 +14,8 @@ PREFIX = (
 )
 
 
-def cli_prompt(prompt):
-    return PREFIX + prompt
+def cli_prompt(prompt, prefix=PREFIX):
+    return prefix + prompt
 
 
 def configuration(provider, cli_version, effort="medium"):
@@ -98,11 +98,11 @@ def command_for(config, executable, directory, model):
             "-c", "project_doc_max_bytes=0", "-c", 'web_search="disabled"', "-"]
 
 
-def generate_one(config, executable, model, prompt):
+def generate_one(config, executable, model, prompt, prefix=PREFIX):
     """Only the final answer and public CLI metadata survive into benchmark records."""
     with tempfile.TemporaryDirectory(prefix="testgen-cli-") as directory:
         command = command_for(config, executable, directory, model)
-        stdin = cli_prompt(prompt)
+        stdin = cli_prompt(prompt, prefix)
         if config["provider"] == "cursor":
             command.append(stdin)
             stdin = None

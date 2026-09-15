@@ -1,0 +1,4 @@
+{"id":"capital","input":"What is the capital of France?","response":"Paris","expected":"Paris","scorer":"exact","category":"facts"}
+{"id":"pi","input":"Give pi to two decimal places.","response":"3.14","expected":3.14,"scorer":"numeric","tolerance":0.001,"category":"numbers"}
+{"id":"json","input":"Return a JSON object with an ok flag.","response":"{\"ok\":true}","expected":null,"scorer":"valid_json","category":"format"}
+{"id":"deliberate-failure","input":"Reply with exactly: ready","response":"Ready","expected":"ready","scorer":"exact","category":"format"}

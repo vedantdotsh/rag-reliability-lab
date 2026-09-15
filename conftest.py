@@ -1,4 +1,4 @@
-"""Record the test session and a fresh RAG evaluation for the local dashboard."""
+"""Legacy dashboard recording is opt-in; normal tests only print to the terminal."""
 import os
 import time
 from pathlib import Path
@@ -9,7 +9,8 @@ def pytest_sessionstart(session):
 
 
 def pytest_sessionfinish(session, exitstatus):
-    if os.environ.get("RAGLAB_SKIP_DASHBOARD") == "1" or session.config.option.collectonly:
+    if (os.environ.get("RAGLAB_RECORD_DASHBOARD") != "1" or
+            os.environ.get("RAGLAB_SKIP_DASHBOARD") == "1" or session.config.option.collectonly):
         return
     terminal = session.config.pluginmanager.get_plugin("terminalreporter")
     stats = terminal.stats if terminal else {}

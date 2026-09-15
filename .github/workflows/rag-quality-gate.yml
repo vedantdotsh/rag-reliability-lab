@@ -26,7 +26,7 @@ jobs:
         run: git diff --no-index --exit-code reports/testgen/heldout.json reports/testgen/ci-heldout.json
       - name: Enforce RAG quality thresholds
         if: ${{ !cancelled() && steps.tests.outcome == 'success' }}
-        run: rag-eval evaluate --gate --report reports/ci.json --markdown reports/ci.md
+        run: rag-eval evaluate --gate --report reports/ci.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -39,6 +39,3 @@ jobs:
           name: rag-evaluation
           path: |
             reports/ci.json
-            reports/ci.md
-            reports/runs.sqlite3
-            dashboard/dist/

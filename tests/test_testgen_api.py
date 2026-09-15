@@ -306,15 +306,15 @@ def test_changed_remote_identity_invalidates_whole_attempt(tasks, tmp_path, monk
     assert testgen.evaluate(tasks, rows)["summary"]["code_docs"]["mutation_score"] == 0
 
 
-def test_comparison_same_scope_required_and_labels_escaped(tasks, tmp_path):
+def test_comparison_same_scope_required_and_json_only(tasks, tmp_path):
     report = testgen.evaluate(tasks, saved_pair(tasks, testgen_api.configuration("openai")))
     other = deepcopy(report)
     other["model"] = "<script>bad</script>"
     path = tmp_path / "compare.json"
     write_comparison([report, other], path)
     assert len(json.loads(path.read_text())["runs"]) == 2
-    html = path.with_suffix(".html").read_text(encoding="utf-8")
-    assert "<script>" not in html and "&lt;script&gt;" in html
+    assert not path.with_suffix(".html").exists()
+    assert not path.with_suffix(".md").exists()
     other["selected_tasks"] = ["different"]
     with pytest.raises(ValueError, match="identical"):
         write_comparison([report, other], path)
