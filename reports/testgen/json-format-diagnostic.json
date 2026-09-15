@@ -1,0 +1,221 @@
+[
+  {
+    "task_id": "clamp",
+    "split": "dev",
+    "runtime": {
+      "version": "0.34.0"
+    },
+    "request": {
+      "model": "qwen3.5:4b",
+      "stream": false,
+      "format": "json",
+      "think": false,
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_predict": 1536,
+        "num_ctx": 4096,
+        "presence_penalty": 0,
+        "repeat_penalty": 1.0
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": "Generate exactly four tests for target below. Follow the implementation exactly, including its boundary behavior. Compute each expected result by tracing the code. Cover ordinary behavior and relevant edge cases using small, distinct inputs. Do not invent validation or exceptions.\n\nOutput JSON only: {\"tests\": [test, test, test, test]}. Each test has args and exactly one of expected or raises. The args array contains positional arguments, not the elements of one list argument. For example, for an UNRELATED function add_offset(values, n) that adds n to every list element, one test is {\"args\":[[2,5],3],\"expected\":[5,8]}. For a one-argument list function, passing [2,5] means args:[[2,5]], NOT args:[2,5]. Return expected values directly, without type/value wrappers. Use raises only when those exact args actually cause that exception. Allowed exception names: ValueError, TypeError, KeyError, IndexError, ZeroDivisionError. JSON booleans differ from integers. Use finite numbers within +/-1000000, strings at most 2000 characters, collections at most 100 items, nesting at most 8.\n\nPython function:\ndef target(value, lower, upper):\n    if lower > upper:\n        raise ValueError('invalid bounds')\n    return max(lower, min(value, upper))\n\nDocumentation:\nClamp integer value to inclusive [lower, upper]. Raise ValueError if lower > upper."
+        }
+      ]
+    },
+    "response": {
+      "model": "qwen3.5:4b",
+      "created_at": "2026-09-13T09:42:10.2846129Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\"tests\":[{\"args\":[1,0,10],\"expected\":1},{\"args\":[5,0,10],\"expected\":5},{\"args\":[15,0,10],\"expected\":10},{\"args\":[5,10,0],\"expected\":\"invalid bounds\"}]\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 13817115000,
+      "load_duration": 17125700,
+      "prompt_eval_count": 318,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 5542061000,
+      "eval_count": 62,
+      "eval_duration": 8247432000
+    },
+    "latency": 13.857073400002264,
+    "correct": {
+      "outcomes": [
+        {
+          "passed": true,
+          "actual": {
+            "returned": 1
+          }
+        },
+        {
+          "passed": true,
+          "actual": {
+            "returned": 5
+          }
+        },
+        {
+          "passed": true,
+          "actual": {
+            "returned": 10
+          }
+        },
+        {
+          "passed": false,
+          "actual": {
+            "raised": "ValueError"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "task_id": "slug",
+    "split": "dev",
+    "runtime": {
+      "version": "0.34.0"
+    },
+    "request": {
+      "model": "qwen3.5:4b",
+      "stream": false,
+      "format": "json",
+      "think": false,
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_predict": 1536,
+        "num_ctx": 4096,
+        "presence_penalty": 0,
+        "repeat_penalty": 1.0
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": "Generate exactly four tests for target below. Follow the implementation exactly, including its boundary behavior. Compute each expected result by tracing the code. Cover ordinary behavior and relevant edge cases using small, distinct inputs. Do not invent validation or exceptions.\n\nOutput JSON only: {\"tests\": [test, test, test, test]}. Each test has args and exactly one of expected or raises. The args array contains positional arguments, not the elements of one list argument. For example, for an UNRELATED function add_offset(values, n) that adds n to every list element, one test is {\"args\":[[2,5],3],\"expected\":[5,8]}. For a one-argument list function, passing [2,5] means args:[[2,5]], NOT args:[2,5]. Return expected values directly, without type/value wrappers. Use raises only when those exact args actually cause that exception. Allowed exception names: ValueError, TypeError, KeyError, IndexError, ZeroDivisionError. JSON booleans differ from integers. Use finite numbers within +/-1000000, strings at most 2000 characters, collections at most 100 items, nesting at most 8.\n\nPython function:\ndef target(text):\n    return '-'.join(text.lower().split())\n\nDocumentation:\nLowercase the input string and replace each run of whitespace with a single hyphen. Trim leading/trailing whitespace. Preserve other characters."
+        }
+      ]
+    },
+    "response": {
+      "model": "qwen3.5:4b",
+      "created_at": "2026-09-13T09:42:23.4836949Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\"tests\":[{\"args\":[\"Hello World\"], \"expected\":[\"hello-world\"]},{\"args\":[\"  Hello   World  \"], \"expected\":[\"hello-world\"]},{\"args\":[\"\"], \"expected\":[\"\"]},{\"args\":[\"a b c\"], \"expected\":[\"a-b-c\"]}]\n}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 13021952700,
+      "load_duration": 14664900,
+      "prompt_eval_count": 308,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 5308578000,
+      "eval_count": 56,
+      "eval_duration": 7686441000
+    },
+    "latency": 13.03586009999708,
+    "correct": {
+      "outcomes": [
+        {
+          "passed": false,
+          "actual": {
+            "returned": "hello-world"
+          }
+        },
+        {
+          "passed": false,
+          "actual": {
+            "returned": "hello-world"
+          }
+        },
+        {
+          "passed": false,
+          "actual": {
+            "returned": ""
+          }
+        },
+        {
+          "passed": false,
+          "actual": {
+            "returned": "a-b-c"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "task_id": "unique",
+    "split": "dev",
+    "runtime": {
+      "version": "0.34.0"
+    },
+    "request": {
+      "model": "qwen3.5:4b",
+      "stream": false,
+      "format": "json",
+      "think": false,
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_predict": 1536,
+        "num_ctx": 4096,
+        "presence_penalty": 0,
+        "repeat_penalty": 1.0
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": "Generate exactly four tests for target below. Follow the implementation exactly, including its boundary behavior. Compute each expected result by tracing the code. Cover ordinary behavior and relevant edge cases using small, distinct inputs. Do not invent validation or exceptions.\n\nOutput JSON only: {\"tests\": [test, test, test, test]}. Each test has args and exactly one of expected or raises. The args array contains positional arguments, not the elements of one list argument. For example, for an UNRELATED function add_offset(values, n) that adds n to every list element, one test is {\"args\":[[2,5],3],\"expected\":[5,8]}. For a one-argument list function, passing [2,5] means args:[[2,5]], NOT args:[2,5]. Return expected values directly, without type/value wrappers. Use raises only when those exact args actually cause that exception. Allowed exception names: ValueError, TypeError, KeyError, IndexError, ZeroDivisionError. JSON booleans differ from integers. Use finite numbers within +/-1000000, strings at most 2000 characters, collections at most 100 items, nesting at most 8.\n\nPython function:\ndef target(values):\n    return list(dict.fromkeys(values))\n\nDocumentation:\nReturn unique integer items in their first-appearance order; do not sort them."
+        }
+      ]
+    },
+    "response": {
+      "model": "qwen3.5:4b",
+      "created_at": "2026-09-13T09:42:38.2327956Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\"tests\":[{\"args\":[1,2,3],\"expected\":[1,2,3]},{\"args\":[3,2,1],\"expected\":[3,2,1]},{\"args\":[1,1,1],\"expected\":[1]},{\"args\":[1,2,1,2,1],\"expected\":[1,2]}] }"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 14597235600,
+      "load_duration": 18968500,
+      "prompt_eval_count": 295,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 5150410000,
+      "eval_count": 71,
+      "eval_duration": 9417398000
+    },
+    "latency": 14.612297199993918,
+    "correct": {
+      "outcomes": [
+        {
+          "passed": false,
+          "actual": {
+            "raised": "TypeError"
+          }
+        },
+        {
+          "passed": false,
+          "actual": {
+            "raised": "TypeError"
+          }
+        },
+        {
+          "passed": false,
+          "actual": {
+            "raised": "TypeError"
+          }
+        },
+        {
+          "passed": false,
+          "actual": {
+            "raised": "TypeError"
+          }
+        }
+      ]
+    }
+  }
+]

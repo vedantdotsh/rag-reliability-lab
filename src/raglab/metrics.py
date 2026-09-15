@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+from itertools import zip_longest
 
 from raglab.answering import _sentences
 from raglab.models import Document, EvalCase
@@ -55,26 +56,13 @@ def _normalize(text: str) -> str:
 def _claim_units(answer: str) -> list[tuple[str, str | None]]:
     units: list[tuple[str, str | None]] = []
     pieces = _CITE_SPLIT.split(answer.lower())
-    index = 0
-    while index < len(pieces):
-        piece = pieces[index]
-        if CITATION_PATTERN.fullmatch(piece):
-            units.append(("", piece[1:-1]))
-            index += 1
-            continue
-        cited = index + 1 < len(pieces) and CITATION_PATTERN.fullmatch(pieces[index + 1])
+    for piece, citation in zip_longest(pieces[::2], pieces[1::2]):
         sentences = _sentences(piece)
-        if cited:
-            citation = pieces[index + 1][1:-1]
-            if sentences:
-                units.extend((sentence, None) for sentence in sentences[:-1])
-                units.append((sentences[-1], citation))
-            else:
-                units.append(("", citation))
-            index += 2
-            continue
-        units.extend((sentence, None) for sentence in sentences)
-        index += 1
+        if citation:
+            units.extend((sentence, None) for sentence in sentences[:-1])
+            units.append((sentences[-1] if sentences else "", citation[1:-1]))
+        else:
+            units.extend((sentence, None) for sentence in sentences)
     return units
 
 

@@ -1,0 +1,27 @@
+# LLM test-generation benchmark
+
+**Local LLM run — exploratory results, not an estimate of general capability.**
+
+Model: `qwen3.5:4b`
+Scope: 2/24 tasks; splits: dev.
+Dataset SHA-256: `354a0ea1ccef60d607e51a78413acbf28f1c22c188dc985ef8d85c6348312d6b`
+
+Protocol: `testgen-v3`
+
+| Prompt | Bugs caught / total | Score | Valid suites | False alarms | Invalid | Generation errors | Execution errors | Median generation seconds | Input / output tokens |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| code_only | 1/4 | 25.0% | 1/2 | 1 | 0 | 0 | 0 | 23.304 | 1011 / 173 |
+| code_docs | 2/4 | 50.0% | 2/2 | 0 | 0 | 0 | 0 | 19.072 | 1064 / 115 |
+
+A suite earns bug-detection credit only after every assertion passes the correct implementation. Invalid suites and false alarms earn zero. Execution errors/timeouts never count as kills; all seeded mutants remain in the denominator.
+
+Small synthetic dataset; one generation per task and condition. Fixed seed is best-effort. Timings include local load/queue overhead; code-only runs first in each pair. These results do not establish a statistically reliable prompt advantage.
+
+Mean paired documentation difference: +25.0%. 95% task-bootstrap interval: +0.0% to +50.0%. This resamples tasks, not repeated model generations.
+
+## Paired scores
+
+| Task | Documentation minus code-only score |
+|---|---:|
+| clamp | +50.0% |
+| slug | +0.0% |

@@ -1,0 +1,193 @@
+{
+  "version": "general-judge-v1",
+  "model": "gpt-5.6-sol",
+  "system_id": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+  "dataset_sha256": "cd1d89e738111a800addd39d6ab8a77402d871d16e15a2ab81e87337b95c388e",
+  "controls_sha256": "f4ce3986221c88ef5d54a4d38db0396178f51a039998e1d99192edebe7f94978",
+  "schedule": [
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-wrong-word",
+      "order": "ab",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-wrong-word",
+      "order": "ba",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-wrong-quantity",
+      "order": "ab",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-wrong-quantity",
+      "order": "ba",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-wrong-count",
+      "order": "ab",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-wrong-count",
+      "order": "ba",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-wrong-entity",
+      "order": "ab",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-wrong-entity",
+      "order": "ba",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-unsupported",
+      "order": "ab",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-unsupported",
+      "order": "ba",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-missing-record",
+      "order": "ab",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-missing-record",
+      "order": "ba",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-equivalent-object-order",
+      "order": "ab",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-equivalent-object-order",
+      "order": "ba",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-equivalent-alias-case",
+      "order": "ab",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-equivalent-alias-case",
+      "order": "ba",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-equivalent-alias-prefix",
+      "order": "ab",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-equivalent-alias-prefix",
+      "order": "ba",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-equivalent-numeric",
+      "order": "ab",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-equivalent-numeric",
+      "order": "ba",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-equivalent-nested-object-order",
+      "order": "ab",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-equivalent-nested-object-order",
+      "order": "ba",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-equivalent-top-object-order",
+      "order": "ab",
+      "condition": "pairwise_judge",
+      "sample": 1
+    },
+    {
+      "system": "a11a7c389241d22ff415adf9ee13f94cd6f010ccbc4f3363476a3875cf8f3eca",
+      "control_id": "control-equivalent-top-object-order",
+      "order": "ba",
+      "condition": "pairwise_judge",
+      "sample": 1
+    }
+  ],
+  "prompts_sha256": "9b340de0d3ba9f4313e837abac713dceda6754819e71817898ee13de6e6845ab",
+  "scoring_sha256": "711752ce1bc9712fcd7a43119f73cb7437ee618c965fa74353dfce865306879b",
+  "general_eval_sha256": "98cd4ba5cfc1cc8922764bbec125d7c1a9a4161a62c9669c9506b09f55dcc9c2",
+  "adapter_sha256": "2515360753f39cc3a246b35ba6f813d71b4bb9b335f45a142c0adcfdd6a000da",
+  "api_config": null,
+  "cli_config": {
+    "provider": "codex",
+    "cli_version": "0.154.0-alpha.6.2",
+    "protocol": "cli-v1",
+    "reasoning_effort": "medium",
+    "sampling": "CLI defaults; no native output schema",
+    "timeout_seconds": 240,
+    "session": "fresh empty working directory; no resume",
+    "tool_policy": "prompt prohibits tools; observed tool calls disqualify the suite"
+  },
+  "policy": "Two fixed presentation orders per verified control; no retries or votes."
+}

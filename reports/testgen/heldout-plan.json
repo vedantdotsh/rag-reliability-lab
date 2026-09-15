@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-09-13T10:05:31.166231+00:00",
+  "configuration": {
+    "version": "testgen-v4",
+    "dataset_sha256": "354a0ea1ccef60d607e51a78413acbf28f1c22c188dc985ef8d85c6348312d6b",
+    "model": "qwen2.5-coder:3b",
+    "model_digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+    "options": {
+      "temperature": 0,
+      "seed": 42,
+      "num_predict": 1536,
+      "num_ctx": 4096
+    },
+    "runtime_version": "0.34.0",
+    "task_ids": [
+      "leap-year",
+      "discount",
+      "interval",
+      "inventory",
+      "balanced-brackets",
+      "rotate",
+      "transpose",
+      "run-length",
+      "merge-counts",
+      "flatten",
+      "ipv4",
+      "luhn",
+      "business-days",
+      "version",
+      "range-compression",
+      "percentile-rank"
+    ],
+    "prompts_sha256": "2696bc74f264132bcbb034fdc55bad0ea5730dca6c5bade48992e8f267e1f5d0",
+    "schemas_sha256": "ec8591720e0bf7d4f823adec542ad3f3a8140d97780744c14cb6a18785776950",
+    "scoring_sha256": "2c88d75286747381ce6c7c38b3f2eed58dc21e0b113c2067a7f180df6f6547b8",
+    "policy": "One generation per task/condition; no retries or tuning on held-out outputs."
+  }
+}

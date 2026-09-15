@@ -1,0 +1,5564 @@
+{
+  "cli_config": {
+    "cli_version": "2026.09.10-fd3934a",
+    "protocol": "cli-v1",
+    "provider": "cursor",
+    "reasoning_effort": "selected model variant",
+    "sampling": "CLI defaults; no native output schema",
+    "session": "fresh empty working directory; no resume",
+    "timeout_seconds": 240,
+    "tool_policy": "prompt prohibits tools; observed tool calls disqualify the suite"
+  },
+  "version": "testgen-v4",
+  "dataset_sha256": "354a0ea1ccef60d607e51a78413acbf28f1c22c188dc985ef8d85c6348312d6b",
+  "source": "cli",
+  "model": "composer-2.5",
+  "model_digest": null,
+  "options": {
+    "cli_version": "2026.09.10-fd3934a",
+    "protocol": "cli-v1",
+    "provider": "cursor",
+    "reasoning_effort": "selected model variant",
+    "sampling": "CLI defaults; no native output schema",
+    "session": "fresh empty working directory; no resume",
+    "timeout_seconds": 240,
+    "tool_policy": "prompt prohibits tools; observed tool calls disqualify the suite"
+  },
+  "think": null,
+  "runtime_version": "2026.09.10-fd3934a",
+  "selected_tasks": [
+    "balanced-brackets",
+    "business-days",
+    "discount",
+    "flatten",
+    "interval",
+    "inventory",
+    "ipv4",
+    "leap-year",
+    "luhn",
+    "merge-counts",
+    "percentile-rank",
+    "range-compression",
+    "rotate",
+    "run-length",
+    "transpose",
+    "version"
+  ],
+  "dataset_tasks": 24,
+  "splits": [
+    "test"
+  ],
+  "summary": {
+    "code_only": {
+      "suites": 16,
+      "mutants_total": 32,
+      "mutants_killed": 25,
+      "mutation_score": 0.7812,
+      "valid": 15,
+      "false_alarm": 0,
+      "invalid_generation": 1,
+      "generation_error": 0,
+      "execution_error": 0,
+      "median_latency_seconds": 16.277,
+      "prompt_tokens": 230106,
+      "completion_tokens": 22751
+    },
+    "code_docs": {
+      "suites": 16,
+      "mutants_total": 32,
+      "mutants_killed": 27,
+      "mutation_score": 0.8438,
+      "valid": 16,
+      "false_alarm": 0,
+      "invalid_generation": 0,
+      "generation_error": 0,
+      "execution_error": 0,
+      "median_latency_seconds": 15.521,
+      "prompt_tokens": 232983,
+      "completion_tokens": 20890
+    }
+  },
+  "paired_deltas": [
+    {
+      "task_id": "balanced-brackets",
+      "docs_minus_code": -0.5
+    },
+    {
+      "task_id": "business-days",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "discount",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "flatten",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "interval",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "inventory",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "ipv4",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "leap-year",
+      "docs_minus_code": -0.5
+    },
+    {
+      "task_id": "luhn",
+      "docs_minus_code": -0.5
+    },
+    {
+      "task_id": "merge-counts",
+      "docs_minus_code": 1.0
+    },
+    {
+      "task_id": "percentile-rank",
+      "docs_minus_code": 0.5
+    },
+    {
+      "task_id": "range-compression",
+      "docs_minus_code": 0.5
+    },
+    {
+      "task_id": "rotate",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "run-length",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "transpose",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "version",
+      "docs_minus_code": 0.5
+    }
+  ],
+  "rows": [
+    {
+      "task_id": "leap-year",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 13.555,
+      "prompt_tokens": 14374,
+      "completion_tokens": 823,
+      "raw": "{\"tests\":[{\"args\":[4],\"expected\":true},{\"args\":[100],\"expected\":false},{\"args\":[400],\"expected\":true},{\"args\":[0],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "ad2b35e6-5ac2-40f0-9588-5c293e3dc8a3",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:13:37.644934+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            4
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            100
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            400
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            0
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "leap-year",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 26.136,
+      "prompt_tokens": 14419,
+      "completion_tokens": 2060,
+      "raw": "{\"tests\":[{\"args\":[4],\"expected\":true},{\"args\":[5],\"expected\":false},{\"args\":[100],\"expected\":false},{\"args\":[0],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "990f3c6c-2b79-4088-a34b-39f3efbd06b3",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:13:51.201575+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            4
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            5
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            100
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            0
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "discount",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 18.656,
+      "prompt_tokens": 14384,
+      "completion_tokens": 1275,
+      "raw": "{\"tests\":[{\"args\":[200,10],\"expected\":180},{\"args\":[1,50],\"expected\":0},{\"args\":[100,100],\"expected\":0},{\"args\":[0,101],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "1f1bd8b8-e948-4491-994f-ef2761eac76c",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:14:17.337823+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            200,
+            10
+          ],
+          "expected": 180
+        },
+        {
+          "args": [
+            1,
+            50
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            100,
+            100
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            0,
+            101
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 180
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 180
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 180
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "discount",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 16.451,
+      "prompt_tokens": 14418,
+      "completion_tokens": 1332,
+      "raw": "{\"tests\":[{\"args\":[100,10],\"expected\":90},{\"args\":[99,10],\"expected\":89},{\"args\":[50,100],\"expected\":0},{\"args\":[-1,0],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "b24de649-c59e-4de1-b493-c9da996a67f8",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:14:35.995234+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            100,
+            10
+          ],
+          "expected": 90
+        },
+        {
+          "args": [
+            99,
+            10
+          ],
+          "expected": 89
+        },
+        {
+          "args": [
+            50,
+            100
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            -1,
+            0
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 90
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 89
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 90
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 90
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 90
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 89
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "interval",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 15.887,
+      "prompt_tokens": 14335,
+      "completion_tokens": 1599,
+      "raw": "{\"tests\":[{\"args\":[0,5,3,8],\"expected\":true},{\"args\":[0,2,3,5],\"expected\":false},{\"args\":[0,3,3,5],\"expected\":false},{\"args\":[5,3,0,2],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "43070b68-5411-4852-b2c5-b1e3cd27e6ca",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:14:52.445881+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7072,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            0,
+            5,
+            3,
+            8
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            0,
+            2,
+            3,
+            5
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            0,
+            3,
+            3,
+            5
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            5,
+            3,
+            0,
+            2
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "interval",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 19.165,
+      "prompt_tokens": 14412,
+      "completion_tokens": 1609,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [0, 5, 3, 7], \"expected\": true},\n    {\"args\": [0, 2, 3, 5], \"expected\": false},\n    {\"args\": [5, 3, 1, 2], \"raises\": \"ValueError\"},\n    {\"args\": [2, 2, 1, 3], \"expected\": false}\n  ]\n}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "01eb4519-161c-4ea6-874e-cbef5620c1fc",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:15:08.334182+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            0,
+            5,
+            3,
+            7
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            0,
+            2,
+            3,
+            5
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            5,
+            3,
+            1,
+            2
+          ],
+          "raises": "ValueError"
+        },
+        {
+          "args": [
+            2,
+            2,
+            1,
+            3
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "inventory",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 16.528,
+      "prompt_tokens": 14386,
+      "completion_tokens": 1278,
+      "raw": "{\"tests\":[{\"args\":[10,[3,2]],\"expected\":5},{\"args\":[7,[]],\"expected\":7},{\"args\":[5,[2,3]],\"expected\":0},{\"args\":[5,[6]],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "fb9e02b9-0942-4191-80bb-3404c6ab4671",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:15:27.499397+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            10,
+            [
+              3,
+              2
+            ]
+          ],
+          "expected": 5
+        },
+        {
+          "args": [
+            7,
+            []
+          ],
+          "expected": 7
+        },
+        {
+          "args": [
+            5,
+            [
+              2,
+              3
+            ]
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            5,
+            [
+              6
+            ]
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 5
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 7
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 5
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 7
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": 8
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 7
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 3
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "inventory",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 15.446,
+      "prompt_tokens": 16767,
+      "completion_tokens": 1190,
+      "raw": "{\"tests\":[{\"args\":[10,[2,3]],\"expected\":5},{\"args\":[7,[]],\"expected\":7},{\"args\":[5,[5]],\"expected\":0},{\"args\":[3,[2,2]],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "8cf30e4d-0ed8-4867-92e2-e1ab75d98855",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:15:44.026712+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7136,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            10,
+            [
+              2,
+              3
+            ]
+          ],
+          "expected": 5
+        },
+        {
+          "args": [
+            7,
+            []
+          ],
+          "expected": 7
+        },
+        {
+          "args": [
+            5,
+            [
+              5
+            ]
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            3,
+            [
+              2,
+              2
+            ]
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 5
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 7
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 5
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 7
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": 8
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 7
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 4
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "balanced-brackets",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 16.903,
+      "prompt_tokens": 14406,
+      "completion_tokens": 1199,
+      "raw": "{\"tests\":[{\"args\":[\"()\"],\"expected\":true},{\"args\":[\"\"],\"expected\":true},{\"args\":[\"(]\"],\"expected\":false},{\"args\":[\"(((\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "2b21fe99-6206-468d-8615-5f2c4cbd2458",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:15:59.473872+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "()"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            ""
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "(]"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "((("
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "balanced-brackets",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 17.59,
+      "prompt_tokens": 14429,
+      "completion_tokens": 1313,
+      "raw": "{\"tests\":[{\"args\":[\"\"],\"expected\":true},{\"args\":[\"()\"],\"expected\":true},{\"args\":[\"x(y)z\"],\"expected\":true},{\"args\":[\"(]\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "f806cab5-705f-410b-8b88-860aae0559b0",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:16:16.377446+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "()"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "x(y)z"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "(]"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "rotate",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 17.473,
+      "prompt_tokens": 14375,
+      "completion_tokens": 1773,
+      "raw": "{\"tests\":[{\"args\":[[],0],\"expected\":[]},{\"args\":[[1,2,3],1],\"expected\":[3,1,2]},{\"args\":[[1,2,3],0],\"expected\":[1,2,3]},{\"args\":[[1,2,3],-1],\"expected\":[2,3,1]}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "cd2dcc92-7dce-4628-a439-52c034930298",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:16:33.967729+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [],
+            0
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            1
+          ],
+          "expected": [
+            3,
+            1,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            0
+          ],
+          "expected": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            -1
+          ],
+          "expected": [
+            2,
+            3,
+            1
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                3,
+                1,
+                2
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2,
+                3
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                2,
+                3,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  2,
+                  3,
+                  1
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  3,
+                  1,
+                  2
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  3,
+                  1,
+                  2
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  3,
+                  1,
+                  2
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "rotate",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 14.123,
+      "prompt_tokens": 14360,
+      "completion_tokens": 1177,
+      "raw": "{\"tests\":[{\"args\":[[1,2,3,4],1],\"expected\":[4,1,2,3]},{\"args\":[[],2],\"expected\":[]},{\"args\":[[1,2,3],6],\"expected\":[1,2,3]},{\"args\":[[1,2,3,4],-1],\"expected\":[2,3,4,1]}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "ec1b52ae-0278-46ba-9ae6-0272e34b1848",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:16:51.440778+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7072,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4
+            ],
+            1
+          ],
+          "expected": [
+            4,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            [],
+            2
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            6
+          ],
+          "expected": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4
+            ],
+            -1
+          ],
+          "expected": [
+            2,
+            3,
+            4,
+            1
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                4,
+                1,
+                2,
+                3
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2,
+                3
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                2,
+                3,
+                4,
+                1
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  2,
+                  3,
+                  4,
+                  1
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  4,
+                  1,
+                  2,
+                  3
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  4,
+                  1,
+                  2,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  4,
+                  1,
+                  2,
+                  3
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "transpose",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 14.366,
+      "prompt_tokens": 14386,
+      "completion_tokens": 919,
+      "raw": "{\"tests\":[{\"args\":[[]],\"expected\":[]},{\"args\":[[[1,2,3],[4,5,6]]],\"expected\":[[1,4],[2,5],[3,6]]},{\"args\":[[[1,2,3]]],\"expected\":[[1],[2],[3]]},{\"args\":[[[1,2],[3]]],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "398abada-ef10-4ff9-873e-9654868bfa46",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:17:05.565117+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                4,
+                5,
+                6
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              6
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                2,
+                3
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3
+              ]
+            ]
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  4
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  3,
+                  6
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1
+                ],
+                [
+                  2
+                ],
+                [
+                  3
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    4
+                  ],
+                  [
+                    2,
+                    5
+                  ],
+                  [
+                    3,
+                    6
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1
+                  ],
+                  [
+                    2
+                  ],
+                  [
+                    3
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    3
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2,
+                    3
+                  ],
+                  [
+                    4,
+                    5,
+                    6
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2,
+                    3
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "transpose",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 15.35,
+      "prompt_tokens": 14418,
+      "completion_tokens": 1049,
+      "raw": "{\"tests\":[{\"args\":[[]],\"expected\":[]},{\"args\":[[[1,2],[3,4]]],\"expected\":[[1,3],[2,4]]},{\"args\":[[[1,2],[3]]],\"raises\":\"ValueError\"},{\"args\":[[[],[]]],\"expected\":[]}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "1dfd028a-54ce-47b8-9a00-1a5674c23493",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:17:19.931788+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3
+              ]
+            ]
+          ],
+          "raises": "ValueError"
+        },
+        {
+          "args": [
+            [
+              [],
+              []
+            ]
+          ],
+          "expected": []
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  4
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    3
+                  ],
+                  [
+                    2,
+                    4
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    3
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2
+                  ],
+                  [
+                    3,
+                    4
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [],
+                  []
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "run-length",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 16.83,
+      "prompt_tokens": 14386,
+      "completion_tokens": 1149,
+      "raw": "{\"tests\":[{\"args\":[\"\"],\"expected\":[]},{\"args\":[\"a\"],\"expected\":[[\"a\",1]]},{\"args\":[\"aabb\"],\"expected\":[[\"a\",2],[\"b\",2]]},{\"args\":[\"aba\"],\"expected\":[[\"a\",1],[\"b\",1],[\"a\",1]]}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "c9f17f4e-926c-4f6a-902a-55a4b791fba8",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:17:35.282938+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            "a"
+          ],
+          "expected": [
+            [
+              "a",
+              1
+            ]
+          ]
+        },
+        {
+          "args": [
+            "aabb"
+          ],
+          "expected": [
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              2
+            ]
+          ]
+        },
+        {
+          "args": [
+            "aba"
+          ],
+          "expected": [
+            [
+              "a",
+              1
+            ],
+            [
+              "b",
+              1
+            ],
+            [
+              "a",
+              1
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  1
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  2
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "a",
+                  1
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    3
+                  ],
+                  [
+                    "b",
+                    3
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ],
+                  [
+                    "b",
+                    1
+                  ],
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    0
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ],
+                  [
+                    "b",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    0
+                  ],
+                  [
+                    "b",
+                    0
+                  ],
+                  [
+                    "a",
+                    0
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "run-length",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 13.333,
+      "prompt_tokens": 14381,
+      "completion_tokens": 748,
+      "raw": "{\"tests\":[{\"args\":[\"\"],\"expected\":[]},{\"args\":[\"aaa\"],\"expected\":[[\"a\",3]]},{\"args\":[\"abc\"],\"expected\":[[\"a\",1],[\"b\",1],[\"c\",1]]},{\"args\":[\"aabbaa\"],\"expected\":[[\"a\",2],[\"b\",2],[\"a\",2]]}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "db77c479-7a30-4f05-9979-ac5b70bfa7da",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:17:52.112196+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7072,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            "aaa"
+          ],
+          "expected": [
+            [
+              "a",
+              3
+            ]
+          ]
+        },
+        {
+          "args": [
+            "abc"
+          ],
+          "expected": [
+            [
+              "a",
+              1
+            ],
+            [
+              "b",
+              1
+            ],
+            [
+              "c",
+              1
+            ]
+          ]
+        },
+        {
+          "args": [
+            "aabbaa"
+          ],
+          "expected": [
+            [
+              "a",
+              2
+            ],
+            [
+              "b",
+              2
+            ],
+            [
+              "a",
+              2
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  3
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "c",
+                  1
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "a",
+                  2
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    5
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ],
+                  [
+                    "b",
+                    1
+                  ],
+                  [
+                    "c",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    3
+                  ],
+                  [
+                    "b",
+                    3
+                  ],
+                  [
+                    "a",
+                    3
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    2
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    0
+                  ],
+                  [
+                    "b",
+                    0
+                  ],
+                  [
+                    "c",
+                    0
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ],
+                  [
+                    "b",
+                    1
+                  ],
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "merge-counts",
+      "split": "test",
+      "condition": "code_only",
+      "status": "invalid_generation",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 16.026,
+      "prompt_tokens": 14341,
+      "completion_tokens": 1524,
+      "raw": "```json\n{\"tests\":[{\"args\":[{},{\"a\":1}],\"expected\":{\"a\":1}},{\"args\":[{\"a\":1},{\"a\":2}],\"expected\":{\"a\":3}},{\"args\":[{\"k\":5},{}],\"expected\":{\"k\":5}},{\"args\":[{\"a\":1,\"b\":2},{\"b\":1,\"c\":3}],\"expected\":{\"a\":1,\"b\":3,\"c\":3}}]}\n```",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "bafc025a-952b-43ee-9ad7-6af5ad16ec55",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:18:05.447362+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7072,
+        "reasoning_tokens": null
+      },
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "task_id": "merge-counts",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 15.467,
+      "prompt_tokens": 14398,
+      "completion_tokens": 1168,
+      "raw": "{\"tests\":[{\"args\":[{\"a\":1,\"b\":2},{\"b\":3,\"c\":4}],\"expected\":{\"a\":1,\"b\":5,\"c\":4}},{\"args\":[{\"k\":10},{\"k\":-10}],\"expected\":{\"k\":0}},{\"args\":[{},{\"x\":7}],\"expected\":{\"x\":7}},{\"args\":[{\"p\":2,\"q\":-3},{}],\"expected\":{\"p\":2,\"q\":-3}}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "73a89c79-37cd-4509-92a4-f3a749e8ab29",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:18:21.474204+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            {
+              "a": 1,
+              "b": 2
+            },
+            {
+              "b": 3,
+              "c": 4
+            }
+          ],
+          "expected": {
+            "a": 1,
+            "b": 5,
+            "c": 4
+          }
+        },
+        {
+          "args": [
+            {
+              "k": 10
+            },
+            {
+              "k": -10
+            }
+          ],
+          "expected": {
+            "k": 0
+          }
+        },
+        {
+          "args": [
+            {},
+            {
+              "x": 7
+            }
+          ],
+          "expected": {
+            "x": 7
+          }
+        },
+        {
+          "args": [
+            {
+              "p": 2,
+              "q": -3
+            },
+            {}
+          ],
+          "expected": {
+            "p": 2,
+            "q": -3
+          }
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 1,
+                "b": 5,
+                "c": 4
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "k": 0
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "x": 7
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "p": 2,
+                "q": -3
+              }
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "a": 1,
+                  "b": 3,
+                  "c": 4
+                }
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "k": -10
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "x": 7
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "p": 2,
+                  "q": -3
+                }
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 1,
+                  "b": 5,
+                  "c": 4
+                }
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {}
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "x": 7
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "p": 2,
+                  "q": -3
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "flatten",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 23.061,
+      "prompt_tokens": 14352,
+      "completion_tokens": 1882,
+      "raw": "{\"tests\":[{\"args\":[[[1,2],[3,4]]],\"expected\":[1,2,3,4]},{\"args\":[[]],\"expected\":[]},{\"args\":[[[1],[],[2]]],\"expected\":[1,2]},{\"args\":[[[[1,2]],[3]]],\"expected\":[[1,2],3]}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "41b18831-7a94-4e35-9c65-f12e741725c0",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:18:36.942446+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              [
+                1
+              ],
+              [],
+              [
+                2
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              [
+                [
+                  1,
+                  2
+                ]
+              ],
+              [
+                3
+              ]
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              2
+            ],
+            3
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2,
+                3,
+                4
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  2
+                ],
+                3
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  3,
+                  4,
+                  1,
+                  2
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  2,
+                  1
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  3,
+                  [
+                    1,
+                    2
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  1,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2
+                  ],
+                  3
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "flatten",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 15.576,
+      "prompt_tokens": 14376,
+      "completion_tokens": 1229,
+      "raw": "{\"tests\":[{\"args\":[[[1,2],[3,4]]],\"expected\":[1,2,3,4]},{\"args\":[[]],\"expected\":[]},{\"args\":[[[1,[2,3]],[4]]],\"expected\":[1,[2,3],4]},{\"args\":[[[],[1],[2,3]]],\"expected\":[1,2,3]}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "f5741f98-2c2e-4a3d-a9ae-20ae79b4734d",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:19:00.004172+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7171,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              [
+                1,
+                [
+                  2,
+                  3
+                ]
+              ],
+              [
+                4
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            [
+              2,
+              3
+            ],
+            4
+          ]
+        },
+        {
+          "args": [
+            [
+              [],
+              [
+                1
+              ],
+              [
+                2,
+                3
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2,
+                3,
+                4
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                [
+                  2,
+                  3
+                ],
+                4
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2,
+                3
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  3,
+                  4,
+                  1,
+                  2
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  4,
+                  1,
+                  [
+                    2,
+                    3
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  2,
+                  3,
+                  1
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  1,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  1,
+                  4
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  1,
+                  2
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "ipv4",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 18.849,
+      "prompt_tokens": 14393,
+      "completion_tokens": 1889,
+      "raw": "{\"tests\":[{\"args\":[\"192.168.0.1\"],\"expected\":true},{\"args\":[\"0.0.0.0\"],\"expected\":true},{\"args\":[\"01.2.3.4\"],\"expected\":false},{\"args\":[\"256.1.1.1\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "8ad98ad1-8735-4d8d-8ded-5c9312606505",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:19:15.581022+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "192.168.0.1"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "0.0.0.0"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "01.2.3.4"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "256.1.1.1"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "ipv4",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 15.892,
+      "prompt_tokens": 14437,
+      "completion_tokens": 1338,
+      "raw": "{\"tests\":[{\"args\":[\"192.168.1.1\"],\"expected\":true},{\"args\":[\"0.0.0.0\"],\"expected\":true},{\"args\":[\"10.0.0.01\"],\"expected\":false},{\"args\":[\"256.0.0.0\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "b73cbae7-e4ff-43c8-af5e-9b3118d17ded",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:19:34.430858+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7144,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "192.168.1.1"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "0.0.0.0"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "10.0.0.01"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "256.0.0.0"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "luhn",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 22.267,
+      "prompt_tokens": 14429,
+      "completion_tokens": 2382,
+      "raw": "{\"tests\":[{\"args\":[\"\"],\"expected\":false},{\"args\":[\"a\"],\"expected\":false},{\"args\":[\"59\"],\"expected\":true},{\"args\":[\"58\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "2f8b8cd8-af9b-44b0-8343-478a0e34db4c",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:19:50.323765+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "a"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "59"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "58"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "luhn",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 17.157,
+      "prompt_tokens": 14433,
+      "completion_tokens": 1803,
+      "raw": "{\"tests\":[{\"args\":[\"18\"],\"expected\":true},{\"args\":[\"19\"],\"expected\":false},{\"args\":[\"\"],\"expected\":false},{\"args\":[\"12a\"],\"expected\":false}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "2fcc8435-80b2-4978-a77f-fe9c765f993a",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:20:12.590317+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7072,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "18"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "19"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            ""
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "12a"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "business-days",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 14.372,
+      "prompt_tokens": 14418,
+      "completion_tokens": 1130,
+      "raw": "{\"tests\":[{\"args\":[\"2024-01-01\",\"2024-01-01\"],\"expected\":0},{\"args\":[\"2024-01-02\",\"2024-01-01\"],\"raises\":\"ValueError\"},{\"args\":[\"2024-01-01\",\"2024-01-02\"],\"expected\":1},{\"args\":[\"2024-01-01\",\"2024-01-08\"],\"expected\":5}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "b38c3c79-9fb1-44b2-89bf-167954f85f3c",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:20:29.748441+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "2024-01-01",
+            "2024-01-01"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "2024-01-02",
+            "2024-01-01"
+          ],
+          "raises": "ValueError"
+        },
+        {
+          "args": [
+            "2024-01-01",
+            "2024-01-02"
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            "2024-01-01",
+            "2024-01-08"
+          ],
+          "expected": 5
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 5
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 6
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 6
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "business-days",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 24.769,
+      "prompt_tokens": 14463,
+      "completion_tokens": 1456,
+      "raw": "{\"tests\":[{\"args\":[\"2024-01-01\",\"2024-01-06\"],\"expected\":5},{\"args\":[\"2024-01-06\",\"2024-01-08\"],\"expected\":0},{\"args\":[\"2024-01-01\",\"2024-01-01\"],\"expected\":0},{\"args\":[\"2024-01-05\",\"2024-01-01\"],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "d003e7f8-0b6a-4939-a24a-c86d4ef30075",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:20:44.121061+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "2024-01-01",
+            "2024-01-06"
+          ],
+          "expected": 5
+        },
+        {
+          "args": [
+            "2024-01-06",
+            "2024-01-08"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "2024-01-01",
+            "2024-01-01"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "2024-01-05",
+            "2024-01-01"
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 5
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 5
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 5
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "version",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 13.91,
+      "prompt_tokens": 14415,
+      "completion_tokens": 1426,
+      "raw": "{\"tests\":[{\"args\":[\"1.0\",\"1.0\"],\"expected\":0},{\"args\":[\"2.0\",\"1.9\"],\"expected\":1},{\"args\":[\"1.0\",\"2.0\"],\"expected\":-1},{\"args\":[\"1.0.1\",\"1.0\"],\"expected\":1}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "9421fb53-4489-4f81-ac5a-bc4a70878e71",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:21:08.890801+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7072,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "1.0",
+            "1.0"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "2.0",
+            "1.9"
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            "1.0",
+            "2.0"
+          ],
+          "expected": -1
+        },
+        {
+          "args": [
+            "1.0.1",
+            "1.0"
+          ],
+          "expected": 1
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": -1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "TypeError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "version",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 14.657,
+      "prompt_tokens": 14500,
+      "completion_tokens": 1196,
+      "raw": "{\"tests\":[{\"args\":[\"1.0\",\"1\"],\"expected\":0},{\"args\":[\"2\",\"1\"],\"expected\":1},{\"args\":[\"1\",\"2\"],\"expected\":-1},{\"args\":[\"1.2.3\",\"1.2\"],\"expected\":1}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "28a46816-f9ad-440a-82d8-023e37dfdbd8",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:21:22.801603+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "1.0",
+            "1"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "2",
+            "1"
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            "1",
+            "2"
+          ],
+          "expected": -1
+        },
+        {
+          "args": [
+            "1.2.3",
+            "1.2"
+          ],
+          "expected": 1
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": -1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "raised": "TypeError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "TypeError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "range-compression",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 14.854,
+      "prompt_tokens": 14358,
+      "completion_tokens": 1573,
+      "raw": "{\"tests\":[{\"args\":[[]],\"expected\":[]},{\"args\":[[7]],\"expected\":[[7,7]]},{\"args\":[[4,1,2,3]],\"expected\":[[1,4]]},{\"args\":[[1,2,4,5,6]],\"expected\":[[1,2],[4,6]]}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "1c0f8c26-3a74-4c97-ae02-fd6f6958d370",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:21:37.458606+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7072,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              7
+            ]
+          ],
+          "expected": [
+            [
+              7,
+              7
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              4,
+              1,
+              2,
+              3
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              4
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              4,
+              5,
+              6
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              6
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  7,
+                  7
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  4
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  4,
+                  6
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    7,
+                    7
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    4
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    2
+                  ],
+                  [
+                    4,
+                    6
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    7,
+                    7
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    2,
+                    2
+                  ],
+                  [
+                    3,
+                    3
+                  ],
+                  [
+                    4,
+                    4
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    2,
+                    4
+                  ],
+                  [
+                    5,
+                    5
+                  ],
+                  [
+                    6,
+                    6
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "range-compression",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 14.795,
+      "prompt_tokens": 14377,
+      "completion_tokens": 1286,
+      "raw": "{\"tests\":[{\"args\":[[]],\"expected\":[]},{\"args\":[[7]],\"expected\":[[7,7]]},{\"args\":[[4,2,3,2,4]],\"expected\":[[2,4]]},{\"args\":[[1,3,4,8]],\"expected\":[[1,1],[3,4],[8,8]]}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "f1542d39-ec05-447c-a727-ef1cf24b5ec1",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:21:52.313404+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7072,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              7
+            ]
+          ],
+          "expected": [
+            [
+              7,
+              7
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              4,
+              2,
+              3,
+              2,
+              4
+            ]
+          ],
+          "expected": [
+            [
+              2,
+              4
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              3,
+              4,
+              8
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              1
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              8,
+              8
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  7,
+                  7
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  2,
+                  4
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  8,
+                  8
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    7,
+                    7
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    2,
+                    2
+                  ],
+                  [
+                    2,
+                    4
+                  ],
+                  [
+                    4,
+                    4
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    3,
+                    4
+                  ],
+                  [
+                    8,
+                    8
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": []
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    7,
+                    7
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    2,
+                    2
+                  ],
+                  [
+                    3,
+                    3
+                  ],
+                  [
+                    4,
+                    4
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    3
+                  ],
+                  [
+                    4,
+                    4
+                  ],
+                  [
+                    8,
+                    8
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "percentile-rank",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 15.898,
+      "prompt_tokens": 14368,
+      "completion_tokens": 930,
+      "raw": "{\"tests\":[{\"args\":[[1,3,5,2],3],\"expected\":2},{\"args\":[[],5],\"raises\":\"ValueError\"},{\"args\":[[1,2],10],\"expected\":2},{\"args\":[[5,5,6],5],\"expected\":0}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "f78461ba-2a72-4936-8ab2-fc508e84b20c",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:22:07.108590+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              3,
+              5,
+              2
+            ],
+            3
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            [],
+            5
+          ],
+          "raises": "ValueError"
+        },
+        {
+          "args": [
+            [
+              1,
+              2
+            ],
+            10
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            [
+              5,
+              5,
+              6
+            ],
+            5
+          ],
+          "expected": 0
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 2
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 2
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": 3
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 2
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "percentile-rank",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 14.151,
+      "prompt_tokens": 14395,
+      "completion_tokens": 936,
+      "raw": "{\"tests\":[{\"args\":[[1,3,5],4],\"expected\":2},{\"args\":[[2,2,5],3],\"expected\":2},{\"args\":[[1,2,3],2],\"expected\":1},{\"args\":[[],0],\"raises\":\"ValueError\"}]}",
+      "api_metadata": {
+        "returned_model": "Composer 2.5",
+        "response_id": "f2427fca-9627-4a96-9be1-54821d703a20",
+        "done_reason": "success",
+        "requested_at": "2026-09-13T11:22:23.007642+00:00",
+        "request_sent": true,
+        "http_status": null,
+        "prompt_cached_tokens": 7137,
+        "reasoning_tokens": null
+      },
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              3,
+              5
+            ],
+            4
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            [
+              2,
+              2,
+              5
+            ],
+            3
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            2
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            [],
+            0
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 2
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 2
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 2
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "comparison": {
+    "mean_docs_minus_code": 0.0625,
+    "task_bootstrap_95_ci": [
+      -0.125,
+      0.2508
+    ],
+    "docs_wins": 4,
+    "ties": 9,
+    "code_wins": 3,
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 1729
+  },
+  "plan_sha256": "0da65b99d197326d1f3eeab5a216755f51091b12572724ad09d93977692de282"
+}

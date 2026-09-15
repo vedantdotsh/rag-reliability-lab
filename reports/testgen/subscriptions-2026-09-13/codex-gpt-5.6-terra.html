@@ -1,0 +1,5036 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Test Generation Lab — gpt-5.6-terra</title><style>
+:root{color-scheme:light;--ink:#16324a;--muted:#526475;--line:#d7e0e8;--blue:#1768a3}
+*{box-sizing:border-box}body{margin:0;background:#f4f7f9;color:var(--ink);
+font:16px/1.55 system-ui,Segoe UI,sans-serif}main{max-width:1180px;margin:auto;padding:3rem 1.5rem}
+header{border-bottom:1px solid var(--line);padding-bottom:1.5rem}.eyebrow{font-size:.75rem;
+letter-spacing:.14em;font-weight:750;color:var(--blue)}h1{font-size:clamp(2rem,4vw,3.3rem);
+line-height:1.1;max-width:850px;margin:.65rem 0 1rem;letter-spacing:-.04em}
+h2{font-size:1.15rem;margin:.25rem 0}.muted,footer{color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.2rem 0}.meta span{background:white;
+padding:.3rem .7rem;border:1px solid var(--line);border-radius:30px;font-size:.8rem}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.5rem 0}
+.card{background:white;border:1px solid var(--line);padding:1.5rem;border-radius:12px}
+.score{font-size:3.25rem;line-height:1.2;font-weight:750;letter-spacing:-.04em}
+.track{height:8px;background:#e7edf2;border-radius:4px;margin:1rem 0}.track span{display:block;
+height:100%;background:var(--blue);border-radius:4px}.stats{display:grid;
+grid-template-columns:1fr 1fr;gap:1rem}.stats b{display:block;font-size:1.25rem}
+.stats span{font-size:.8rem;color:var(--muted)}.finding{border-left:4px solid var(--blue);
+background:#e9f2f8;padding:1rem 1.25rem;margin:1.5rem 0}.fixture{background:#fff1cc;padding:1rem}
+table{border-collapse:collapse;width:100%;font-size:.9rem}th,td{padding:.85rem .65rem;
+text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+tbody>tr:nth-child(odd){background:#fff}summary{cursor:pointer;color:var(--blue);
+font-weight:650}summary:focus-visible,a:focus-visible{outline:3px solid #ce6800;outline-offset:3px}
+.pass{color:#166534;font-weight:650}.fail{color:#a62c23;font-weight:650}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.8rem;background:#eef2f5;
+padding:.7rem;border-radius:6px}code{overflow-wrap:anywhere;font-size:.85em}
+.wide{overflow-x:auto}footer{font-size:.8rem;margin-top:2rem}
+@media(max-width:700px){main{padding:1.5rem .8rem}.cards{grid-template-columns:1fr}
+.card{padding:1rem}.stats{gap:.6rem}th,td{padding:.65rem .4rem}}
+</style></head><body><main><header><div class="eyebrow">RELIABILITY LAB / TEST GENERATION</div><h1>Can better context produce better tests?</h1><p class="muted">A paired comparison of generated tests, scored against correct functions and deliberately seeded bugs.</p><div class="meta"><span>gpt-5.6-terra</span><span>16/24 tasks</span><span>Split: test</span><span>testgen-v4</span><span>Frozen request settings / public test split</span><span>Subscription CLI: codex</span></div></header><details><summary>Subscription CLI configuration</summary><pre>{
+  &quot;cli_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+  &quot;protocol&quot;: &quot;cli-v1&quot;,
+  &quot;provider&quot;: &quot;codex&quot;,
+  &quot;reasoning_effort&quot;: &quot;medium&quot;,
+  &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+  &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+  &quot;timeout_seconds&quot;: 240,
+  &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+}</pre><p>Fresh prompt-only sessions. CLI system prompts and defaults remain part of the experiment. Tool use disqualifies a suite; these results measure the model through this CLI, not the raw API.</p></details><section class="cards"><article class="card"><h2>Code only</h2><div class="score">87.5%</div><div class="muted">28 of 32 seeded bugs found</div><div class="track" aria-hidden="true"><span style="width:87.50%"></span></div><div class="stats"><div><b>16/16</b><span>Valid test suites</span></div><div><b>0</b><span>Suites with wrong assertions</span></div><div><b>0</b><span>Format / provider / execution failures</span></div><div><b>7.3s</b><span>Median generation time</span></div></div></article><article class="card"><h2>Code + documentation</h2><div class="score">87.5%</div><div class="muted">28 of 32 seeded bugs found</div><div class="track" aria-hidden="true"><span style="width:87.50%"></span></div><div class="stats"><div><b>16/16</b><span>Valid test suites</span></div><div><b>0</b><span>Suites with wrong assertions</span></div><div><b>0</b><span>Format / provider / execution failures</span></div><div><b>6.6s</b><span>Median generation time</span></div></div></article></section><p>A suite earns bug-detection credit only when <strong>every assertion passes the correct implementation</strong>. Wrong assertions and malformed suites earn zero. Execution failures never count as detected bugs.</p><section class="finding"><h2>Documentation minus code-only score</h2><strong>+0.0 percentage points</strong> · 95% task-bootstrap interval: -9.4 to +9.4 points.<div>1 documentation wins · 14 ties · 1 code-only wins</div><small>Exploratory: a small synthetic dataset and one generation per condition. This interval resamples tasks, not model generations. Timing includes warm-up effects.</small></section><h2>Inspect every result</h2><p class="muted">Expand a row to compare generated assertions with observed behavior.</p><div class="wide"><table><thead><tr><th>Function</th><th>Context</th><th>Suite result</th><th>Bugs found</th><th>Evidence</th></tr></thead><tbody><tr><td><strong>leap-year</strong></td><td>Code only</td><td class="pass">valid</td><td>1/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      2024
+    ],
+    &quot;expected&quot;: true
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: true
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      2023
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      1900
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      0
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:17:31.380860+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 2816,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[2024],&quot;expected&quot;:true},{&quot;args&quot;:[2023],&quot;expected&quot;:false},{&quot;args&quot;:[1900],&quot;expected&quot;:false},{&quot;args&quot;:[0],&quot;raises&quot;:&quot;ValueError&quot;}]}</pre></details></details></td></tr><tr><td><strong>leap-year</strong></td><td>Code + documentation</td><td class="pass">valid</td><td>1/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      2024
+    ],
+    &quot;expected&quot;: true
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: true
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      2023
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      1900
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      0
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:17:40.291068+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 2816,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[2024],&quot;expected&quot;:true},{&quot;args&quot;:[2023],&quot;expected&quot;:false},{&quot;args&quot;:[1900],&quot;expected&quot;:false},{&quot;args&quot;:[0],&quot;raises&quot;:&quot;ValueError&quot;}]}</pre></details></details></td></tr><tr><td><strong>discount</strong></td><td>Code only</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      250,
+      20
+    ],
+    &quot;expected&quot;: 200
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 200
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      99,
+      1
+    ],
+    &quot;expected&quot;: 98
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 98
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      7,
+      100
+    ],
+    &quot;expected&quot;: 0
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 0
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      -1,
+      0
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 200
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 99
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 0
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 200
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 98
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:17:46.797307+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 0,
+  &quot;reasoning_tokens&quot;: 108
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[250,20],&quot;expected&quot;:200},{&quot;args&quot;:[99,1],&quot;expected&quot;:98},{&quot;args&quot;:[7,100],&quot;expected&quot;:0},{&quot;args&quot;:[-1,0],&quot;raises&quot;:&quot;ValueError&quot;}]}</pre></details></details></td></tr><tr><td><strong>discount</strong></td><td>Code + documentation</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      100,
+      0
+    ],
+    &quot;expected&quot;: 100
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 100
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      199,
+      25
+    ],
+    &quot;expected&quot;: 149
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 149
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      5,
+      100
+    ],
+    &quot;expected&quot;: 0
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 0
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      -1,
+      10
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 100
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 150
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 0
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 149
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:17:54.484127+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 2816,
+  &quot;reasoning_tokens&quot;: 263
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[100,0],&quot;expected&quot;:100},{&quot;args&quot;:[199,25],&quot;expected&quot;:149},{&quot;args&quot;:[5,100],&quot;expected&quot;:0},{&quot;args&quot;:[-1,10],&quot;raises&quot;:&quot;ValueError&quot;}]}</pre></details></details></td></tr><tr><td><strong>interval</strong></td><td>Code only</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      1,
+      5,
+      3,
+      7
+    ],
+    &quot;expected&quot;: true
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: true
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      1,
+      2,
+      2,
+      4
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      3,
+      3,
+      1,
+      5
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      5,
+      1,
+      2,
+      3
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:18:04.076987+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 2816,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[1,5,3,7],&quot;expected&quot;:true},{&quot;args&quot;:[1,2,2,4],&quot;expected&quot;:false},{&quot;args&quot;:[3,3,1,5],&quot;expected&quot;:false},{&quot;args&quot;:[5,1,2,3],&quot;raises&quot;:&quot;ValueError&quot;}]}</pre></details></details></td></tr><tr><td><strong>interval</strong></td><td>Code + documentation</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      1,
+      5,
+      3,
+      7
+    ],
+    &quot;expected&quot;: true
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: true
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      1,
+      3,
+      3,
+      5
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      2,
+      2,
+      1,
+      4
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      5,
+      1,
+      0,
+      2
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:18:12.449940+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 2816,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[1,5,3,7],&quot;expected&quot;:true},{&quot;args&quot;:[1,3,3,5],&quot;expected&quot;:false},{&quot;args&quot;:[2,2,1,4],&quot;expected&quot;:false},{&quot;args&quot;:[5,1,0,2],&quot;raises&quot;:&quot;ValueError&quot;}]}</pre></details></details></td></tr><tr><td><strong>inventory</strong></td><td>Code only</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      10,
+      [
+        3,
+        2
+      ]
+    ],
+    &quot;expected&quot;: 5
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 5
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      0,
+      []
+    ],
+    &quot;expected&quot;: 0
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 0
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      5,
+      [
+        6
+      ]
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      -1,
+      []
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 5
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 8
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 0
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:18:19.252019+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 2816,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[10,[3,2]],&quot;expected&quot;:5},{&quot;args&quot;:[0,[]],&quot;expected&quot;:0},{&quot;args&quot;:[5,[6]],&quot;raises&quot;:&quot;ValueError&quot;},{&quot;args&quot;:[-1,[]],&quot;raises&quot;:&quot;ValueError&quot;}]}</pre></details></details></td></tr><tr><td><strong>inventory</strong></td><td>Code + documentation</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      10,
+      [
+        3,
+        2
+      ]
+    ],
+    &quot;expected&quot;: 5
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 5
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      0,
+      []
+    ],
+    &quot;expected&quot;: 0
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 0
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      4,
+      [
+        4
+      ]
+    ],
+    &quot;expected&quot;: 0
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 0
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      3,
+      [
+        4
+      ]
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 5
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 8
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 0
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 3
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:18:25.641382+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[10,[3,2]],&quot;expected&quot;:5},{&quot;args&quot;:[0,[]],&quot;expected&quot;:0},{&quot;args&quot;:[4,[4]],&quot;expected&quot;:0},{&quot;args&quot;:[3,[4]],&quot;raises&quot;:&quot;ValueError&quot;}]}</pre></details></details></td></tr><tr><td><strong>balanced-brackets</strong></td><td>Code only</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;()&quot;
+    ],
+    &quot;expected&quot;: true
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: true
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;([{}])&quot;
+    ],
+    &quot;expected&quot;: true
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: true
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;(]&quot;
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;abc(&quot;
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:18:32.091144+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 7936,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[&quot;()&quot;],&quot;expected&quot;:true},{&quot;args&quot;:[&quot;([{}])&quot;],&quot;expected&quot;:true},{&quot;args&quot;:[&quot;(]&quot;],&quot;expected&quot;:false},{&quot;args&quot;:[&quot;abc(&quot;],&quot;expected&quot;:false}]}</pre></details></details></td></tr><tr><td><strong>balanced-brackets</strong></td><td>Code + documentation</td><td class="pass">valid</td><td>1/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;&quot;
+    ],
+    &quot;expected&quot;: true
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: true
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;a(b[c]{d})e&quot;
+    ],
+    &quot;expected&quot;: true
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: true
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;([)]&quot;
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;abc]&quot;
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:18:40.451581+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[&quot;&quot;],&quot;expected&quot;:true},{&quot;args&quot;:[&quot;a(b[c]{d})e&quot;],&quot;expected&quot;:true},{&quot;args&quot;:[&quot;([)]&quot;],&quot;expected&quot;:false},{&quot;args&quot;:[&quot;abc]&quot;],&quot;expected&quot;:false}]}</pre></details></details></td></tr><tr><td><strong>rotate</strong></td><td>Code only</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        1,
+        2,
+        3
+      ],
+      1
+    ],
+    &quot;expected&quot;: [
+      3,
+      1,
+      2
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        3,
+        1,
+        2
+      ]
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        1,
+        2,
+        3
+      ],
+      4
+    ],
+    &quot;expected&quot;: [
+      3,
+      1,
+      2
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        3,
+        1,
+        2
+      ]
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        1,
+        2,
+        3
+      ],
+      -1
+    ],
+    &quot;expected&quot;: [
+      2,
+      3,
+      1
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        2,
+        3,
+        1
+      ]
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [],
+      5
+    ],
+    &quot;expected&quot;: []
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: []
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            2,
+            3,
+            1
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            2,
+            3,
+            1
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            3,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            3,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            3,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            3,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:18:46.975353+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[[1,2,3],1],&quot;expected&quot;:[3,1,2]},{&quot;args&quot;:[[1,2,3],4],&quot;expected&quot;:[3,1,2]},{&quot;args&quot;:[[1,2,3],-1],&quot;expected&quot;:[2,3,1]},{&quot;args&quot;:[[],5],&quot;expected&quot;:[]}]}</pre></details></details></td></tr><tr><td><strong>rotate</strong></td><td>Code + documentation</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [],
+      7
+    ],
+    &quot;expected&quot;: []
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: []
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        1,
+        2,
+        3
+      ],
+      1
+    ],
+    &quot;expected&quot;: [
+      3,
+      1,
+      2
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        3,
+        1,
+        2
+      ]
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        1,
+        2,
+        3
+      ],
+      -1
+    ],
+    &quot;expected&quot;: [
+      2,
+      3,
+      1
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        2,
+        3,
+        1
+      ]
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        4,
+        5
+      ],
+      4
+    ],
+    &quot;expected&quot;: [
+      4,
+      5
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        4,
+        5
+      ]
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            2,
+            3,
+            1
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            3,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            4,
+            5
+          ]
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            3,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            3,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            4,
+            5
+          ]
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:18:52.619908+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 50
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[[],7],&quot;expected&quot;:[]},{&quot;args&quot;:[[1,2,3],1],&quot;expected&quot;:[3,1,2]},{&quot;args&quot;:[[1,2,3],-1],&quot;expected&quot;:[2,3,1]},{&quot;args&quot;:[[4,5],4],&quot;expected&quot;:[4,5]}]}</pre></details></details></td></tr><tr><td><strong>transpose</strong></td><td>Code only</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      []
+    ],
+    &quot;expected&quot;: []
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: []
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    ],
+    &quot;expected&quot;: [
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        4
+      ]
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ]
+      ]
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        [
+          &quot;a&quot;,
+          &quot;b&quot;,
+          &quot;c&quot;
+        ]
+      ]
+    ],
+    &quot;expected&quot;: [
+      [
+        &quot;a&quot;
+      ],
+      [
+        &quot;b&quot;
+      ],
+      [
+        &quot;c&quot;
+      ]
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        [
+          &quot;a&quot;
+        ],
+        [
+          &quot;b&quot;
+        ],
+        [
+          &quot;c&quot;
+        ]
+      ]
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        [
+          1,
+          2
+        ],
+        [
+          3
+        ]
+      ]
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              &quot;a&quot;
+            ],
+            [
+              &quot;b&quot;
+            ],
+            [
+              &quot;c&quot;
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              1,
+              3
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              &quot;a&quot;,
+              &quot;b&quot;,
+              &quot;c&quot;
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:19:01.785637+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[[]],&quot;expected&quot;:[]},{&quot;args&quot;:[[[1,2],[3,4]]],&quot;expected&quot;:[[1,3],[2,4]]},{&quot;args&quot;:[[[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]]],&quot;expected&quot;:[[&quot;a&quot;],[&quot;b&quot;],[&quot;c&quot;]]},{&quot;args&quot;:[[[1,2],[3]]],&quot;raises&quot;:&quot;ValueError&quot;}]}</pre></details></details></td></tr><tr><td><strong>transpose</strong></td><td>Code + documentation</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    ],
+    &quot;expected&quot;: [
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        4
+      ]
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ]
+      ]
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      []
+    ],
+    &quot;expected&quot;: []
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: []
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        [],
+        []
+      ]
+    ],
+    &quot;expected&quot;: []
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: []
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        [
+          1,
+          2
+        ],
+        [
+          3
+        ]
+      ]
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              1,
+              3
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [],
+            []
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:19:08.043253+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[[[1,2],[3,4]]],&quot;expected&quot;:[[1,3],[2,4]]},{&quot;args&quot;:[[]],&quot;expected&quot;:[]},{&quot;args&quot;:[[[],[]]],&quot;expected&quot;:[]},{&quot;args&quot;:[[[1,2],[3]]],&quot;raises&quot;:&quot;ValueError&quot;}]}</pre></details></details></td></tr><tr><td><strong>run-length</strong></td><td>Code only</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;&quot;
+    ],
+    &quot;expected&quot;: []
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: []
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;a&quot;
+    ],
+    &quot;expected&quot;: [
+      [
+        &quot;a&quot;,
+        1
+      ]
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        [
+          &quot;a&quot;,
+          1
+        ]
+      ]
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;aaabbc&quot;
+    ],
+    &quot;expected&quot;: [
+      [
+        &quot;a&quot;,
+        3
+      ],
+      [
+        &quot;b&quot;,
+        2
+      ],
+      [
+        &quot;c&quot;,
+        1
+      ]
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        [
+          &quot;a&quot;,
+          3
+        ],
+        [
+          &quot;b&quot;,
+          2
+        ],
+        [
+          &quot;c&quot;,
+          1
+        ]
+      ]
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;ababa&quot;
+    ],
+    &quot;expected&quot;: [
+      [
+        &quot;a&quot;,
+        1
+      ],
+      [
+        &quot;b&quot;,
+        1
+      ],
+      [
+        &quot;a&quot;,
+        1
+      ],
+      [
+        &quot;b&quot;,
+        1
+      ],
+      [
+        &quot;a&quot;,
+        1
+      ]
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        [
+          &quot;a&quot;,
+          1
+        ],
+        [
+          &quot;b&quot;,
+          1
+        ],
+        [
+          &quot;a&quot;,
+          1
+        ],
+        [
+          &quot;b&quot;,
+          1
+        ],
+        [
+          &quot;a&quot;,
+          1
+        ]
+      ]
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              &quot;a&quot;,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              &quot;a&quot;,
+              5
+            ],
+            [
+              &quot;b&quot;,
+              3
+            ],
+            [
+              &quot;c&quot;,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              &quot;a&quot;,
+              1
+            ],
+            [
+              &quot;b&quot;,
+              1
+            ],
+            [
+              &quot;a&quot;,
+              1
+            ],
+            [
+              &quot;b&quot;,
+              1
+            ],
+            [
+              &quot;a&quot;,
+              1
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              &quot;a&quot;,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              &quot;a&quot;,
+              2
+            ],
+            [
+              &quot;b&quot;,
+              1
+            ],
+            [
+              &quot;c&quot;,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              &quot;a&quot;,
+              0
+            ],
+            [
+              &quot;b&quot;,
+              0
+            ],
+            [
+              &quot;a&quot;,
+              0
+            ],
+            [
+              &quot;b&quot;,
+              0
+            ],
+            [
+              &quot;a&quot;,
+              0
+            ]
+          ]
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:19:13.722829+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[&quot;&quot;],&quot;expected&quot;:[]},{&quot;args&quot;:[&quot;a&quot;],&quot;expected&quot;:[[&quot;a&quot;,1]]},{&quot;args&quot;:[&quot;aaabbc&quot;],&quot;expected&quot;:[[&quot;a&quot;,3],[&quot;b&quot;,2],[&quot;c&quot;,1]]},{&quot;args&quot;:[&quot;ababa&quot;],&quot;expected&quot;:[[&quot;a&quot;,1],[&quot;b&quot;,1],[&quot;a&quot;,1],[&quot;b&quot;,1],[&quot;a&quot;,1]]}]}</pre></details></details></td></tr><tr><td><strong>run-length</strong></td><td>Code + documentation</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;&quot;
+    ],
+    &quot;expected&quot;: []
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: []
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;a&quot;
+    ],
+    &quot;expected&quot;: [
+      [
+        &quot;a&quot;,
+        1
+      ]
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        [
+          &quot;a&quot;,
+          1
+        ]
+      ]
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;aaabbc&quot;
+    ],
+    &quot;expected&quot;: [
+      [
+        &quot;a&quot;,
+        3
+      ],
+      [
+        &quot;b&quot;,
+        2
+      ],
+      [
+        &quot;c&quot;,
+        1
+      ]
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        [
+          &quot;a&quot;,
+          3
+        ],
+        [
+          &quot;b&quot;,
+          2
+        ],
+        [
+          &quot;c&quot;,
+          1
+        ]
+      ]
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;abca&quot;
+    ],
+    &quot;expected&quot;: [
+      [
+        &quot;a&quot;,
+        1
+      ],
+      [
+        &quot;b&quot;,
+        1
+      ],
+      [
+        &quot;c&quot;,
+        1
+      ],
+      [
+        &quot;a&quot;,
+        1
+      ]
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        [
+          &quot;a&quot;,
+          1
+        ],
+        [
+          &quot;b&quot;,
+          1
+        ],
+        [
+          &quot;c&quot;,
+          1
+        ],
+        [
+          &quot;a&quot;,
+          1
+        ]
+      ]
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              &quot;a&quot;,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              &quot;a&quot;,
+              5
+            ],
+            [
+              &quot;b&quot;,
+              3
+            ],
+            [
+              &quot;c&quot;,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              &quot;a&quot;,
+              1
+            ],
+            [
+              &quot;b&quot;,
+              1
+            ],
+            [
+              &quot;c&quot;,
+              1
+            ],
+            [
+              &quot;a&quot;,
+              1
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              &quot;a&quot;,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              &quot;a&quot;,
+              2
+            ],
+            [
+              &quot;b&quot;,
+              1
+            ],
+            [
+              &quot;c&quot;,
+              0
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              &quot;a&quot;,
+              0
+            ],
+            [
+              &quot;b&quot;,
+              0
+            ],
+            [
+              &quot;c&quot;,
+              0
+            ],
+            [
+              &quot;a&quot;,
+              0
+            ]
+          ]
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:19:21.217023+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 11008,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[&quot;&quot;],&quot;expected&quot;:[]},{&quot;args&quot;:[&quot;a&quot;],&quot;expected&quot;:[[&quot;a&quot;,1]]},{&quot;args&quot;:[&quot;aaabbc&quot;],&quot;expected&quot;:[[&quot;a&quot;,3],[&quot;b&quot;,2],[&quot;c&quot;,1]]},{&quot;args&quot;:[&quot;abca&quot;],&quot;expected&quot;:[[&quot;a&quot;,1],[&quot;b&quot;,1],[&quot;c&quot;,1],[&quot;a&quot;,1]]}]}</pre></details></details></td></tr><tr><td><strong>merge-counts</strong></td><td>Code only</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      {
+        &quot;a&quot;: 1
+      },
+      {
+        &quot;a&quot;: 2,
+        &quot;b&quot;: 3
+      }
+    ],
+    &quot;expected&quot;: {
+      &quot;a&quot;: 3,
+      &quot;b&quot;: 3
+    }
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: {
+        &quot;a&quot;: 3,
+        &quot;b&quot;: 3
+      }
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      {},
+      {
+        &quot;x&quot;: 5
+      }
+    ],
+    &quot;expected&quot;: {
+      &quot;x&quot;: 5
+    }
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: {
+        &quot;x&quot;: 5
+      }
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      {
+        &quot;n&quot;: -2
+      },
+      {
+        &quot;n&quot;: 2,
+        &quot;m&quot;: -1
+      }
+    ],
+    &quot;expected&quot;: {
+      &quot;n&quot;: 0,
+      &quot;m&quot;: -1
+    }
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: {
+        &quot;n&quot;: 0,
+        &quot;m&quot;: -1
+      }
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      {
+        &quot;a&quot;: 1
+      },
+      {
+        &quot;a&quot;: &quot;x&quot;
+      }
+    ],
+    &quot;raises&quot;: &quot;TypeError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;TypeError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: {
+            &quot;a&quot;: 2,
+            &quot;b&quot;: 3
+          }
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: {
+            &quot;x&quot;: 5
+          }
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: {
+            &quot;n&quot;: 2,
+            &quot;m&quot;: -1
+          }
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: {
+            &quot;a&quot;: &quot;x&quot;
+          }
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: {
+            &quot;a&quot;: 3,
+            &quot;b&quot;: 3
+          }
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: {
+            &quot;x&quot;: 5
+          }
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: {
+            &quot;m&quot;: -1
+          }
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;TypeError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:19:27.720959+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[{&quot;a&quot;:1},{&quot;a&quot;:2,&quot;b&quot;:3}],&quot;expected&quot;:{&quot;a&quot;:3,&quot;b&quot;:3}},{&quot;args&quot;:[{},{&quot;x&quot;:5}],&quot;expected&quot;:{&quot;x&quot;:5}},{&quot;args&quot;:[{&quot;n&quot;:-2},{&quot;n&quot;:2,&quot;m&quot;:-1}],&quot;expected&quot;:{&quot;n&quot;:0,&quot;m&quot;:-1}},{&quot;args&quot;:[{&quot;a&quot;:1},{&quot;a&quot;:&quot;x&quot;}],&quot;raises&quot;:&quot;TypeError&quot;}]}</pre></details></details></td></tr><tr><td><strong>merge-counts</strong></td><td>Code + documentation</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      {
+        &quot;a&quot;: 2
+      },
+      {
+        &quot;a&quot;: 3,
+        &quot;b&quot;: 4
+      }
+    ],
+    &quot;expected&quot;: {
+      &quot;a&quot;: 5,
+      &quot;b&quot;: 4
+    }
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: {
+        &quot;a&quot;: 5,
+        &quot;b&quot;: 4
+      }
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      {
+        &quot;x&quot;: 1
+      },
+      {
+        &quot;y&quot;: -2
+      }
+    ],
+    &quot;expected&quot;: {
+      &quot;x&quot;: 1,
+      &quot;y&quot;: -2
+    }
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: {
+        &quot;x&quot;: 1,
+        &quot;y&quot;: -2
+      }
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      {
+        &quot;a&quot;: 5
+      },
+      {
+        &quot;a&quot;: -5
+      }
+    ],
+    &quot;expected&quot;: {
+      &quot;a&quot;: 0
+    }
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: {
+        &quot;a&quot;: 0
+      }
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      {},
+      {
+        &quot;z&quot;: 0
+      }
+    ],
+    &quot;expected&quot;: {
+      &quot;z&quot;: 0
+    }
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: {
+        &quot;z&quot;: 0
+      }
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: {
+            &quot;a&quot;: 3,
+            &quot;b&quot;: 4
+          }
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: {
+            &quot;x&quot;: 1,
+            &quot;y&quot;: -2
+          }
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: {
+            &quot;a&quot;: -5
+          }
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: {
+            &quot;z&quot;: 0
+          }
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: {
+            &quot;a&quot;: 5,
+            &quot;b&quot;: 4
+          }
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: {
+            &quot;x&quot;: 1,
+            &quot;y&quot;: -2
+          }
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: {}
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: {}
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:19:33.561317+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 2816,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[{&quot;a&quot;:2},{&quot;a&quot;:3,&quot;b&quot;:4}],&quot;expected&quot;:{&quot;a&quot;:5,&quot;b&quot;:4}},{&quot;args&quot;:[{&quot;x&quot;:1},{&quot;y&quot;:-2}],&quot;expected&quot;:{&quot;x&quot;:1,&quot;y&quot;:-2}},{&quot;args&quot;:[{&quot;a&quot;:5},{&quot;a&quot;:-5}],&quot;expected&quot;:{&quot;a&quot;:0}},{&quot;args&quot;:[{},{&quot;z&quot;:0}],&quot;expected&quot;:{&quot;z&quot;:0}}]}</pre></details></details></td></tr><tr><td><strong>flatten</strong></td><td>Code only</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        [
+          1,
+          2
+        ],
+        [
+          3
+        ]
+      ]
+    ],
+    &quot;expected&quot;: [
+      1,
+      2,
+      3
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        1,
+        2,
+        3
+      ]
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        []
+      ]
+    ],
+    &quot;expected&quot;: []
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: []
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        [
+          &quot;a&quot;
+        ],
+        [
+          &quot;b&quot;,
+          &quot;c&quot;
+        ]
+      ]
+    ],
+    &quot;expected&quot;: [
+      &quot;a&quot;,
+      &quot;b&quot;,
+      &quot;c&quot;
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        &quot;a&quot;,
+        &quot;b&quot;,
+        &quot;c&quot;
+      ]
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        [
+          true,
+          false
+        ],
+        [
+          0
+        ]
+      ]
+    ],
+    &quot;expected&quot;: [
+      true,
+      false,
+      0
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        true,
+        false,
+        0
+      ]
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            3,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            &quot;b&quot;,
+            &quot;c&quot;,
+            &quot;a&quot;
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            0,
+            true,
+            false
+          ]
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            1,
+            3
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            &quot;a&quot;,
+            &quot;b&quot;
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            true,
+            0
+          ]
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:19:44.346757+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 7936,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[[[1,2],[3]]],&quot;expected&quot;:[1,2,3]},{&quot;args&quot;:[[[]]],&quot;expected&quot;:[]},{&quot;args&quot;:[[[&quot;a&quot;],[&quot;b&quot;,&quot;c&quot;]]],&quot;expected&quot;:[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]},{&quot;args&quot;:[[[true,false],[0]]],&quot;expected&quot;:[true,false,0]}]}</pre></details></details></td></tr><tr><td><strong>flatten</strong></td><td>Code + documentation</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        [
+          1,
+          2
+        ],
+        [
+          3
+        ]
+      ]
+    ],
+    &quot;expected&quot;: [
+      1,
+      2,
+      3
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        1,
+        2,
+        3
+      ]
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        [],
+        [
+          &quot;a&quot;,
+          &quot;a&quot;
+        ],
+        []
+      ]
+    ],
+    &quot;expected&quot;: [
+      &quot;a&quot;,
+      &quot;a&quot;
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        &quot;a&quot;,
+        &quot;a&quot;
+      ]
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        [
+          [
+            1
+          ],
+          2
+        ],
+        [
+          3
+        ]
+      ]
+    ],
+    &quot;expected&quot;: [
+      [
+        1
+      ],
+      2,
+      3
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        [
+          1
+        ],
+        2,
+        3
+      ]
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      []
+    ],
+    &quot;expected&quot;: []
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: []
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            3,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            &quot;a&quot;,
+            &quot;a&quot;
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            3,
+            [
+              1
+            ],
+            2
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            1,
+            3
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            &quot;a&quot;
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              1
+            ],
+            3
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:19:50.693637+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 11008,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[[[1,2],[3]]],&quot;expected&quot;:[1,2,3]},{&quot;args&quot;:[[[],[&quot;a&quot;,&quot;a&quot;],[]]],&quot;expected&quot;:[&quot;a&quot;,&quot;a&quot;]},{&quot;args&quot;:[[[[1],2],[3]]],&quot;expected&quot;:[[1],2,3]},{&quot;args&quot;:[[]],&quot;expected&quot;:[]}]}</pre></details></details></td></tr><tr><td><strong>ipv4</strong></td><td>Code only</td><td class="pass">valid</td><td>1/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;192.168.1.1&quot;
+    ],
+    &quot;expected&quot;: true
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: true
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;0.255.10.42&quot;
+    ],
+    &quot;expected&quot;: true
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: true
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;192.168.1&quot;
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;1.2.3.256&quot;
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:19:56.802828+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 7936,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[&quot;192.168.1.1&quot;],&quot;expected&quot;:true},{&quot;args&quot;:[&quot;0.255.10.42&quot;],&quot;expected&quot;:true},{&quot;args&quot;:[&quot;192.168.1&quot;],&quot;expected&quot;:false},{&quot;args&quot;:[&quot;1.2.3.256&quot;],&quot;expected&quot;:false}]}</pre></details></details></td></tr><tr><td><strong>ipv4</strong></td><td>Code + documentation</td><td class="pass">valid</td><td>1/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;192.168.1.1&quot;
+    ],
+    &quot;expected&quot;: true
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: true
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;0.255.10.42&quot;
+    ],
+    &quot;expected&quot;: true
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: true
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;256.1.2.3&quot;
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;1.2.3&quot;
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:20:04.896439+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 38
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[&quot;192.168.1.1&quot;],&quot;expected&quot;:true},{&quot;args&quot;:[&quot;0.255.10.42&quot;],&quot;expected&quot;:true},{&quot;args&quot;:[&quot;256.1.2.3&quot;],&quot;expected&quot;:false},{&quot;args&quot;:[&quot;1.2.3&quot;],&quot;expected&quot;:false}]}</pre></details></details></td></tr><tr><td><strong>luhn</strong></td><td>Code only</td><td class="pass">valid</td><td>1/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;0&quot;
+    ],
+    &quot;expected&quot;: true
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: true
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;18&quot;
+    ],
+    &quot;expected&quot;: true
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: true
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;12&quot;
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;&quot;
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: true
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:20:12.681541+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[&quot;0&quot;],&quot;expected&quot;:true},{&quot;args&quot;:[&quot;18&quot;],&quot;expected&quot;:true},{&quot;args&quot;:[&quot;12&quot;],&quot;expected&quot;:false},{&quot;args&quot;:[&quot;&quot;],&quot;expected&quot;:false}]}</pre></details></details></td></tr><tr><td><strong>luhn</strong></td><td>Code + documentation</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;79927398713&quot;
+    ],
+    &quot;expected&quot;: true
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: true
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;12345&quot;
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;&quot;
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;１２3&quot;
+    ],
+    &quot;expected&quot;: false
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: false
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: false
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:20:19.834344+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[&quot;79927398713&quot;],&quot;expected&quot;:true},{&quot;args&quot;:[&quot;12345&quot;],&quot;expected&quot;:false},{&quot;args&quot;:[&quot;&quot;],&quot;expected&quot;:false},{&quot;args&quot;:[&quot;１２3&quot;],&quot;expected&quot;:false}]}</pre></details></details></td></tr><tr><td><strong>business-days</strong></td><td>Code only</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;2024-01-01&quot;,
+      &quot;2024-01-02&quot;
+    ],
+    &quot;expected&quot;: 1
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 1
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;2024-01-06&quot;,
+      &quot;2024-01-08&quot;
+    ],
+    &quot;expected&quot;: 0
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 0
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;2024-01-05&quot;,
+      &quot;2024-01-08&quot;
+    ],
+    &quot;expected&quot;: 1
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 1
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;2024-01-02&quot;,
+      &quot;2024-01-01&quot;
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 2
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 1
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 2
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 1
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 1
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 2
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:20:26.433080+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[&quot;2024-01-01&quot;,&quot;2024-01-02&quot;],&quot;expected&quot;:1},{&quot;args&quot;:[&quot;2024-01-06&quot;,&quot;2024-01-08&quot;],&quot;expected&quot;:0},{&quot;args&quot;:[&quot;2024-01-05&quot;,&quot;2024-01-08&quot;],&quot;expected&quot;:1},{&quot;args&quot;:[&quot;2024-01-02&quot;,&quot;2024-01-01&quot;],&quot;raises&quot;:&quot;ValueError&quot;}]}</pre></details></details></td></tr><tr><td><strong>business-days</strong></td><td>Code + documentation</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;2024-01-01&quot;,
+      &quot;2024-01-06&quot;
+    ],
+    &quot;expected&quot;: 5
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 5
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;2024-01-05&quot;,
+      &quot;2024-01-08&quot;
+    ],
+    &quot;expected&quot;: 1
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 1
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;2024-01-01&quot;,
+      &quot;2024-01-01&quot;
+    ],
+    &quot;expected&quot;: 0
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 0
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;2024-01-02&quot;,
+      &quot;2024-01-01&quot;
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 5
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 2
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 1
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 5
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 2
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 0
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:20:34.377713+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 109
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[&quot;2024-01-01&quot;,&quot;2024-01-06&quot;],&quot;expected&quot;:5},{&quot;args&quot;:[&quot;2024-01-05&quot;,&quot;2024-01-08&quot;],&quot;expected&quot;:1},{&quot;args&quot;:[&quot;2024-01-01&quot;,&quot;2024-01-01&quot;],&quot;expected&quot;:0},{&quot;args&quot;:[&quot;2024-01-02&quot;,&quot;2024-01-01&quot;],&quot;raises&quot;:&quot;ValueError&quot;}]}</pre></details></details></td></tr><tr><td><strong>version</strong></td><td>Code only</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;1.2&quot;,
+      &quot;1.2.0&quot;
+    ],
+    &quot;expected&quot;: 0
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 0
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;1.10&quot;,
+      &quot;1.2&quot;
+    ],
+    &quot;expected&quot;: 1
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 1
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;0.9&quot;,
+      &quot;1&quot;
+    ],
+    &quot;expected&quot;: -1
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: -1
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;1.&quot;,
+      &quot;1&quot;
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;TypeError&quot;
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: -1
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: -1
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: -1
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 1
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: -1
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:20:42.712547+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 95
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[&quot;1.2&quot;,&quot;1.2.0&quot;],&quot;expected&quot;:0},{&quot;args&quot;:[&quot;1.10&quot;,&quot;1.2&quot;],&quot;expected&quot;:1},{&quot;args&quot;:[&quot;0.9&quot;,&quot;1&quot;],&quot;expected&quot;:-1},{&quot;args&quot;:[&quot;1.&quot;,&quot;1&quot;],&quot;raises&quot;:&quot;ValueError&quot;}]}</pre></details></details></td></tr><tr><td><strong>version</strong></td><td>Code + documentation</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;1.2&quot;,
+      &quot;1.3&quot;
+    ],
+    &quot;expected&quot;: -1
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: -1
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;2&quot;,
+      &quot;2.0.0&quot;
+    ],
+    &quot;expected&quot;: 0
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 0
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;01.10&quot;,
+      &quot;1.2&quot;
+    ],
+    &quot;expected&quot;: 1
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 1
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      &quot;1.&quot;,
+      &quot;1&quot;
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: -1
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;TypeError&quot;
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: -1
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: -1
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: -1
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 1
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:20:50.270355+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 38
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[&quot;1.2&quot;,&quot;1.3&quot;],&quot;expected&quot;:-1},{&quot;args&quot;:[&quot;2&quot;,&quot;2.0.0&quot;],&quot;expected&quot;:0},{&quot;args&quot;:[&quot;01.10&quot;,&quot;1.2&quot;],&quot;expected&quot;:1},{&quot;args&quot;:[&quot;1.&quot;,&quot;1&quot;],&quot;raises&quot;:&quot;ValueError&quot;}]}</pre></details></details></td></tr><tr><td><strong>range-compression</strong></td><td>Code only</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        1,
+        2,
+        3,
+        5,
+        7,
+        8
+      ]
+    ],
+    &quot;expected&quot;: [
+      [
+        1,
+        3
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        7,
+        8
+      ]
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        3,
+        1,
+        2,
+        2
+      ]
+    ],
+    &quot;expected&quot;: [
+      [
+        1,
+        3
+      ]
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        [
+          1,
+          3
+        ]
+      ]
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      []
+    ],
+    &quot;expected&quot;: []
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: []
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        -2,
+        -1,
+        1
+      ]
+    ],
+    &quot;expected&quot;: [
+      [
+        -2,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        [
+          -2,
+          -1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              1,
+              3
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              7,
+              8
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              -2,
+              -1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              8,
+              8
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              -2,
+              -2
+            ],
+            [
+              -1,
+              1
+            ]
+          ]
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:20:56.166939+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[[1,2,3,5,7,8]],&quot;expected&quot;:[[1,3],[5,5],[7,8]]},{&quot;args&quot;:[[3,1,2,2]],&quot;expected&quot;:[[1,3]]},{&quot;args&quot;:[[]],&quot;expected&quot;:[]},{&quot;args&quot;:[[-2,-1,1]],&quot;expected&quot;:[[-2,-1],[1,1]]}]}</pre></details></details></td></tr><tr><td><strong>range-compression</strong></td><td>Code + documentation</td><td class="pass">valid</td><td>2/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        1,
+        2,
+        3,
+        5,
+        7,
+        8
+      ]
+    ],
+    &quot;expected&quot;: [
+      [
+        1,
+        3
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        7,
+        8
+      ]
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      []
+    ],
+    &quot;expected&quot;: []
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: []
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        4,
+        4,
+        2,
+        3,
+        2
+      ]
+    ],
+    &quot;expected&quot;: [
+      [
+        2,
+        4
+      ]
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        [
+          2,
+          4
+        ]
+      ]
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        -2,
+        -1,
+        1
+      ]
+    ],
+    &quot;expected&quot;: [
+      [
+        -2,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: [
+        [
+          -2,
+          -1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1, m2</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              1,
+              3
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              7,
+              8
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              -2,
+              -1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              8,
+              8
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: []
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: [
+            [
+              -2,
+              -2
+            ],
+            [
+              -1,
+              1
+            ]
+          ]
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:21:03.299989+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 7936,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[[1,2,3,5,7,8]],&quot;expected&quot;:[[1,3],[5,5],[7,8]]},{&quot;args&quot;:[[]],&quot;expected&quot;:[]},{&quot;args&quot;:[[4,4,2,3,2]],&quot;expected&quot;:[[2,4]]},{&quot;args&quot;:[[-2,-1,1]],&quot;expected&quot;:[[-2,-1],[1,1]]}]}</pre></details></details></td></tr><tr><td><strong>percentile-rank</strong></td><td>Code only</td><td class="pass">valid</td><td>1/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        1,
+        3,
+        5
+      ],
+      3
+    ],
+    &quot;expected&quot;: 1
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 1
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        0,
+        -2,
+        4
+      ],
+      0
+    ],
+    &quot;expected&quot;: 1
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 1
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        2,
+        2,
+        2
+      ],
+      2
+    ],
+    &quot;expected&quot;: 0
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 0
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [],
+      1
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 2
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 2
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 3
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 1
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 1
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 0
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:21:10.559704+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[[1,3,5],3],&quot;expected&quot;:1},{&quot;args&quot;:[[0,-2,4],0],&quot;expected&quot;:1},{&quot;args&quot;:[[2,2,2],2],&quot;expected&quot;:0},{&quot;args&quot;:[[],1],&quot;raises&quot;:&quot;ValueError&quot;}]}</pre></details></details></td></tr><tr><td><strong>percentile-rank</strong></td><td>Code + documentation</td><td class="pass">valid</td><td>1/2</td><td><details><summary>Inspect evidence</summary><p class="pass">Test 1: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        1,
+        3,
+        2
+      ],
+      3
+    ],
+    &quot;expected&quot;: 2
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 2
+    }
+  }
+}</pre><p class="pass">Test 2: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        5,
+        5,
+        5
+      ],
+      5
+    ],
+    &quot;expected&quot;: 0
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 0
+    }
+  }
+}</pre><p class="pass">Test 3: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [
+        -2,
+        0,
+        2
+      ],
+      0
+    ],
+    &quot;expected&quot;: 1
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;returned&quot;: 1
+    }
+  }
+}</pre><p class="pass">Test 4: Passed</p><pre>{
+  &quot;generated&quot;: {
+    &quot;args&quot;: [
+      [],
+      1
+    ],
+    &quot;raises&quot;: &quot;ValueError&quot;
+  },
+  &quot;observed&quot;: {
+    &quot;passed&quot;: true,
+    &quot;actual&quot;: {
+      &quot;raised&quot;: &quot;ValueError&quot;
+    }
+  }
+}</pre><p>Credited bug IDs: <code>m1</code></p><details><summary>Seeded bug execution details</summary><pre>{
+  &quot;m1&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 3
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 3
+        }
+      },
+      {
+        &quot;passed&quot;: false,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 2
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  },
+  &quot;m2&quot;: {
+    &quot;outcomes&quot;: [
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 2
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 0
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;returned&quot;: 1
+        }
+      },
+      {
+        &quot;passed&quot;: true,
+        &quot;actual&quot;: {
+          &quot;raised&quot;: &quot;ValueError&quot;
+        }
+      }
+    ]
+  }
+}</pre></details><details><summary>API response metadata</summary><pre>{
+  &quot;returned_model&quot;: null,
+  &quot;response_id&quot;: null,
+  &quot;done_reason&quot;: &quot;turn.completed&quot;,
+  &quot;requested_at&quot;: &quot;2026-09-13T11:21:17.307663+00:00&quot;,
+  &quot;request_sent&quot;: true,
+  &quot;http_status&quot;: null,
+  &quot;prompt_cached_tokens&quot;: 9984,
+  &quot;reasoning_tokens&quot;: 0
+}</pre></details><details><summary>Raw model response</summary><pre>{&quot;tests&quot;:[{&quot;args&quot;:[[1,3,2],3],&quot;expected&quot;:2},{&quot;args&quot;:[[5,5,5],5],&quot;expected&quot;:0},{&quot;args&quot;:[[-2,0,2],0],&quot;expected&quot;:1},{&quot;args&quot;:[[] ,1],&quot;raises&quot;:&quot;ValueError&quot;}]}</pre></details></details></td></tr></tbody></table></div><footer>Dataset SHA-256: <code>354a0ea1ccef60d607e51a78413acbf28f1c22c188dc985ef8d85c6348312d6b</code><p>Model digest: <code>Unavailable</code><br>Frozen plan SHA-256: <code>fb38c35db21fef396583bb7f305b09205d36e6bb611aced56f10f74801bfca35</code></p><p>Model results above are separate from the repository software tests. Local HTML report; no remote assets or tracking.</p></footer></main></body></html>

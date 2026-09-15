@@ -1,0 +1,345 @@
+{
+  "checked_at": "2026-09-13T11:13:37.281666+00:00",
+  "evidence": "Cursor Spending dashboard: Other Models 100% used, Cursor Models 5% used, on-demand disabled. Codex logged in using ChatGPT.",
+  "entries": [
+    {
+      "provider": "codex",
+      "model": "gpt-6-astra",
+      "effort": "medium",
+      "status": "completed",
+      "generation_attempted": true,
+      "generation_requests": 32,
+      "report": "codex-gpt-6-astra.json",
+      "evidence": "codex-gpt-6-astra.html",
+      "raw_generations": "codex-gpt-6-astra.jsonl",
+      "frozen_plan": "codex-gpt-6-astra-plan.json"
+    },
+    {
+      "provider": "codex",
+      "model": "gpt-5.6-sol",
+      "effort": "medium",
+      "status": "completed",
+      "generation_attempted": true,
+      "generation_requests": 32,
+      "report": "codex-gpt-5.6-sol.json",
+      "evidence": "codex-gpt-5.6-sol.html",
+      "raw_generations": "codex-gpt-5.6-sol.jsonl",
+      "frozen_plan": "codex-gpt-5.6-sol-plan.json"
+    },
+    {
+      "provider": "codex",
+      "model": "gpt-5.6-terra",
+      "effort": "medium",
+      "status": "completed",
+      "generation_attempted": true,
+      "generation_requests": 32,
+      "report": "codex-gpt-5.6-terra.json",
+      "evidence": "codex-gpt-5.6-terra.html",
+      "raw_generations": "codex-gpt-5.6-terra.jsonl",
+      "frozen_plan": "codex-gpt-5.6-terra-plan.json"
+    },
+    {
+      "provider": "codex",
+      "model": "gpt-5.6-luna",
+      "effort": "medium",
+      "status": "completed",
+      "generation_attempted": true,
+      "generation_requests": 32,
+      "report": "codex-gpt-5.6-luna.json",
+      "evidence": "codex-gpt-5.6-luna.html",
+      "raw_generations": "codex-gpt-5.6-luna.jsonl",
+      "frozen_plan": "codex-gpt-5.6-luna-plan.json"
+    },
+    {
+      "provider": "codex",
+      "model": "gpt-5.5",
+      "effort": "medium",
+      "status": "completed",
+      "generation_attempted": true,
+      "generation_requests": 32,
+      "report": "codex-gpt-5.5.json",
+      "evidence": "codex-gpt-5.5.html",
+      "raw_generations": "codex-gpt-5.5.jsonl",
+      "frozen_plan": "codex-gpt-5.5-plan.json"
+    },
+    {
+      "provider": "codex",
+      "model": "gpt-5.3-codex-spark",
+      "effort": "medium",
+      "status": "completed",
+      "generation_attempted": true,
+      "generation_requests": 32,
+      "report": "codex-gpt-5.3-codex-spark.json",
+      "evidence": "codex-gpt-5.3-codex-spark.html",
+      "raw_generations": "codex-gpt-5.3-codex-spark.jsonl",
+      "frozen_plan": "codex-gpt-5.3-codex-spark-plan.json"
+    },
+    {
+      "provider": "cursor",
+      "model": "gpt-5.3-codex",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "gpt-5.2",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "composer-2.5",
+      "effort": null,
+      "status": "completed",
+      "generation_attempted": true,
+      "generation_requests": 32,
+      "report": "cursor-composer-2.5.json",
+      "evidence": "cursor-composer-2.5.html",
+      "raw_generations": "cursor-composer-2.5.jsonl",
+      "frozen_plan": "cursor-composer-2.5-plan.json"
+    },
+    {
+      "provider": "cursor",
+      "model": "claude-opus-5-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "gpt-5.6-sol-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "claude-fable-5-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "cursor-grok-4.5-medium",
+      "effort": null,
+      "status": "completed",
+      "generation_attempted": true,
+      "generation_requests": 32,
+      "report": "cursor-cursor-grok-4.5-medium.json",
+      "evidence": "cursor-cursor-grok-4.5-medium.html",
+      "raw_generations": "cursor-cursor-grok-4.5-medium.jsonl",
+      "frozen_plan": "cursor-cursor-grok-4.5-medium-plan.json"
+    },
+    {
+      "provider": "cursor",
+      "model": "gemini-3.7-flash-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "claude-sonnet-5-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "gpt-5.6-luna-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "cursor-grok-4.6-xhigh",
+      "effort": null,
+      "status": "completed",
+      "generation_attempted": true,
+      "generation_requests": 32,
+      "report": "cursor-cursor-grok-4.6-xhigh.json",
+      "evidence": "cursor-cursor-grok-4.6-xhigh.html",
+      "raw_generations": "cursor-cursor-grok-4.6-xhigh.jsonl",
+      "frozen_plan": "cursor-cursor-grok-4.6-xhigh-plan.json"
+    },
+    {
+      "provider": "cursor",
+      "model": "claude-opus-4-8-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "gpt-5.5-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "claude-fable-5-1-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "gemini-3.8-flash-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "muse-spark-1.3-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "gpt-5.6-terra-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "claude-4.6-sonnet-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "claude-opus-4-7-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "gpt-5.4-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "claude-4.6-opus-high",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "claude-4.5-opus-high",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "gemini-3.6-flash-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "gemini-3.1-pro",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "gpt-5.4-mini-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "gpt-5.4-nano-medium",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "claude-4.5-sonnet",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "gpt-5.1",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "gemini-3-flash",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "gemini-3.5-flash",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "claude-4-sonnet",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "gpt-5-mini",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "kimi-k3-high",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "kimi-k2.7-code",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    },
+    {
+      "provider": "cursor",
+      "model": "glm-5.2-high",
+      "effort": null,
+      "status": "blocked_subscription_limit",
+      "generation_attempted": false
+    }
+  ],
+  "completed_at": "2026-09-13T11:42:48.191674+00:00",
+  "summary": {
+    "catalog_entries": 41,
+    "completed_models": 9,
+    "blocked_models": 32,
+    "benchmark_generation_requests": 288
+  }
+}

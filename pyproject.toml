@@ -20,6 +20,10 @@ dev = [
 
 [project.scripts]
 rag-eval = "raglab.cli:main"
+testgen-bench = "raglab.testgen:main"
+general-eval = "raglab.general_eval:main"
+general-eval-judge = "raglab.general_eval_judge:main"
+saved-eval-generate = "raglab.saved_eval_generate:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

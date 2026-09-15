@@ -1,0 +1,116 @@
+{
+  "version": "general-eval-v1",
+  "dataset_sha256": "cd1d89e738111a800addd39d6ab8a77402d871d16e15a2ab81e87337b95c388e",
+  "system": "cursor-grok-4.6-xhigh",
+  "system_id": "5f2bfdad1f325ae17605ecfad9758e88faeeba076e28b668886d714cf8ba5958",
+  "item_ids": [
+    "inst-05",
+    "reason-09",
+    "transform-08",
+    "fact-07"
+  ],
+  "samples": 2,
+  "schedule_seed": 20260915,
+  "schedule": [
+    {
+      "system": "5f2bfdad1f325ae17605ecfad9758e88faeeba076e28b668886d714cf8ba5958",
+      "base_id": "reason-09",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "5f2bfdad1f325ae17605ecfad9758e88faeeba076e28b668886d714cf8ba5958",
+      "base_id": "inst-05",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "5f2bfdad1f325ae17605ecfad9758e88faeeba076e28b668886d714cf8ba5958",
+      "base_id": "reason-09",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "5f2bfdad1f325ae17605ecfad9758e88faeeba076e28b668886d714cf8ba5958",
+      "base_id": "transform-08",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "5f2bfdad1f325ae17605ecfad9758e88faeeba076e28b668886d714cf8ba5958",
+      "base_id": "inst-05",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "5f2bfdad1f325ae17605ecfad9758e88faeeba076e28b668886d714cf8ba5958",
+      "base_id": "inst-05",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "5f2bfdad1f325ae17605ecfad9758e88faeeba076e28b668886d714cf8ba5958",
+      "base_id": "inst-05",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "5f2bfdad1f325ae17605ecfad9758e88faeeba076e28b668886d714cf8ba5958",
+      "base_id": "fact-07",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "5f2bfdad1f325ae17605ecfad9758e88faeeba076e28b668886d714cf8ba5958",
+      "base_id": "inst-05",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "5f2bfdad1f325ae17605ecfad9758e88faeeba076e28b668886d714cf8ba5958",
+      "base_id": "inst-05",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "5f2bfdad1f325ae17605ecfad9758e88faeeba076e28b668886d714cf8ba5958",
+      "base_id": "transform-08",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "5f2bfdad1f325ae17605ecfad9758e88faeeba076e28b668886d714cf8ba5958",
+      "base_id": "fact-07",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    }
+  ],
+  "logical_keys_sha256": "0cafd47addb17ac6370bff06656f0dd08909bc5af3997d5c8d03ccd8eb426356",
+  "prompts_sha256": "961a917892b8ed436c6145e843eec14b0f747beeacf6410076b228f5daa26931",
+  "scoring_sha256": "98cd4ba5cfc1cc8922764bbec125d7c1a9a4161a62c9669c9506b09f55dcc9c2",
+  "adapter_sha256": "610d4922e1acf14dbcc4d285d43fd9bb90e8c9e46f2908f1a748485086fbb76a",
+  "api_config": null,
+  "cli_config": {
+    "provider": "cursor",
+    "cli_version": "2026.09.10-fd3934a",
+    "protocol": "cli-v1",
+    "reasoning_effort": "selected model variant",
+    "sampling": "CLI defaults; no native output schema",
+    "timeout_seconds": 240,
+    "session": "fresh empty working directory; no resume",
+    "tool_policy": "prompt prohibits tools; observed tool calls disqualify the suite"
+  },
+  "policy": "One attempt per frozen logical key; no retries, replacement, or tuning."
+}

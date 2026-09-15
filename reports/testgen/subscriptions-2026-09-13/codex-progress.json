@@ -1,0 +1,13 @@
+{
+  "updated_at": "2026-09-13T11:27:06.142842+00:00",
+  "total": 6,
+  "completed": [
+    "gpt-5.6-sol",
+    "gpt-6-astra",
+    "gpt-5.6-terra",
+    "gpt-5.6-luna",
+    "gpt-5.5",
+    "gpt-5.3-codex-spark"
+  ],
+  "errors": []
+}

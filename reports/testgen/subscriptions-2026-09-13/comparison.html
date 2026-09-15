@@ -1,0 +1,287 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Test Generation Lab — model comparison</title><style>
+:root{color-scheme:light;--ink:#16324a;--muted:#526475;--line:#d7e0e8;--blue:#1768a3}
+*{box-sizing:border-box}body{margin:0;background:#f4f7f9;color:var(--ink);
+font:16px/1.55 system-ui,Segoe UI,sans-serif}main{max-width:1180px;margin:auto;padding:3rem 1.5rem}
+header{border-bottom:1px solid var(--line);padding-bottom:1.5rem}.eyebrow{font-size:.75rem;
+letter-spacing:.14em;font-weight:750;color:var(--blue)}h1{font-size:clamp(2rem,4vw,3.3rem);
+line-height:1.1;max-width:850px;margin:.65rem 0 1rem;letter-spacing:-.04em}
+h2{font-size:1.15rem;margin:.25rem 0}.muted,footer{color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.2rem 0}.meta span{background:white;
+padding:.3rem .7rem;border:1px solid var(--line);border-radius:30px;font-size:.8rem}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.5rem 0}
+.card{background:white;border:1px solid var(--line);padding:1.5rem;border-radius:12px}
+.score{font-size:3.25rem;line-height:1.2;font-weight:750;letter-spacing:-.04em}
+.track{height:8px;background:#e7edf2;border-radius:4px;margin:1rem 0}.track span{display:block;
+height:100%;background:var(--blue);border-radius:4px}.stats{display:grid;
+grid-template-columns:1fr 1fr;gap:1rem}.stats b{display:block;font-size:1.25rem}
+.stats span{font-size:.8rem;color:var(--muted)}.finding{border-left:4px solid var(--blue);
+background:#e9f2f8;padding:1rem 1.25rem;margin:1.5rem 0}.fixture{background:#fff1cc;padding:1rem}
+table{border-collapse:collapse;width:100%;font-size:.9rem}th,td{padding:.85rem .65rem;
+text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+tbody>tr:nth-child(odd){background:#fff}summary{cursor:pointer;color:var(--blue);
+font-weight:650}summary:focus-visible,a:focus-visible{outline:3px solid #ce6800;outline-offset:3px}
+.pass{color:#166534;font-weight:650}.fail{color:#a62c23;font-weight:650}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.8rem;background:#eef2f5;
+padding:.7rem;border-radius:6px}code{overflow-wrap:anywhere;font-size:.85em}
+.wide{overflow-x:auto}footer{font-size:.8rem;margin-top:2rem}
+@media(max-width:700px){main{padding:1.5rem .8rem}.cards{grid-template-columns:1fr}
+.card{padding:1rem}.stats{gap:.6rem}th,td{padding:.65rem .4rem}}
+</style><main><header><div class="eyebrow">RELIABILITY LAB / MODEL COMPARISON</div><h1>Same tasks. Different models.</h1><p>10 runs · 16 tasks · testgen-v4</p></header><section><p><strong>Completed: 9 subscription model runs, 288 independent prompts. 32 further Cursor catalog entries were blocked by its exhausted Other Models allowance; they have no score. Qwen is the earlier local baseline.</strong></p><p>Click a model name for its generated tests and execution evidence. <a href="availability.json">Catalog availability</a> · <a href="comparison.md">Markdown report</a></p></section><p>Descriptive results on the same synthetic tasks. Provider defaults, native JSON constraints, tokenizers, reasoning budgets and hardware may differ. See each run&#x27;s settings; these scores do not isolate model capability or establish a general ranking. All generation failures remain in the score denominator. No cost estimates are inferred.</p><div class="wide"><table><thead><tr><th>Provider / model</th><th>Prompt</th><th>Bugs caught</th><th>Score</th><th>Valid suites</th><th>Wrong assertions</th><th>Other failures</th><th>Median seconds</th><th>Input / output tokens</th></tr></thead><tbody><tr><td><a href="codex-gpt-5.6-sol.html">codex / gpt-5.6-sol</a></td><td>code_only</td><td>29/32</td><td>90.6%</td><td>16/16</td><td>0</td><td>0</td><td>9.604</td><td>194034 / 2226</td></tr><tr><td><a href="codex-gpt-5.6-sol.html">codex / gpt-5.6-sol</a></td><td>code_docs</td><td>30/32</td><td>93.8%</td><td>16/16</td><td>0</td><td>0</td><td>9.077</td><td>194754 / 1953</td></tr><tr><td><a href="codex-gpt-6-astra.html">codex / gpt-6-astra</a></td><td>code_only</td><td>28/32</td><td>87.5%</td><td>15/16</td><td>0</td><td>1</td><td>10.154</td><td>208950 / 2135</td></tr><tr><td><a href="codex-gpt-6-astra.html">codex / gpt-6-astra</a></td><td>code_docs</td><td>30/32</td><td>93.8%</td><td>15/16</td><td>0</td><td>1</td><td>10.722</td><td>209392 / 2069</td></tr><tr><td><a href="cursor-cursor-grok-4.5-medium.html">cursor / cursor-grok-4.5-medium</a></td><td>code_only</td><td>27/32</td><td>84.4%</td><td>16/16</td><td>0</td><td>0</td><td>21.025</td><td>243994 / 13109</td></tr><tr><td><a href="cursor-cursor-grok-4.5-medium.html">cursor / cursor-grok-4.5-medium</a></td><td>code_docs</td><td>30/32</td><td>93.8%</td><td>16/16</td><td>0</td><td>0</td><td>20.333</td><td>241856 / 13756</td></tr><tr><td><a href="codex-gpt-5.6-terra.html">codex / gpt-5.6-terra</a></td><td>code_only</td><td>28/32</td><td>87.5%</td><td>16/16</td><td>0</td><td>0</td><td>7.322</td><td>194112 / 1318</td></tr><tr><td><a href="codex-gpt-5.6-terra.html">codex / gpt-5.6-terra</a></td><td>code_docs</td><td>28/32</td><td>87.5%</td><td>16/16</td><td>0</td><td>0</td><td>6.56</td><td>194948 / 1603</td></tr><tr><td><a href="codex-gpt-5.6-luna.html">codex / gpt-5.6-luna</a></td><td>code_only</td><td>26/32</td><td>81.2%</td><td>15/16</td><td>1</td><td>0</td><td>9.544</td><td>169130 / 3513</td></tr><tr><td><a href="codex-gpt-5.6-luna.html">codex / gpt-5.6-luna</a></td><td>code_docs</td><td>30/32</td><td>93.8%</td><td>16/16</td><td>0</td><td>0</td><td>8.264</td><td>169854 / 3545</td></tr><tr><td><a href="cursor-cursor-grok-4.6-xhigh.html">cursor / cursor-grok-4.6-xhigh</a></td><td>code_only</td><td>27/32</td><td>84.4%</td><td>16/16</td><td>0</td><td>0</td><td>38.575</td><td>246957 / 31197</td></tr><tr><td><a href="cursor-cursor-grok-4.6-xhigh.html">cursor / cursor-grok-4.6-xhigh</a></td><td>code_docs</td><td>29/32</td><td>90.6%</td><td>16/16</td><td>0</td><td>0</td><td>35.934</td><td>247465 / 33995</td></tr><tr><td><a href="codex-gpt-5.5.html">codex / gpt-5.5</a></td><td>code_only</td><td>27/32</td><td>84.4%</td><td>16/16</td><td>0</td><td>0</td><td>8.404</td><td>175988 / 3901</td></tr><tr><td><a href="codex-gpt-5.5.html">codex / gpt-5.5</a></td><td>code_docs</td><td>28/32</td><td>87.5%</td><td>16/16</td><td>0</td><td>0</td><td>8.091</td><td>176464 / 4110</td></tr><tr><td><a href="cursor-composer-2.5.html">cursor / composer-2.5</a></td><td>code_only</td><td>25/32</td><td>78.1%</td><td>15/16</td><td>0</td><td>1</td><td>16.277</td><td>230106 / 22751</td></tr><tr><td><a href="cursor-composer-2.5.html">cursor / composer-2.5</a></td><td>code_docs</td><td>27/32</td><td>84.4%</td><td>16/16</td><td>0</td><td>0</td><td>15.521</td><td>232983 / 20890</td></tr><tr><td><a href="codex-gpt-5.3-codex-spark.html">codex / gpt-5.3-codex-spark</a></td><td>code_only</td><td>20/32</td><td>62.5%</td><td>12/16</td><td>1</td><td>3</td><td>6.03</td><td>139708 / 18366</td></tr><tr><td><a href="codex-gpt-5.3-codex-spark.html">codex / gpt-5.3-codex-spark</a></td><td>code_docs</td><td>24/32</td><td>75.0%</td><td>14/16</td><td>0</td><td>2</td><td>5.502</td><td>140226 / 19528</td></tr><tr><td><a href="../heldout.html">ollama / qwen2.5-coder:3b (historical)</a></td><td>code_only</td><td>12/32</td><td>37.5%</td><td>9/16</td><td>7</td><td>0</td><td>9.558</td><td>5298 / 1784</td></tr><tr><td><a href="../heldout.html">ollama / qwen2.5-coder:3b (historical)</a></td><td>code_docs</td><td>12/32</td><td>37.5%</td><td>8/16</td><td>8</td><td>0</td><td>9.066</td><td>5803 / 1886</td></tr></tbody></table></div><h2>Recorded settings</h2><details><summary>Run 1: codex / gpt-5.6-sol — settings</summary><pre>{
+  &quot;model&quot;: &quot;gpt-5.6-sol&quot;,
+  &quot;model_digest&quot;: null,
+  &quot;api_config&quot;: null,
+  &quot;cli_config&quot;: {
+    &quot;cli_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;codex&quot;,
+    &quot;reasoning_effort&quot;: &quot;medium&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;options&quot;: {
+    &quot;cli_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;codex&quot;,
+    &quot;reasoning_effort&quot;: &quot;medium&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;think&quot;: null,
+  &quot;runtime_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+  &quot;plan_sha256&quot;: &quot;e7e9a66f1ee693fa52b8adb80d6fbbbd43f3b64c269f9d8fc43d08f6c5408d9b&quot;
+}</pre></details><details><summary>Run 2: codex / gpt-6-astra — settings</summary><pre>{
+  &quot;model&quot;: &quot;gpt-6-astra&quot;,
+  &quot;model_digest&quot;: null,
+  &quot;api_config&quot;: null,
+  &quot;cli_config&quot;: {
+    &quot;cli_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;codex&quot;,
+    &quot;reasoning_effort&quot;: &quot;medium&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;options&quot;: {
+    &quot;cli_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;codex&quot;,
+    &quot;reasoning_effort&quot;: &quot;medium&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;think&quot;: null,
+  &quot;runtime_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+  &quot;plan_sha256&quot;: &quot;c1f05deb7bddfce85b72eedcc4c32aca6c5fa00b0a7429d7984e0678609bffbe&quot;
+}</pre></details><details><summary>Run 3: cursor / cursor-grok-4.5-medium — settings</summary><pre>{
+  &quot;model&quot;: &quot;cursor-grok-4.5-medium&quot;,
+  &quot;model_digest&quot;: null,
+  &quot;api_config&quot;: null,
+  &quot;cli_config&quot;: {
+    &quot;cli_version&quot;: &quot;2026.09.10-fd3934a&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;cursor&quot;,
+    &quot;reasoning_effort&quot;: &quot;selected model variant&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;options&quot;: {
+    &quot;cli_version&quot;: &quot;2026.09.10-fd3934a&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;cursor&quot;,
+    &quot;reasoning_effort&quot;: &quot;selected model variant&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;think&quot;: null,
+  &quot;runtime_version&quot;: &quot;2026.09.10-fd3934a&quot;,
+  &quot;plan_sha256&quot;: &quot;3f1ca762a80fabb6bf770b7ffd58db866fa6f27717801dc2638b10d34b3f415b&quot;
+}</pre></details><details><summary>Run 4: codex / gpt-5.6-terra — settings</summary><pre>{
+  &quot;model&quot;: &quot;gpt-5.6-terra&quot;,
+  &quot;model_digest&quot;: null,
+  &quot;api_config&quot;: null,
+  &quot;cli_config&quot;: {
+    &quot;cli_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;codex&quot;,
+    &quot;reasoning_effort&quot;: &quot;medium&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;options&quot;: {
+    &quot;cli_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;codex&quot;,
+    &quot;reasoning_effort&quot;: &quot;medium&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;think&quot;: null,
+  &quot;runtime_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+  &quot;plan_sha256&quot;: &quot;fb38c35db21fef396583bb7f305b09205d36e6bb611aced56f10f74801bfca35&quot;
+}</pre></details><details><summary>Run 5: codex / gpt-5.6-luna — settings</summary><pre>{
+  &quot;model&quot;: &quot;gpt-5.6-luna&quot;,
+  &quot;model_digest&quot;: null,
+  &quot;api_config&quot;: null,
+  &quot;cli_config&quot;: {
+    &quot;cli_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;codex&quot;,
+    &quot;reasoning_effort&quot;: &quot;medium&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;options&quot;: {
+    &quot;cli_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;codex&quot;,
+    &quot;reasoning_effort&quot;: &quot;medium&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;think&quot;: null,
+  &quot;runtime_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+  &quot;plan_sha256&quot;: &quot;35657f4f85a0fdba3d23eec5cd79a012727ced0bb6e9a693bf0019c16284a2c1&quot;
+}</pre></details><details><summary>Run 6: cursor / cursor-grok-4.6-xhigh — settings</summary><pre>{
+  &quot;model&quot;: &quot;cursor-grok-4.6-xhigh&quot;,
+  &quot;model_digest&quot;: null,
+  &quot;api_config&quot;: null,
+  &quot;cli_config&quot;: {
+    &quot;cli_version&quot;: &quot;2026.09.10-fd3934a&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;cursor&quot;,
+    &quot;reasoning_effort&quot;: &quot;selected model variant&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;options&quot;: {
+    &quot;cli_version&quot;: &quot;2026.09.10-fd3934a&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;cursor&quot;,
+    &quot;reasoning_effort&quot;: &quot;selected model variant&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;think&quot;: null,
+  &quot;runtime_version&quot;: &quot;2026.09.10-fd3934a&quot;,
+  &quot;plan_sha256&quot;: &quot;d35edda5eaa1cf8530009e4e4ed1567f52c4d8fd71e5c9a4b105f51fb7180b0a&quot;
+}</pre></details><details><summary>Run 7: codex / gpt-5.5 — settings</summary><pre>{
+  &quot;model&quot;: &quot;gpt-5.5&quot;,
+  &quot;model_digest&quot;: null,
+  &quot;api_config&quot;: null,
+  &quot;cli_config&quot;: {
+    &quot;cli_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;codex&quot;,
+    &quot;reasoning_effort&quot;: &quot;medium&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;options&quot;: {
+    &quot;cli_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;codex&quot;,
+    &quot;reasoning_effort&quot;: &quot;medium&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;think&quot;: null,
+  &quot;runtime_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+  &quot;plan_sha256&quot;: &quot;8daa9feb36a7cebe0eede7e66b9058859f01ca43cce9eb7ad5527f9c1d463b1c&quot;
+}</pre></details><details><summary>Run 8: cursor / composer-2.5 — settings</summary><pre>{
+  &quot;model&quot;: &quot;composer-2.5&quot;,
+  &quot;model_digest&quot;: null,
+  &quot;api_config&quot;: null,
+  &quot;cli_config&quot;: {
+    &quot;cli_version&quot;: &quot;2026.09.10-fd3934a&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;cursor&quot;,
+    &quot;reasoning_effort&quot;: &quot;selected model variant&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;options&quot;: {
+    &quot;cli_version&quot;: &quot;2026.09.10-fd3934a&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;cursor&quot;,
+    &quot;reasoning_effort&quot;: &quot;selected model variant&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;think&quot;: null,
+  &quot;runtime_version&quot;: &quot;2026.09.10-fd3934a&quot;,
+  &quot;plan_sha256&quot;: &quot;0da65b99d197326d1f3eeab5a216755f51091b12572724ad09d93977692de282&quot;
+}</pre></details><details><summary>Run 9: codex / gpt-5.3-codex-spark — settings</summary><pre>{
+  &quot;model&quot;: &quot;gpt-5.3-codex-spark&quot;,
+  &quot;model_digest&quot;: null,
+  &quot;api_config&quot;: null,
+  &quot;cli_config&quot;: {
+    &quot;cli_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;codex&quot;,
+    &quot;reasoning_effort&quot;: &quot;medium&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;options&quot;: {
+    &quot;cli_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+    &quot;protocol&quot;: &quot;cli-v1&quot;,
+    &quot;provider&quot;: &quot;codex&quot;,
+    &quot;reasoning_effort&quot;: &quot;medium&quot;,
+    &quot;sampling&quot;: &quot;CLI defaults; no native output schema&quot;,
+    &quot;session&quot;: &quot;fresh empty working directory; no resume&quot;,
+    &quot;timeout_seconds&quot;: 240,
+    &quot;tool_policy&quot;: &quot;prompt prohibits tools; observed tool calls disqualify the suite&quot;
+  },
+  &quot;think&quot;: null,
+  &quot;runtime_version&quot;: &quot;codex-cli 0.154.0-alpha.6.2&quot;,
+  &quot;plan_sha256&quot;: &quot;23357367d122d6b1607b7d46dd4b84a5f574d1170d6d49e8c523900842049387&quot;
+}</pre></details><details><summary>Run 10: ollama / qwen2.5-coder:3b — settings</summary><pre>{
+  &quot;model&quot;: &quot;qwen2.5-coder:3b&quot;,
+  &quot;model_digest&quot;: &quot;f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225&quot;,
+  &quot;api_config&quot;: null,
+  &quot;cli_config&quot;: null,
+  &quot;options&quot;: {
+    &quot;num_ctx&quot;: 4096,
+    &quot;num_predict&quot;: 1536,
+    &quot;seed&quot;: 42,
+    &quot;temperature&quot;: 0
+  },
+  &quot;think&quot;: null,
+  &quot;runtime_version&quot;: &quot;0.34.0&quot;,
+  &quot;plan_sha256&quot;: &quot;9ab313c1913d96c1a1b8f2e965f7fa173e9d1d8a4397928c2d5fc830ff590d5c&quot;
+}</pre></details><footer>Dataset: <code>354a0ea1ccef60d607e51a78413acbf28f1c22c188dc985ef8d85c6348312d6b</code><p>Missing token counts are shown as ?. Output totals include reported reasoning tokens. These public synthetic tasks are not new unseen evidence. Full replayed evidence is in the companion JSON; evaluate a run separately for its interactive evidence report.</p></footer></main></html>

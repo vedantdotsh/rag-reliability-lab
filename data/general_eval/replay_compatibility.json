@@ -1,0 +1,38 @@
+[
+  {
+    "previous": {
+      "scoring_sha256": "98cd4ba5cfc1cc8922764bbec125d7c1a9a4161a62c9669c9506b09f55dcc9c2"
+    },
+    "current": {
+      "scoring_sha256": "0d4ace24c1d9e185c47e8763fea0174c8480dfff1106530bb3699b72e449e89b"
+    }
+  },
+  {
+    "previous": {
+      "scoring_sha256": "711752ce1bc9712fcd7a43119f73cb7437ee618c965fa74353dfce865306879b",
+      "general_eval_sha256": "98cd4ba5cfc1cc8922764bbec125d7c1a9a4161a62c9669c9506b09f55dcc9c2"
+    },
+    "current": {
+      "scoring_sha256": "cae6964c5d420cb06be6107639aa1af6b14b2f23f8b92889bf833a52fb6833c1",
+      "general_eval_sha256": "0d4ace24c1d9e185c47e8763fea0174c8480dfff1106530bb3699b72e449e89b"
+    }
+  },
+  {
+    "previous": {
+      "scoring_sha256": "6d98c2ac3f3cf6ac2cbbab332eb95a98796fe6ad528e04311ca542bd81bef06a"
+    },
+    "current": {
+      "scoring_sha256": "0d4ace24c1d9e185c47e8763fea0174c8480dfff1106530bb3699b72e449e89b"
+    }
+  },
+  {
+    "previous": {
+      "scoring_sha256": "54c1ca7ec00d366d411f86b4aacd07e4f13c479e6e19a44923337b8ecd62303f",
+      "general_eval_sha256": "6d98c2ac3f3cf6ac2cbbab332eb95a98796fe6ad528e04311ca542bd81bef06a"
+    },
+    "current": {
+      "scoring_sha256": "cae6964c5d420cb06be6107639aa1af6b14b2f23f8b92889bf833a52fb6833c1",
+      "general_eval_sha256": "0d4ace24c1d9e185c47e8763fea0174c8480dfff1106530bb3699b72e449e89b"
+    }
+  }
+]

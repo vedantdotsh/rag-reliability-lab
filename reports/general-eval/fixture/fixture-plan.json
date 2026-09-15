@@ -1,0 +1,2188 @@
+{
+  "version": "general-eval-v1",
+  "dataset_sha256": "cd1d89e738111a800addd39d6ab8a77402d871d16e15a2ab81e87337b95c388e",
+  "system": "reference-fixture",
+  "system_id": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+  "item_ids": [
+    "inst-01",
+    "inst-02",
+    "inst-03",
+    "inst-04",
+    "inst-05",
+    "inst-06",
+    "inst-07",
+    "inst-08",
+    "inst-09",
+    "inst-10",
+    "inst-11",
+    "inst-12",
+    "inst-13",
+    "inst-14",
+    "inst-15",
+    "reason-01",
+    "reason-02",
+    "reason-03",
+    "reason-04",
+    "reason-05",
+    "reason-06",
+    "reason-07",
+    "reason-08",
+    "reason-09",
+    "reason-10",
+    "reason-11",
+    "reason-12",
+    "reason-13",
+    "reason-14",
+    "reason-15",
+    "transform-01",
+    "transform-02",
+    "transform-03",
+    "transform-04",
+    "transform-05",
+    "transform-06",
+    "transform-07",
+    "transform-08",
+    "transform-09",
+    "transform-10",
+    "transform-11",
+    "transform-12",
+    "transform-13",
+    "transform-14",
+    "transform-15",
+    "fact-01",
+    "fact-02",
+    "fact-03",
+    "fact-04",
+    "fact-05",
+    "fact-06",
+    "fact-07",
+    "fact-08",
+    "fact-09",
+    "fact-10",
+    "fact-11",
+    "fact-12",
+    "fact-13",
+    "fact-14",
+    "fact-15"
+  ],
+  "samples": 3,
+  "schedule_seed": 20260915,
+  "schedule": [
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-02",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-02",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-10",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-04",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-06",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-11",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-11",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-12",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-05",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-04",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-15",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-02",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-03",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-03",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-01",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-14",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-06",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-01",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-02",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-11",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-07",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-05",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-10",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-05",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-08",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-14",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-02",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-02",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-12",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-02",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-03",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-02",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-10",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-02",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-05",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-02",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-01",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-03",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-03",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-11",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-04",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-05",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-05",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-15",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-07",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-07",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-10",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-05",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-03",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-03",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-09",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-02",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-05",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-15",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-15",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-10",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-13",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-14",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-02",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-01",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-03",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-02",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-01",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-02",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-02",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-04",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-01",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-04",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-04",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-07",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-15",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-03",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-04",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-05",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-03",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-13",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-05",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-03",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-03",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-04",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-03",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-08",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-05",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-10",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-02",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-07",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-01",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-01",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-04",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-02",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-11",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-08",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-03",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-03",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-04",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-09",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-10",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-05",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-09",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-15",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-04",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-03",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-10",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-06",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-05",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-05",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-02",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-10",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-03",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-03",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-01",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-07",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-14",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-15",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-14",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-05",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-04",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-04",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-03",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-05",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-08",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-03",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-05",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-12",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-11",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-14",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-04",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-12",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-02",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-05",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-04",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-02",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-01",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-01",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-05",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-01",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-05",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-11",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-15",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-04",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-13",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-04",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-05",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-10",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-02",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-04",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-07",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-04",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-03",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-05",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-06",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-15",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-13",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-13",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-03",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-12",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-08",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-04",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-03",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-03",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-07",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-07",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-01",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-12",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-02",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-04",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-06",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-02",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-09",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-14",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-04",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-01",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-12",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-04",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-05",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-08",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-13",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-02",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-05",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-03",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-04",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-01",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-11",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-13",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-14",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-04",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-02",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-08",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-06",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-03",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-12",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-04",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-12",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-05",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-12",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-01",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-05",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-05",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-04",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-01",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-06",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-05",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-02",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-12",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-02",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-14",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-10",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-06",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-05",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-04",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-11",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-01",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-05",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-06",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-02",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-03",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-06",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-09",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-03",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-08",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-03",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-09",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-07",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-09",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-13",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-04",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-02",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-03",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-03",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-02",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-06",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-02",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-04",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-01",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-14",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-14",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-06",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-05",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-03",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-08",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-01",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-07",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-09",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-05",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-05",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-07",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-15",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-01",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-11",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-05",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-02",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-02",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-01",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-09",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-05",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-04",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-04",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-05",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-12",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-15",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-01",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-01",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-15",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-01",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-01",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-02",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-01",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-09",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-01",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-13",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-09",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-02",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-04",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-01",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-13",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-11",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-03",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-02",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-01",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-04",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-13",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-01",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-08",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-03",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-01",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-10",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-04",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-03",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-01",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-01",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-11",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-13",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-01",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-09",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-01",
+      "variant_id": "equiv-b",
+      "condition": "equivalent",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "transform-03",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-08",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "reason-04",
+      "variant_id": "equiv-a",
+      "condition": "equivalent",
+      "sample": 1
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "inst-08",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 3
+    },
+    {
+      "system": "7b5043003f0ad32d3d7cf7f1259ed87110666c77ab5ee053fa0247ab4189494a",
+      "base_id": "fact-14",
+      "variant_id": "base",
+      "condition": "baseline",
+      "sample": 2
+    }
+  ],
+  "logical_keys_sha256": "b9f2ebdc955dd5c66008ed6f568c6c674635358ffce451376488cef6d85f3fde",
+  "prompts_sha256": "172e3b4972883fed7205c39bfcb018aab8397e84cbbb69e7eeb237242bc5bd58",
+  "scoring_sha256": "98cd4ba5cfc1cc8922764bbec125d7c1a9a4161a62c9669c9506b09f55dcc9c2",
+  "adapter_sha256": "610d4922e1acf14dbcc4d285d43fd9bb90e8c9e46f2908f1a748485086fbb76a",
+  "api_config": null,
+  "cli_config": {
+    "provider": "codex",
+    "cli_version": "fixture",
+    "protocol": "cli-v1",
+    "reasoning_effort": "medium",
+    "sampling": "CLI defaults; no native output schema",
+    "timeout_seconds": 240,
+    "session": "fresh empty working directory; no resume",
+    "tool_policy": "prompt prohibits tools; observed tool calls disqualify the suite"
+  },
+  "policy": "One attempt per frozen logical key; no retries, replacement, or tuning."
+}

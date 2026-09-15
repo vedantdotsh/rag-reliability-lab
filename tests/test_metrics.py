@@ -58,6 +58,11 @@ class MetricTests(unittest.TestCase):
         decimal = "The public API allows 600.5 requests per minute. [refund-policy]"
         self.assertEqual(faithfulness(decimal, EMAIL_DOCUMENTS), 1.0)
 
+    def test_faithfulness_counts_empty_citations_and_uncited_tail(self):
+        answer = ("[refund][refund-policy] Subscriptions can be refunded within 30 days. "
+                  "[refund] trailing uncited content.")
+        self.assertEqual(faithfulness(answer, [DOCUMENTS[0], EMAIL_DOCUMENTS[0]]), 0.25)
+
 
 if __name__ == "__main__":
     unittest.main()

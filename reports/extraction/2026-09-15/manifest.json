@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-09-15T17:49:28.773652+00:00",
+  "dataset_sha256": "73f69c1d333208a32480c86625876b99d28498409bdb8a29c9d7acbf5f257544",
+  "prompt_sha256": "b4e6ba91aae79151ecb7ad0ed202f387b3239b62d87f1d1bc344993e28642a4f",
+  "cases": 16,
+  "design": "One batch of 16 cases per model, one sample, identical user prompt, no tools. Synthetic documents authored locally; custom smoke test, not a public benchmark or model ranking.",
+  "generation": "Subscription CLIs include provider system prompts and defaults; no token costs assumed.",
+  "models": [
+    {
+      "provider": "codex",
+      "requested_model": "gpt-5.6-sol",
+      "cli_version": "0.154.0-alpha.6.2",
+      "reasoning_effort": "medium"
+    },
+    {
+      "provider": "cursor",
+      "requested_model": "cursor-grok-4.6-xhigh",
+      "cli_version": "2026.09.10-fd3934a",
+      "reasoning_effort": "selected model variant"
+    }
+  ],
+  "artifact_sha256": {
+    "grok-answers.jsonl": "84e35be6bfe98b0ce1bdc24353d32e36dd9fe35d2decfc41e927008ffa5d485b",
+    "grok-generation.json": "8d68ad801d2b5685696c2988bb17ae1c05ef3f029bc97a118fce4b911a92f6be",
+    "grok-report.json": "e9dc98526545e1215fd8bf4eaf4bb875d6d5c66006f30cc050468104fd4b5cb3",
+    "sol-answers.jsonl": "84e35be6bfe98b0ce1bdc24353d32e36dd9fe35d2decfc41e927008ffa5d485b",
+    "sol-generation.json": "67d2b41dfb7c7c91379cbadedc4e62d133f7c5eb7e669d298c750132102b6d33",
+    "sol-report.json": "e9dc98526545e1215fd8bf4eaf4bb875d6d5c66006f30cc050468104fd4b5cb3"
+  },
+  "scorer_sha256": "a69acb5a819a082a0b135ede180261be5bd23dc31b8b89b3c9184718c03ae41c",
+  "prompt_hash_encoding": "UTF-8, normalized LF line endings",
+  "prompt_file_sha256": "92959c278753a147c08acb77528735cc4400345d41ce9cb35b7e1e079d99d55d",
+  "prompt_transport_line_endings": {
+    "codex": "LF via Python text read",
+    "cursor": "CRLF via PowerShell raw text read",
+    "content": "Identical after line-ending normalization; no other prompt differences."
+  }
+}

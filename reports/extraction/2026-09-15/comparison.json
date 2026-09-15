@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "kind": "saved_eval_comparison",
+  "baseline": "sol-report",
+  "candidate": "grok-report",
+  "summary": {
+    "total": 16,
+    "baseline_passed": 16,
+    "candidate_passed": 16,
+    "delta": 0,
+    "improvements": 0,
+    "regressions": 0,
+    "unchanged_failures": 0
+  },
+  "categories": {
+    "names": {
+      "total": 3,
+      "baseline_passed": 3,
+      "candidate_passed": 3,
+      "delta": 0
+    },
+    "dates": {
+      "total": 3,
+      "baseline_passed": 3,
+      "candidate_passed": 3,
+      "delta": 0
+    },
+    "amounts": {
+      "total": 3,
+      "baseline_passed": 3,
+      "candidate_passed": 3,
+      "delta": 0
+    },
+    "structured": {
+      "total": 3,
+      "baseline_passed": 3,
+      "candidate_passed": 3,
+      "delta": 0
+    },
+    "missing_or_conflicting": {
+      "total": 4,
+      "baseline_passed": 4,
+      "candidate_passed": 4,
+      "delta": 0
+    }
+  },
+  "improvements": [],
+  "regressions": [],
+  "unchanged_failures": [],
+  "cases": [
+    {
+      "id": "name-01",
+      "category": "names",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_reason": null,
+      "candidate_reason": null
+    },
+    {
+      "id": "name-02",
+      "category": "names",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_reason": null,
+      "candidate_reason": null
+    },
+    {
+      "id": "name-03",
+      "category": "names",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_reason": null,
+      "candidate_reason": null
+    },
+    {
+      "id": "date-01",
+      "category": "dates",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_reason": null,
+      "candidate_reason": null
+    },
+    {
+      "id": "date-02",
+      "category": "dates",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_reason": null,
+      "candidate_reason": null
+    },
+    {
+      "id": "date-03",
+      "category": "dates",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_reason": null,
+      "candidate_reason": null
+    },
+    {
+      "id": "amount-01",
+      "category": "amounts",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_reason": null,
+      "candidate_reason": null
+    },
+    {
+      "id": "amount-02",
+      "category": "amounts",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_reason": null,
+      "candidate_reason": null
+    },
+    {
+      "id": "amount-03",
+      "category": "amounts",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_reason": null,
+      "candidate_reason": null
+    },
+    {
+      "id": "json-01",
+      "category": "structured",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_reason": null,
+      "candidate_reason": null
+    },
+    {
+      "id": "json-02",
+      "category": "structured",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_reason": null,
+      "candidate_reason": null
+    },
+    {
+      "id": "json-03",
+      "category": "structured",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_reason": null,
+      "candidate_reason": null
+    },
+    {
+      "id": "missing-01",
+      "category": "missing_or_conflicting",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_reason": null,
+      "candidate_reason": null
+    },
+    {
+      "id": "missing-02",
+      "category": "missing_or_conflicting",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_reason": null,
+      "candidate_reason": null
+    },
+    {
+      "id": "conflict-01",
+      "category": "missing_or_conflicting",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_reason": null,
+      "candidate_reason": null
+    },
+    {
+      "id": "conflict-02",
+      "category": "missing_or_conflicting",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_reason": null,
+      "candidate_reason": null
+    }
+  ]
+}

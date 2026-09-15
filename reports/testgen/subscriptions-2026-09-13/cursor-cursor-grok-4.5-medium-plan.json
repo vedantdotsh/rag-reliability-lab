@@ -1,0 +1,54 @@
+{
+  "created_at": "2026-09-13T11:13:37.631407+00:00",
+  "configuration": {
+    "version": "testgen-v4",
+    "dataset_sha256": "354a0ea1ccef60d607e51a78413acbf28f1c22c188dc985ef8d85c6348312d6b",
+    "model": "cursor-grok-4.5-medium",
+    "model_digest": null,
+    "options": {
+      "provider": "cursor",
+      "cli_version": "2026.09.10-fd3934a",
+      "protocol": "cli-v1",
+      "reasoning_effort": "selected model variant",
+      "sampling": "CLI defaults; no native output schema",
+      "timeout_seconds": 240,
+      "session": "fresh empty working directory; no resume",
+      "tool_policy": "prompt prohibits tools; observed tool calls disqualify the suite"
+    },
+    "runtime_version": "2026.09.10-fd3934a",
+    "task_ids": [
+      "leap-year",
+      "discount",
+      "interval",
+      "inventory",
+      "balanced-brackets",
+      "rotate",
+      "transpose",
+      "run-length",
+      "merge-counts",
+      "flatten",
+      "ipv4",
+      "luhn",
+      "business-days",
+      "version",
+      "range-compression",
+      "percentile-rank"
+    ],
+    "prompts_sha256": "2696bc74f264132bcbb034fdc55bad0ea5730dca6c5bade48992e8f267e1f5d0",
+    "schemas_sha256": "ec8591720e0bf7d4f823adec542ad3f3a8140d97780744c14cb6a18785776950",
+    "scoring_sha256": "c3552b972836a1d0659714dd6e00d68f263586dda212743ce0a71545bbf67012",
+    "policy": "One generation per task/condition; no retries or tuning on held-out outputs.",
+    "cli_config": {
+      "provider": "cursor",
+      "cli_version": "2026.09.10-fd3934a",
+      "protocol": "cli-v1",
+      "reasoning_effort": "selected model variant",
+      "sampling": "CLI defaults; no native output schema",
+      "timeout_seconds": 240,
+      "session": "fresh empty working directory; no resume",
+      "tool_policy": "prompt prohibits tools; observed tool calls disqualify the suite"
+    },
+    "adapter_sha256": "3dd354af0f5934c5276700f17fb066c084021ac353a00284ea79d8c365d1a122",
+    "cli_prefix_sha256": "9d5f245b0fd631a66dcafb514e9c753a358db1824a167b68378e62e2047440b1"
+  }
+}

@@ -1,0 +1,4661 @@
+{
+  "version": "testgen-v4",
+  "dataset_sha256": "354a0ea1ccef60d607e51a78413acbf28f1c22c188dc985ef8d85c6348312d6b",
+  "source": "ollama",
+  "model": "qwen2.5-coder:3b",
+  "model_digest": "f72c60cabf6237b07f6e632b2c48d533cef25eda2efbd34bed21c5e9c01e6225",
+  "options": {
+    "num_ctx": 4096,
+    "num_predict": 1536,
+    "seed": 42,
+    "temperature": 0
+  },
+  "think": null,
+  "runtime_version": "0.34.0",
+  "selected_tasks": [
+    "balanced-brackets",
+    "business-days",
+    "discount",
+    "flatten",
+    "interval",
+    "inventory",
+    "ipv4",
+    "leap-year",
+    "luhn",
+    "merge-counts",
+    "percentile-rank",
+    "range-compression",
+    "rotate",
+    "run-length",
+    "transpose",
+    "version"
+  ],
+  "dataset_tasks": 24,
+  "splits": [
+    "test"
+  ],
+  "summary": {
+    "code_only": {
+      "suites": 16,
+      "mutants_total": 32,
+      "mutants_killed": 12,
+      "mutation_score": 0.375,
+      "valid": 9,
+      "false_alarm": 7,
+      "invalid_generation": 0,
+      "generation_error": 0,
+      "execution_error": 0,
+      "median_latency_seconds": 9.558,
+      "prompt_tokens": 5298,
+      "completion_tokens": 1784
+    },
+    "code_docs": {
+      "suites": 16,
+      "mutants_total": 32,
+      "mutants_killed": 12,
+      "mutation_score": 0.375,
+      "valid": 8,
+      "false_alarm": 8,
+      "invalid_generation": 0,
+      "generation_error": 0,
+      "execution_error": 0,
+      "median_latency_seconds": 9.066,
+      "prompt_tokens": 5803,
+      "completion_tokens": 1886
+    }
+  },
+  "paired_deltas": [
+    {
+      "task_id": "balanced-brackets",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "business-days",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "discount",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "flatten",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "interval",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "inventory",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "ipv4",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "leap-year",
+      "docs_minus_code": 0.5
+    },
+    {
+      "task_id": "luhn",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "merge-counts",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "percentile-rank",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "range-compression",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "rotate",
+      "docs_minus_code": 0.5
+    },
+    {
+      "task_id": "run-length",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "transpose",
+      "docs_minus_code": 0.0
+    },
+    {
+      "task_id": "version",
+      "docs_minus_code": -1.0
+    }
+  ],
+  "rows": [
+    {
+      "task_id": "leap-year",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 6.183,
+      "prompt_tokens": 325,
+      "completion_tokens": 64,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [0], \"raises\": \"ValueError\"},\n    {\"args\": [-1], \"raises\": \"ValueError\"},\n    {\"args\": [4], \"expected\": true},\n    {\"args\": [100], \"expected\": false}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            0
+          ],
+          "raises": "ValueError"
+        },
+        {
+          "args": [
+            -1
+          ],
+          "raises": "ValueError"
+        },
+        {
+          "args": [
+            4
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            100
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "leap-year",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 6.737,
+      "prompt_tokens": 362,
+      "completion_tokens": 65,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [4], \"expected\": true},\n    {\"args\": [100], \"expected\": false},\n    {\"args\": [400], \"expected\": true},\n    {\"args\": [1900], \"expected\": false}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            4
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            100
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            400
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            1900
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "discount",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 9.583,
+      "prompt_tokens": 324,
+      "completion_tokens": 91,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [100, 0], \"expected\": 100},\n    {\"args\": [100, 50], \"expected\": 50},\n    {\"args\": [100, 100], \"expected\": 0},\n    {\"args\": [100, 101], \"raises\": \"ValueError\"}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            100,
+            0
+          ],
+          "expected": 100
+        },
+        {
+          "args": [
+            100,
+            50
+          ],
+          "expected": 50
+        },
+        {
+          "args": [
+            100,
+            100
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            100,
+            101
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 100
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 50
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 100
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 50
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 50
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "discount",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 8.589,
+      "prompt_tokens": 362,
+      "completion_tokens": 91,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [100, 0], \"expected\": 100},\n    {\"args\": [100, 50], \"expected\": 50},\n    {\"args\": [100, 100], \"expected\": 0},\n    {\"args\": [100, 101], \"raises\": \"ValueError\"}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            100,
+            0
+          ],
+          "expected": 100
+        },
+        {
+          "args": [
+            100,
+            50
+          ],
+          "expected": 50
+        },
+        {
+          "args": [
+            100,
+            100
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            100,
+            101
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 100
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 50
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 100
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 50
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 50
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "ValueError"
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "raised": "ValueError"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "interval",
+      "split": "test",
+      "condition": "code_only",
+      "status": "false_alarm",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 9.918,
+      "prompt_tokens": 317,
+      "completion_tokens": 94,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [1, 2, 3, 4], \"expected\": true},\n    {\"args\": [4, 3, 2, 1], \"expected\": false},\n    {\"args\": [1, 3, 2, 4], \"expected\": false},\n    {\"args\": [2, 1, 4, 3], \"expected\": false}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            1,
+            3,
+            2,
+            4
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            2,
+            1,
+            4,
+            3
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": false,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "ValueError"
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "ValueError"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "interval",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "false_alarm",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 9.384,
+      "prompt_tokens": 348,
+      "completion_tokens": 94,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [1, 2, 3, 4], \"expected\": true},\n    {\"args\": [1, 2, 2, 4], \"expected\": true},\n    {\"args\": [1, 2, 3, 3], \"expected\": false},\n    {\"args\": [1, 2, 3, 5], \"expected\": false}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            1,
+            2,
+            2,
+            4
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            1,
+            2,
+            3,
+            3
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            1,
+            2,
+            3,
+            5
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": false,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "inventory",
+      "split": "test",
+      "condition": "code_only",
+      "status": "false_alarm",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 11.848,
+      "prompt_tokens": 322,
+      "completion_tokens": 126,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [[100, 50], [20, 30]], \"expected\": 50},\n    {\"args\": [[100, 50], [0, 30]], \"expected\": 20},\n    {\"args\": [[100, 50], [-10, 30]], \"expected\": 100},\n    {\"args\": [[100, 50], [20, 30, 10]], \"raises\": \"ValueError\"}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              100,
+              50
+            ],
+            [
+              20,
+              30
+            ]
+          ],
+          "expected": 50
+        },
+        {
+          "args": [
+            [
+              100,
+              50
+            ],
+            [
+              0,
+              30
+            ]
+          ],
+          "expected": 20
+        },
+        {
+          "args": [
+            [
+              100,
+              50
+            ],
+            [
+              -10,
+              30
+            ]
+          ],
+          "expected": 100
+        },
+        {
+          "args": [
+            [
+              100,
+              50
+            ],
+            [
+              20,
+              30,
+              10
+            ]
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "inventory",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "false_alarm",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 7.775,
+      "prompt_tokens": 354,
+      "completion_tokens": 91,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [[100], [10]], \"expected\": 90},\n    {\"args\": [[100], [0]], \"expected\": 100},\n    {\"args\": [[100], [-10]], \"raises\": \"ValueError\"},\n    {\"args\": [[100], [100]], \"raises\": \"ValueError\"}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              100
+            ],
+            [
+              10
+            ]
+          ],
+          "expected": 90
+        },
+        {
+          "args": [
+            [
+              100
+            ],
+            [
+              0
+            ]
+          ],
+          "expected": 100
+        },
+        {
+          "args": [
+            [
+              100
+            ],
+            [
+              -10
+            ]
+          ],
+          "raises": "ValueError"
+        },
+        {
+          "args": [
+            [
+              100
+            ],
+            [
+              100
+            ]
+          ],
+          "raises": "ValueError"
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "balanced-brackets",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 5.638,
+      "prompt_tokens": 345,
+      "completion_tokens": 61,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [\"()\"], \"expected\": true},\n    {\"args\": [\"([])\"], \"expected\": true},\n    {\"args\": [\"({})\"], \"expected\": true},\n    {\"args\": [\"((()))\"], \"expected\": true}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "()"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "([])"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "({})"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "((()))"
+          ],
+          "expected": true
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "balanced-brackets",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 5.625,
+      "prompt_tokens": 365,
+      "completion_tokens": 62,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [\"()\"], \"expected\": true},\n    {\"args\": [\"([]{})\"], \"expected\": true},\n    {\"args\": [\"([{}])\"], \"expected\": true},\n    {\"args\": [\"((()))\"], \"expected\": true}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "()"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "([]{})"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "([{}])"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "((()))"
+          ],
+          "expected": true
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "rotate",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 14.854,
+      "prompt_tokens": 313,
+      "completion_tokens": 170,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [[1, 2, 3, 4, 5], 0], \"expected\": [1, 2, 3, 4, 5]},\n    {\"args\": [[1, 2, 3, 4, 5], 1], \"expected\": [5, 1, 2, 3, 4]},\n    {\"args\": [[1, 2, 3, 4, 5], 2], \"expected\": [4, 5, 1, 2, 3]},\n    {\"args\": [[1, 2, 3, 4, 5], 5], \"expected\": [1, 2, 3, 4, 5]}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            0
+          ],
+          "expected": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            1
+          ],
+          "expected": [
+            5,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            2
+          ],
+          "expected": [
+            4,
+            5,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            5
+          ],
+          "expected": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                5,
+                1,
+                2,
+                3,
+                4
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                4,
+                5,
+                1,
+                2,
+                3
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  2,
+                  3,
+                  4,
+                  5,
+                  1
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  3,
+                  4,
+                  5,
+                  1,
+                  2
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  5,
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  4,
+                  5,
+                  1,
+                  2,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "rotate",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 13.143,
+      "prompt_tokens": 337,
+      "completion_tokens": 170,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [[1, 2, 3, 4, 5], 2], \"expected\": [4, 5, 1, 2, 3]},\n    {\"args\": [[1, 2, 3, 4, 5], -2], \"expected\": [3, 4, 5, 1, 2]},\n    {\"args\": [[1, 2, 3, 4, 5], 5], \"expected\": [1, 2, 3, 4, 5]},\n    {\"args\": [[1, 2, 3, 4, 5], 0], \"expected\": [1, 2, 3, 4, 5]}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            2
+          ],
+          "expected": [
+            4,
+            5,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            -2
+          ],
+          "expected": [
+            3,
+            4,
+            5,
+            1,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            5
+          ],
+          "expected": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            0
+          ],
+          "expected": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                4,
+                5,
+                1,
+                2,
+                3
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                3,
+                4,
+                5,
+                1,
+                2
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  3,
+                  4,
+                  5,
+                  1,
+                  2
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  4,
+                  5,
+                  1,
+                  2,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  4,
+                  5,
+                  1,
+                  2,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  4,
+                  5,
+                  1,
+                  2,
+                  3
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "transpose",
+      "split": "test",
+      "condition": "code_only",
+      "status": "false_alarm",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 9.533,
+      "prompt_tokens": 326,
+      "completion_tokens": 117,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [[]], \"expected\": []},\n    {\"args\": [[1, 2, 3]], \"expected\": [[1], [2], [3]]},\n    {\"args\": [[1, 2, 3, 4]], \"expected\": [[1, 2, 3, 4]]},\n    {\"args\": [[1, 2, 3, 4, 5]], \"expected\": [[1], [2], [3], [4], [5]]}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "expected": [
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              2,
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          ],
+          "expected": [
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "transpose",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "false_alarm",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 9.154,
+      "prompt_tokens": 351,
+      "completion_tokens": 117,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [[]], \"expected\": []},\n    {\"args\": [[1, 2, 3]], \"expected\": [[1], [2], [3]]},\n    {\"args\": [[1, 2, 3, 4]], \"expected\": [[1, 2, 3, 4]]},\n    {\"args\": [[1, 2, 3, 4, 5]], \"expected\": [[1], [2], [3], [4], [5]]}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "expected": [
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              2,
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          ],
+          "expected": [
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "run-length",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 7.4,
+      "prompt_tokens": 330,
+      "completion_tokens": 84,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [\"a\"], \"expected\": [[\"a\", 1]]},\n    {\"args\": [\"aa\"], \"expected\": [[\"a\", 2]]},\n    {\"args\": [\"ab\"], \"expected\": [[\"a\", 1], [\"b\", 1]]},\n    {\"args\": [\"aaa\"], \"expected\": [[\"a\", 3]]}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "a"
+          ],
+          "expected": [
+            [
+              "a",
+              1
+            ]
+          ]
+        },
+        {
+          "args": [
+            "aa"
+          ],
+          "expected": [
+            [
+              "a",
+              2
+            ]
+          ]
+        },
+        {
+          "args": [
+            "ab"
+          ],
+          "expected": [
+            [
+              "a",
+              1
+            ],
+            [
+              "b",
+              1
+            ]
+          ]
+        },
+        {
+          "args": [
+            "aaa"
+          ],
+          "expected": [
+            [
+              "a",
+              3
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  1
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  2
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  3
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    3
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ],
+                  [
+                    "b",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    5
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    0
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    0
+                  ],
+                  [
+                    "b",
+                    0
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    2
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "run-length",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 7.041,
+      "prompt_tokens": 358,
+      "completion_tokens": 84,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [\"a\"], \"expected\": [[\"a\", 1]]},\n    {\"args\": [\"aa\"], \"expected\": [[\"a\", 2]]},\n    {\"args\": [\"ab\"], \"expected\": [[\"a\", 1], [\"b\", 1]]},\n    {\"args\": [\"aaa\"], \"expected\": [[\"a\", 3]]}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "a"
+          ],
+          "expected": [
+            [
+              "a",
+              1
+            ]
+          ]
+        },
+        {
+          "args": [
+            "aa"
+          ],
+          "expected": [
+            [
+              "a",
+              2
+            ]
+          ]
+        },
+        {
+          "args": [
+            "ab"
+          ],
+          "expected": [
+            [
+              "a",
+              1
+            ],
+            [
+              "b",
+              1
+            ]
+          ]
+        },
+        {
+          "args": [
+            "aaa"
+          ],
+          "expected": [
+            [
+              "a",
+              3
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  1
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  2
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  "a",
+                  3
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    3
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ],
+                  [
+                    "b",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    5
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    0
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    0
+                  ],
+                  [
+                    "b",
+                    0
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    "a",
+                    2
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "merge-counts",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 12.215,
+      "prompt_tokens": 316,
+      "completion_tokens": 158,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [{}, {}], \"expected\": {}},\n    {\"args\": [{\"a\": 1}, {\"a\": 2, \"b\": 3}], \"expected\": {\"a\": 3, \"b\": 3}},\n    {\"args\": [{\"a\": 1, \"b\": 2}, {\"a\": 2, \"b\": 3}], \"expected\": {\"a\": 3, \"b\": 5}},\n    {\"args\": [{\"a\": 1, \"b\": 2}, {\"a\": 2, \"b\": 3, \"c\": 4}], \"expected\": {\"a\": 3, \"b\": 5, \"c\": 4}}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            {},
+            {}
+          ],
+          "expected": {}
+        },
+        {
+          "args": [
+            {
+              "a": 1
+            },
+            {
+              "a": 2,
+              "b": 3
+            }
+          ],
+          "expected": {
+            "a": 3,
+            "b": 3
+          }
+        },
+        {
+          "args": [
+            {
+              "a": 1,
+              "b": 2
+            },
+            {
+              "a": 2,
+              "b": 3
+            }
+          ],
+          "expected": {
+            "a": 3,
+            "b": 5
+          }
+        },
+        {
+          "args": [
+            {
+              "a": 1,
+              "b": 2
+            },
+            {
+              "a": 2,
+              "b": 3,
+              "c": 4
+            }
+          ],
+          "expected": {
+            "a": 3,
+            "b": 5,
+            "c": 4
+          }
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": {}
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 3,
+                "b": 3
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 3,
+                "b": 5
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 3,
+                "b": 5,
+                "c": 4
+              }
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": {}
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "a": 2,
+                  "b": 3
+                }
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "a": 2,
+                  "b": 3
+                }
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "a": 2,
+                  "b": 3,
+                  "c": 4
+                }
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": {}
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 3,
+                  "b": 3
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 3,
+                  "b": 5
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 3,
+                  "b": 5,
+                  "c": 4
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "merge-counts",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 19.094,
+      "prompt_tokens": 339,
+      "completion_tokens": 260,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [{\"a\": 1, \"b\": 2}, {\"a\": 3, \"c\": 4}], \"expected\": {\"a\": 4, \"b\": 2, \"c\": 4}},\n    {\"args\": [{\"a\": 1, \"b\": 2}, {\"a\": 1, \"b\": 2, \"c\": 4}], \"expected\": {\"a\": 2, \"b\": 4, \"c\": 4}},\n    {\"args\": [{\"a\": 1, \"b\": 2}, {\"a\": 1, \"b\": 2, \"c\": 4, \"d\": 5}], \"expected\": {\"a\": 2, \"b\": 4, \"c\": 4, \"d\": 5}},\n    {\"args\": [{\"a\": 1, \"b\": 2}, {\"a\": 1, \"b\": 2, \"c\": 4, \"d\": 5, \"e\": 6}], \"expected\": {\"a\": 2, \"b\": 4, \"c\": 4, \"d\": 5, \"e\": 6}}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            {
+              "a": 1,
+              "b": 2
+            },
+            {
+              "a": 3,
+              "c": 4
+            }
+          ],
+          "expected": {
+            "a": 4,
+            "b": 2,
+            "c": 4
+          }
+        },
+        {
+          "args": [
+            {
+              "a": 1,
+              "b": 2
+            },
+            {
+              "a": 1,
+              "b": 2,
+              "c": 4
+            }
+          ],
+          "expected": {
+            "a": 2,
+            "b": 4,
+            "c": 4
+          }
+        },
+        {
+          "args": [
+            {
+              "a": 1,
+              "b": 2
+            },
+            {
+              "a": 1,
+              "b": 2,
+              "c": 4,
+              "d": 5
+            }
+          ],
+          "expected": {
+            "a": 2,
+            "b": 4,
+            "c": 4,
+            "d": 5
+          }
+        },
+        {
+          "args": [
+            {
+              "a": 1,
+              "b": 2
+            },
+            {
+              "a": 1,
+              "b": 2,
+              "c": 4,
+              "d": 5,
+              "e": 6
+            }
+          ],
+          "expected": {
+            "a": 2,
+            "b": 4,
+            "c": 4,
+            "d": 5,
+            "e": 6
+          }
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 4,
+                "b": 2,
+                "c": 4
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 2,
+                "b": 4,
+                "c": 4
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 2,
+                "b": 4,
+                "c": 4,
+                "d": 5
+              }
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": {
+                "a": 2,
+                "b": 4,
+                "c": 4,
+                "d": 5,
+                "e": 6
+              }
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "a": 3,
+                  "b": 2,
+                  "c": 4
+                }
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "a": 1,
+                  "b": 2,
+                  "c": 4
+                }
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "a": 1,
+                  "b": 2,
+                  "c": 4,
+                  "d": 5
+                }
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": {
+                  "a": 1,
+                  "b": 2,
+                  "c": 4,
+                  "d": 5,
+                  "e": 6
+                }
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 4,
+                  "b": 2,
+                  "c": 4
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 2,
+                  "b": 4,
+                  "c": 4
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 2,
+                  "b": 4,
+                  "c": 4,
+                  "d": 5
+                }
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": {
+                  "a": 2,
+                  "b": 4,
+                  "c": 4,
+                  "d": 5,
+                  "e": 6
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "flatten",
+      "split": "test",
+      "condition": "code_only",
+      "status": "false_alarm",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 9.963,
+      "prompt_tokens": 293,
+      "completion_tokens": 132,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [[1, 2, 3]], \"expected\": [1, 2, 3]},\n    {\"args\": [[4, 5, 6, 7]], \"expected\": [4, 5, 6, 7]},\n    {\"args\": [[8, 9]], \"expected\": [8, 9]},\n    {\"args\": [[10, 11, 12, 13, 14]], \"expected\": [10, 11, 12, 13, 14]}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              4,
+              5,
+              6,
+              7
+            ]
+          ],
+          "expected": [
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "args": [
+            [
+              8,
+              9
+            ]
+          ],
+          "expected": [
+            8,
+            9
+          ]
+        },
+        {
+          "args": [
+            [
+              10,
+              11,
+              12,
+              13,
+              14
+            ]
+          ],
+          "expected": [
+            10,
+            11,
+            12,
+            13,
+            14
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "flatten",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "false_alarm",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 10.493,
+      "prompt_tokens": 318,
+      "completion_tokens": 134,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [[]], \"expected\": []},\n    {\"args\": [[1, 2, 3]], \"expected\": [1, 2, 3]},\n    {\"args\": [[1, 2, 3, [4, 5]]], \"expected\": [1, 2, 3, 4, 5]},\n    {\"args\": [[1, 2, 3, [4, 5, [6, 7]]]], \"expected\": [1, 2, 3, 4, 5, 6, 7]}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              [
+                4,
+                5
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              [
+                4,
+                5,
+                [
+                  6,
+                  7
+                ]
+              ]
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": []
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "raised": "TypeError"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "ipv4",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 7.938,
+      "prompt_tokens": 337,
+      "completion_tokens": 102,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [\"255.255.255.255\"], \"expected\": true},\n    {\"args\": [\"0.0.0.0\"], \"expected\": true},\n    {\"args\": [\"192.168.1.1\"], \"expected\": true},\n    {\"args\": [\"256.255.255.255\"], \"expected\": false}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "255.255.255.255"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "0.0.0.0"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "192.168.1.1"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "256.255.255.255"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "ipv4",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1"
+      ],
+      "mutants": 2,
+      "latency_seconds": 8.992,
+      "prompt_tokens": 377,
+      "completion_tokens": 100,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [\"192.168.1.1\"], \"expected\": true},\n    {\"args\": [\"255.255.255.255\"], \"expected\": true},\n    {\"args\": [\"0.0.0.0\"], \"expected\": true},\n    {\"args\": [\"192.168.1.256\"], \"expected\": false}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "192.168.1.1"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "255.255.255.255"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "0.0.0.0"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "192.168.1.256"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": true
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": false
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": true
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": false
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "luhn",
+      "split": "test",
+      "condition": "code_only",
+      "status": "false_alarm",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 8.352,
+      "prompt_tokens": 367,
+      "completion_tokens": 80,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [\"12345\"], \"expected\": true},\n    {\"args\": [\"123456\"], \"expected\": false},\n    {\"args\": [\"1234567\"], \"expected\": true},\n    {\"args\": [\"12345678\"], \"expected\": false}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "12345"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "123456"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "1234567"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "12345678"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": false,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "luhn",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "false_alarm",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 8.72,
+      "prompt_tokens": 415,
+      "completion_tokens": 96,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [\"1234567890\"], \"expected\": true},\n    {\"args\": [\"123456789\"], \"expected\": false},\n    {\"args\": [\"12345678901\"], \"expected\": false},\n    {\"args\": [\"123456789012\"], \"expected\": false}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "1234567890"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "123456789"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "12345678901"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "123456789012"
+          ],
+          "expected": false
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": false,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "business-days",
+      "split": "test",
+      "condition": "code_only",
+      "status": "false_alarm",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 13.88,
+      "prompt_tokens": 355,
+      "completion_tokens": 167,
+      "raw": "{\n  \"tests\": [\n    {\n      \"args\": [\"2023-01-01\", \"2023-01-07\"],\n      \"expected\": 3\n    },\n    {\n      \"args\": [\"2023-01-01\", \"2023-01-08\"],\n      \"expected\": 4\n    },\n    {\n      \"args\": [\"2023-01-08\", \"2023-01-01\"],\n      \"raises\": \"ValueError\"\n    },\n    {\n      \"args\": [\"2023-01-01\", \"2023-01-01\"],\n      \"expected\": 0\n    }\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "2023-01-01",
+            "2023-01-07"
+          ],
+          "expected": 3
+        },
+        {
+          "args": [
+            "2023-01-01",
+            "2023-01-08"
+          ],
+          "expected": 4
+        },
+        {
+          "args": [
+            "2023-01-08",
+            "2023-01-01"
+          ],
+          "raises": "ValueError"
+        },
+        {
+          "args": [
+            "2023-01-01",
+            "2023-01-01"
+          ],
+          "expected": 0
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": false,
+            "actual": {
+              "returned": 5
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "returned": 5
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "business-days",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "false_alarm",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 12.365,
+      "prompt_tokens": 395,
+      "completion_tokens": 147,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [\"2023-01-01\", \"2023-01-07\"], \"expected\": 3},\n    {\"args\": [\"2023-01-07\", \"2023-01-01\"], \"raises\": \"ValueError\"},\n    {\"args\": [\"2023-01-01\", \"2023-01-01\"], \"expected\": 0},\n    {\"args\": [\"2023-01-02\", \"2023-01-02\"], \"expected\": 0}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "2023-01-01",
+            "2023-01-07"
+          ],
+          "expected": 3
+        },
+        {
+          "args": [
+            "2023-01-07",
+            "2023-01-01"
+          ],
+          "raises": "ValueError"
+        },
+        {
+          "args": [
+            "2023-01-01",
+            "2023-01-01"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "2023-01-02",
+            "2023-01-02"
+          ],
+          "expected": 0
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": false,
+            "actual": {
+              "returned": 5
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "raised": "ValueError"
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "version",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 8.429,
+      "prompt_tokens": 390,
+      "completion_tokens": 92,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [\"1.2\", \"1.2\"], \"expected\": 0},\n    {\"args\": [\"1.2\", \"1.3\"], \"expected\": -1},\n    {\"args\": [\"1.3\", \"1.2\"], \"expected\": 1},\n    {\"args\": [\"1.0\", \"1.0.0\"], \"expected\": 0}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "1.2",
+            "1.2"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "1.2",
+            "1.3"
+          ],
+          "expected": -1
+        },
+        {
+          "args": [
+            "1.3",
+            "1.2"
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            "1.0",
+            "1.0.0"
+          ],
+          "expected": 0
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": -1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "raised": "TypeError"
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": 0
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": -1
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": 1
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": -1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "version",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "false_alarm",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 7.214,
+      "prompt_tokens": 433,
+      "completion_tokens": 88,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [\"1.2\", \"1.2\"], \"expected\": 0},\n    {\"args\": [\"1.2\", \"1.3\"], \"expected\": -1},\n    {\"args\": [\"1.3\", \"1.2\"], \"expected\": 1},\n    {\"args\": [\"1.0\", \"1\"], \"expected\": 1}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            "1.2",
+            "1.2"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "1.2",
+            "1.3"
+          ],
+          "expected": -1
+        },
+        {
+          "args": [
+            "1.3",
+            "1.2"
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            "1.0",
+            "1"
+          ],
+          "expected": 1
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 0
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": -1
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "returned": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "range-compression",
+      "split": "test",
+      "condition": "code_only",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 12.478,
+      "prompt_tokens": 333,
+      "completion_tokens": 143,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [[1, 2, 3, 4, 5]], \"expected\": [[1, 5]]},\n    {\"args\": [[5, 4, 3, 2, 1]], \"expected\": [[1, 5]]},\n    {\"args\": [[1, 1, 1, 1, 1]], \"expected\": [[1, 1]]},\n    {\"args\": [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]], \"expected\": [[1, 10]]}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              5
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              5
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              10
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  5
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  5
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  1
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  10
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    5
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    5
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    10
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    2,
+                    2
+                  ],
+                  [
+                    3,
+                    3
+                  ],
+                  [
+                    4,
+                    4
+                  ],
+                  [
+                    5,
+                    5
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    2,
+                    2
+                  ],
+                  [
+                    3,
+                    3
+                  ],
+                  [
+                    4,
+                    4
+                  ],
+                  [
+                    5,
+                    5
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    2,
+                    2
+                  ],
+                  [
+                    3,
+                    3
+                  ],
+                  [
+                    4,
+                    4
+                  ],
+                  [
+                    5,
+                    5
+                  ],
+                  [
+                    6,
+                    6
+                  ],
+                  [
+                    7,
+                    7
+                  ],
+                  [
+                    8,
+                    8
+                  ],
+                  [
+                    9,
+                    9
+                  ],
+                  [
+                    10,
+                    10
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "range-compression",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "valid",
+      "killed": [
+        "m1",
+        "m2"
+      ],
+      "mutants": 2,
+      "latency_seconds": 12.63,
+      "prompt_tokens": 354,
+      "completion_tokens": 158,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [[1, 2, 3, 4, 5]], \"expected\": [[1, 5]]},\n    {\"args\": [[5, 4, 3, 2, 1]], \"expected\": [[1, 5]]},\n    {\"args\": [[1, 1, 2, 2, 3, 3, 4, 4, 5, 5]], \"expected\": [[1, 5]]},\n    {\"args\": [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]], \"expected\": [[1, 10]]}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              5
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              5
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              1,
+              2,
+              2,
+              3,
+              3,
+              4,
+              4,
+              5,
+              5
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              5
+            ]
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          ],
+          "expected": [
+            [
+              1,
+              10
+            ]
+          ]
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  5
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  5
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  5
+                ]
+              ]
+            }
+          },
+          {
+            "passed": true,
+            "actual": {
+              "returned": [
+                [
+                  1,
+                  10
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "mutant_results": {
+        "m1": {
+          "outcomes": [
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    5
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    5
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    2
+                  ],
+                  [
+                    2,
+                    3
+                  ],
+                  [
+                    3,
+                    4
+                  ],
+                  [
+                    4,
+                    5
+                  ],
+                  [
+                    5,
+                    5
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": true,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    10
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "m2": {
+          "outcomes": [
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    2,
+                    2
+                  ],
+                  [
+                    3,
+                    3
+                  ],
+                  [
+                    4,
+                    4
+                  ],
+                  [
+                    5,
+                    5
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    2,
+                    2
+                  ],
+                  [
+                    3,
+                    3
+                  ],
+                  [
+                    4,
+                    4
+                  ],
+                  [
+                    5,
+                    5
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    2,
+                    2
+                  ],
+                  [
+                    3,
+                    3
+                  ],
+                  [
+                    4,
+                    4
+                  ],
+                  [
+                    5,
+                    5
+                  ]
+                ]
+              }
+            },
+            {
+              "passed": false,
+              "actual": {
+                "returned": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    2,
+                    2
+                  ],
+                  [
+                    3,
+                    3
+                  ],
+                  [
+                    4,
+                    4
+                  ],
+                  [
+                    5,
+                    5
+                  ],
+                  [
+                    6,
+                    6
+                  ],
+                  [
+                    7,
+                    7
+                  ],
+                  [
+                    8,
+                    8
+                  ],
+                  [
+                    9,
+                    9
+                  ],
+                  [
+                    10,
+                    10
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "percentile-rank",
+      "split": "test",
+      "condition": "code_only",
+      "status": "false_alarm",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 8.042,
+      "prompt_tokens": 305,
+      "completion_tokens": 103,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [[1, 2, 3], 2], \"expected\": 1},\n    {\"args\": [[10, 20, 30], 15], \"expected\": 2},\n    {\"args\": [[-1, -2, -3], -2], \"expected\": 2},\n    {\"args\": [[0, 0, 0], 0], \"expected\": 3}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            2
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            [
+              10,
+              20,
+              30
+            ],
+            15
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            [
+              -1,
+              -2,
+              -3
+            ],
+            -2
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            [
+              0,
+              0,
+              0
+            ],
+            0
+          ],
+          "expected": 3
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "returned": 1
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "returned": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "percentile-rank",
+      "split": "test",
+      "condition": "code_docs",
+      "status": "false_alarm",
+      "killed": [],
+      "mutants": 2,
+      "latency_seconds": 9.14,
+      "prompt_tokens": 335,
+      "completion_tokens": 129,
+      "raw": "{\n  \"tests\": [\n    {\"args\": [[1, 2, 3, 4, 5], 3], \"expected\": 2},\n    {\"args\": [[10, 20, 30, 40, 50], 25], \"expected\": 3},\n    {\"args\": [[-1, -2, -3, -4, -5], -3], \"expected\": 4},\n    {\"args\": [[0, 0, 0, 0, 0], 0], \"expected\": 5}\n  ]\n}",
+      "test_count": 4,
+      "tests": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            3
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            [
+              10,
+              20,
+              30,
+              40,
+              50
+            ],
+            25
+          ],
+          "expected": 3
+        },
+        {
+          "args": [
+            [
+              -1,
+              -2,
+              -3,
+              -4,
+              -5
+            ],
+            -3
+          ],
+          "expected": 4
+        },
+        {
+          "args": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            0
+          ],
+          "expected": 5
+        }
+      ],
+      "correct": {
+        "outcomes": [
+          {
+            "passed": true,
+            "actual": {
+              "returned": 2
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "returned": 2
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "returned": 2
+            }
+          },
+          {
+            "passed": false,
+            "actual": {
+              "returned": 0
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "comparison": {
+    "mean_docs_minus_code": 0.0,
+    "task_bootstrap_95_ci": [
+      -0.1875,
+      0.125
+    ],
+    "docs_wins": 2,
+    "ties": 13,
+    "code_wins": 1,
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 1729
+  },
+  "plan_sha256": "9ab313c1913d96c1a1b8f2e965f7fa173e9d1d8a4397928c2d5fc830ff590d5c"
+}
