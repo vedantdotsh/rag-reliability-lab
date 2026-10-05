@@ -158,9 +158,15 @@ def generate_extractive_answer(
             score = overlap + density + context.score * 0.02 - rank * 0.05
             candidates.append((score, -rank, sentence, context.document.id))
     candidates.sort(key=lambda value: (-value[0], -value[1], value[2]))
-    if not candidates or _conflicting_facts(question, candidates) or not _supports_requested_detail(
-        question, candidates
-    ):
-        return ABSTENTION_ANSWER
     selected = candidates[:max_sentences]
+    if not candidates or _conflicting_facts(question, candidates):
+        return ABSTENTION_ANSWER
+    if not _supports_requested_detail(question, selected):
+        for candidate in candidates[max_sentences:]:
+            replacement = [*selected[:-1], candidate]
+            if _supports_requested_detail(question, replacement):
+                selected = replacement
+                break
+        else:
+            return ABSTENTION_ANSWER
     return " ".join(f"{sentence} [{document_id}]" for _, _, sentence, document_id in selected)

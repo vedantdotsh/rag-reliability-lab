@@ -89,6 +89,24 @@ class AnsweringTests(unittest.TestCase):
             ABSTENTION_ANSWER,
         )
 
+    def test_requested_detail_must_be_in_selected_sentences(self):
+        question = "What is the base URL of the public API?"
+        contexts = [
+            _context("overview", "The public API base URL requires authentication.", 2.0),
+            _context("guide", "The public API base URL supports secure requests.", 2.0),
+            _context("endpoint", "API endpoint: https://api.example.test/v1.", 1.0),
+        ]
+        answer = generate_extractive_answer(question, contexts)
+        self.assertIn("https://api.example.test/v1. [endpoint]", answer)
+        self.assertNotIn("[guide]", answer)
+        self.assertEqual(
+            generate_extractive_answer(question, contexts[:2]), ABSTENTION_ANSWER
+        )
+        self.assertIn(
+            "https://api.example.test/v1. [endpoint]",
+            generate_extractive_answer(question, contexts, max_sentences=3),
+        )
+
     def test_numeric_corrections_remain_answerable(self):
         answer = generate_extractive_answer(
             "The API allows 500 requests per minute. Is that true?",
