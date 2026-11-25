@@ -1,0 +1,3 @@
+{"id": "refund", "question": "How long do refunds take?", "expected_doc_ids": ["refund"], "required_facts": ["30 days"]}
+{"id": "limit", "question": "How many API requests per minute?", "expected_doc_ids": ["limits"], "required_facts": ["600 requests per minute"]}
+{"id": "unknown", "question": "Who won chess?", "expected_doc_ids": [], "required_facts": [], "should_abstain": true}

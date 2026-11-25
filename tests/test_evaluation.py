@@ -1,3 +1,4 @@
+import json
 import unittest
 from copy import deepcopy
 from dataclasses import replace
@@ -35,6 +36,91 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(report.metrics["hit_rate_at_3"], 1.0)
         self.assertEqual(report.metrics["required_phrase_coverage"], 1.0)
         self.assertEqual(report.metrics["faithfulness"], 1.0)
+
+    def test_api_model_uses_same_retrieval_scoring_and_comparison(self):
+        from raglab import testgen_api
+        from raglab.answering import ABSTENTION_ANSWER
+
+        documents = DOCUMENTS + [Document("hidden", "Other", "LABEL_ONLY_SECRET")]
+        cases = CASES + [EvalCase("unknown", "Who won chess?", (), (), should_abstain=True)]
+        baseline = evaluate(documents, cases)
+        config = testgen_api.configuration("compatible", "http://127.0.0.1:8765")
+        with patch.object(testgen_api, "api_key", return_value="test-key"), patch.object(
+            testgen_api, "generate_one", side_effect=[
+                {"raw": baseline.cases[0].answer}, {"raw": ABSTENTION_ANSWER},
+            ]
+        ) as call, patch("raglab.evaluation.time.perf_counter", side_effect=[0, 1, 2, 4]):
+            candidate = evaluate(documents, cases, model="chosen-model", api_config=config)
+        self.assertEqual(candidate.benchmark_sha256, baseline.benchmark_sha256)
+        self.assertEqual(candidate.config["generator"], "llm")
+        self.assertEqual(candidate.config["model"], "chosen-model")
+        self.assertEqual(candidate.config["api"], config)
+        self.assertNotIn("test-key", str(candidate.to_dict()))
+        self.assertEqual(candidate.metrics["p95_latency_ms"], 2000)
+        self.assertFalse(check_gate(candidate.metrics, {"p95_latency_ms_max": 50})["passed"])
+        self.assertTrue(compare_reports(baseline.to_dict(), candidate.to_dict())["passed"])
+        for index, invocation in enumerate(call.call_args_list):
+            request = invocation.args[1]
+            self.assertEqual(request["body"]["model"], "chosen-model")
+            prompt = request["body"]["messages"][0]["content"]
+            self.assertIn(cases[index].question, prompt)
+            self.assertNotIn("LABEL_ONLY_SECRET", prompt)
+            self.assertNotIn("required_facts", prompt)
+            self.assertNotIn("expected_doc_ids", prompt)
+            if index == 0:
+                self.assertIn("[limits]", prompt)
+                self.assertIn(DOCUMENTS[0].text, prompt)
+            else:
+                self.assertNotIn(DOCUMENTS[0].text, prompt)
+
+    def test_api_errors_never_become_successful_answers(self):
+        from raglab import testgen_api
+
+        config = testgen_api.configuration("compatible", "http://127.0.0.1:8765")
+        for result in ({"raw": "valid-looking answer", "generation_error": "truncated"},
+                       {"raw": ""}, {"raw": None}):
+            with self.subTest(result=result), patch.object(
+                testgen_api, "api_key", return_value="test-key"
+            ), patch.object(testgen_api, "generate_one", return_value=result), self.assertRaises(
+                ValueError
+            ):
+                evaluate(DOCUMENTS, CASES, model="chosen-model", api_config=config)
+        for kwargs in ({"model": "chosen-model"}, {"api_config": config},
+                       {"model": " ", "api_config": config}):
+            with self.subTest(kwargs=kwargs), patch.object(
+                testgen_api, "generate_one"
+            ) as call, self.assertRaises(ValueError):
+                evaluate(DOCUMENTS, CASES, **kwargs)
+            call.assert_not_called()
+
+    def test_api_abstention_ignores_outer_whitespace_but_keeps_raw_answer(self):
+        from raglab import testgen_api
+        from raglab.answering import ABSTENTION_ANSWER
+
+        config = testgen_api.configuration("compatible", "http://127.0.0.1:8765")
+        case = EvalCase("unknown", "Who won chess?", (), (), should_abstain=True)
+        raw = "  " + ABSTENTION_ANSWER + "\n"
+        with patch.object(testgen_api, "api_key", return_value="test-key"), patch.object(
+            testgen_api, "generate_one", return_value={"raw": raw}
+        ):
+            report = evaluate(DOCUMENTS, [case], model="chosen-model", api_config=config)
+        self.assertEqual(report.cases[0].answer, raw)
+        self.assertTrue(report.cases[0].abstained)
+        self.assertEqual(report.metrics["unanswerable_abstention_rate"], 1)
+
+    def test_api_candidate_regressions_are_not_hidden(self):
+        from raglab import testgen_api
+
+        config = testgen_api.configuration("compatible", "http://127.0.0.1:8765")
+        baseline = evaluate(DOCUMENTS, CASES)
+        with patch.object(testgen_api, "api_key", return_value="test-key"), patch.object(
+            testgen_api, "generate_one", return_value={"raw": "Invented answer. [unknown]"}
+        ):
+            candidate = evaluate(DOCUMENTS, CASES, model="chosen-model", api_config=config)
+        self.assertFalse(compare_reports(baseline.to_dict(), candidate.to_dict())["passed"])
+        self.assertEqual(candidate.metrics["faithfulness"], 0)
+        self.assertEqual(candidate.metrics["citation_correctness"], 0)
+        self.assertTrue(candidate.cases[0].issues)
 
     def test_gate_supports_minimums_and_maximums(self):
         gate = check_gate(
@@ -138,6 +224,19 @@ class EvaluationTests(unittest.TestCase):
         for documents, cases in ((DOCUMENTS * 2, CASES), (DOCUMENTS, CASES * 2), (DOCUMENTS, [])):
             with self.subTest(documents=documents, cases=cases), self.assertRaises(ValueError):
                 evaluate(documents, cases)
+
+    def test_baseline_latency_policy_is_unchanged(self):
+        path = Path(__file__).resolve().parents[1] / "config/thresholds.json"
+        thresholds = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(thresholds["p95_latency_ms_max"], 50.0)
+
+    def test_llm_threshold_profile_matches_baseline_minus_latency_cap(self):
+        config_dir = Path(__file__).resolve().parents[1] / "config"
+        baseline = json.loads((config_dir / "thresholds.json").read_text(encoding="utf-8"))
+        llm = json.loads((config_dir / "thresholds.llm.json").read_text(encoding="utf-8"))
+        self.assertEqual(baseline["p95_latency_ms_max"], 50.0)
+        self.assertEqual(llm, {key: value for key, value in baseline.items()
+                               if key != "p95_latency_ms_max"})
 
     def test_expanded_benchmark_and_failure_reports(self):
         root = Path(__file__).resolve().parents[1]

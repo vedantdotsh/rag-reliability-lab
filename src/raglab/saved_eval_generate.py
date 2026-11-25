@@ -88,7 +88,7 @@ def generate(
                     generation_error=str(error),
                     execution_status="harness_error",
                 )
-            generation["latency_seconds"] = round(time.perf_counter() - started, 3)
+            generation["latency_seconds"] = time.perf_counter() - started
             response = generation.get("raw", "")
             if not isinstance(response, str):
                 response = ""

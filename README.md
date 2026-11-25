@@ -119,6 +119,57 @@ what was asked and answered. Evaluation prints to the terminal; add
 not create HTML or Markdown. See the [general evaluation guide](docs/GENERAL_LLM_EVALUATION.md)
 for subscription CLI options, judge controls, and scoring limits.
 
+## Evaluate a live model on the RAG benchmark
+
+The deterministic baseline needs no credentials:
+
+```powershell
+python -m raglab evaluate --gate --report reports/rag-baseline.json
+```
+
+Record model responses first, then replay them offline with zero credentials.
+Generation writes one JSONL row per case with full provenance; replay scores the
+recorded responses without touching the network:
+
+```powershell
+python -m raglab generate --model MODEL_ID --provider openai --corpus data/corpus.json --cases data/eval_cases.jsonl --output reports/rag-llm.generations.jsonl
+python -m raglab evaluate --generations reports/rag-llm.generations.jsonl --thresholds config/thresholds.llm.json --gate --report reports/rag-llm.json
+```
+
+The `--model` flag on `evaluate` is a convenience wrapper that records then
+replays in one step; it requires `--report` so paid evidence is never discarded:
+
+```powershell
+python -m raglab evaluate --model MODEL_ID --provider openai --thresholds config/thresholds.llm.json --gate --report reports/rag-llm.json
+```
+
+One run issues 56 API calls, one per golden case. Credentials stay local via
+your provider's environment variable (see the [API guide](docs/API_MODELS.md)).
+Model runs must name a threshold file explicitly: `config/thresholds.llm.json`
+keeps every baseline quality floor but drops the latency maximum (latency is
+still recorded and reported), since the unchanged 50 ms `p95_latency_ms_max`
+would fail hosted inference. Pass `config/thresholds.json` instead to enforce
+the 50 ms policy. The report is saved even when the gate fails. Faithfulness
+scoring checks exact source sentences, not semantic equivalence. A committed
+offline fixture demonstrates the replay path:
+
+```powershell
+python -m raglab evaluate --corpus reports/rag/fixture/corpus.json --cases reports/rag/fixture/cases.jsonl --generations reports/rag/fixture/generations.jsonl --thresholds config/thresholds.json --report reports/rag-replay.json
+```
+
+Compare one or more candidate reports against the baseline; each candidate is
+named by its path and labelled with its recorded retriever/generator/model:
+
+```powershell
+python -m raglab compare reports/rag-baseline.json reports/rag-llm.json
+python -m raglab compare reports/rag-baseline.json reports/rag-llm.json reports/rag-llm2.json --output reports/rag-compare.json
+```
+
+Output lists per-metric deltas and per-case changes (answer/abstain flips,
+lost or gained required phrases and citations) without recalculating scores.
+Any candidate regressing beyond `--max-drop` exits 1; `--output` still writes
+the full JSON comparison first and refuses to overwrite existing or input files.
+
 ## Other terminal commands
 
 ```powershell
