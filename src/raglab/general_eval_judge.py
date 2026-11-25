@@ -176,10 +176,10 @@ def evaluate(tasks, controls, records, plan):
             if (record.get("api_config") != config or record.get("request") !=
                     testgen_api.request_for(config, plan["model"], prompt)):
                 raise ValueError("Judge API request provenance differs from plan")
-        elif record.get("source") == "cli":
-            if (record.get("cli_config") != plan["cli_config"] or record.get("cli_prompt") !=
-                    testgen_cli.cli_prompt(prompt, general_eval.CLI_PREFIX)):
-                raise ValueError("Judge CLI prompt provenance differs from plan")
+        elif record.get("source") == "cli" and (
+                record.get("cli_config") != plan["cli_config"] or record.get("cli_prompt") !=
+                testgen_cli.cli_prompt(prompt, general_eval.CLI_PREFIX)):
+            raise ValueError("Judge CLI prompt provenance differs from plan")
         execution_status = general_eval.validate_execution_status(record)
         winner, parse_error = (None, record.get("generation_error")) if record.get(
             "generation_error") else _parse_winner(record.get("raw", ""))
